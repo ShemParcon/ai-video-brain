@@ -1,0 +1,29 @@
+name: produce
+on:
+  schedule:
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'YYYY-MM-DD (blank = today)'
+        required: false
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: produce
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: sudo apt-get install -y fonts-dejavu-core ffmpeg
+      - run: pip install -r requirements.txt
+      - run: python agent/produce.py --date "${{ github.event.inputs.date }}"
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
