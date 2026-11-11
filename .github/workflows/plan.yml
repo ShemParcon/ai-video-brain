@@ -1,0 +1,31 @@
+name: plan
+on:
+  schedule:
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'YYYY-MM-DD (blank = tomorrow)'
+        required: false
+        default: ''
+      force:
+        description: 'replace existing plan (true/false)'
+        required: false
+        default: 'false'
+permissions:
+  contents: write
+concurrency:
+  group: plan
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - run: python agent/plan.py --date "${{ github.event.inputs.date }}" --force "${{ github.event.inputs.force }}"
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
