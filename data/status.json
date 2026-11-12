@@ -53,11 +53,11 @@
       "updated": "2026-11-12 16:14:12"
     },
     "2026-11-12-estudyante-1": {
-      "state": "scripting",
-      "pct": 10,
-      "msg": "",
+      "state": "error",
+      "pct": 100,
+      "msg": "AI writer failed. gemini: gemini-omni-flash-preview 429; gemini-omni-1.2-flash 429; gemini-omni-1.1-flash 429; gemini-2.5-flash 404 | pollinations: pollinations: {\"status\":402,\"success\":false,\"error\":{\"code\":\"FREE_LIMIT\",\"message\":\"Free limit reached: 1 reply every 45 seconds per IP. Retry after 45s",
       "date": "2026-11-12",
-      "updated": "2026-11-12 16:14:13"
+      "updated": "2026-11-12 16:19:55"
     },
     "2026-11-12-estudyante-2": {
       "state": "queued",
