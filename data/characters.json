@@ -376,5 +376,53 @@
     "voice": "en-US-SteffanNeural",
     "pitch": 0,
     "rate": 4
+  },
+  "pera:broke guy": {
+    "v": 3,
+    "page": "pera",
+    "role": "Broke Guy",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#4a2e1f",
+      "shirt": "#f97316",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#3f3f46",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-RogerNeural",
+    "pitch": 0,
+    "rate": 8
+  },
+  "pera:friend": {
+    "v": 3,
+    "page": "pera",
+    "role": "Friend",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#1b1b22",
+      "shirt": "#64748b",
+      "style": "bun",
+      "glasses": true,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#4b5563",
+      "shoe": "#7f1d1d",
+      "skirt": true,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-AriaNeural",
+    "pitch": 0,
+    "rate": 6
   }
 }
