@@ -3,6 +3,13 @@ import numpy as np
 
 SR = 24000
 EMOJI = re.compile('[\U00010000-\U0010ffff\u2600-\u27bf\ufe0f\u200d]')
+def speakable(t):
+    t = re.sub(r"\u20b1\s?([\d,]+)", r"\1 pesos", EMOJI.sub('', t)).replace('&', ' at ')
+    t = re.sub(r"(?<=\w)-(?=\w)", ' ', t)
+    t = re.sub(r"(^|\s)['\u2019](?=\w)", r"\1", t)
+    t = re.sub(r"[^\w\s.,!?'\u2019:;()%/]", ' ', t)
+    return re.sub(r'\s+', ' ', t).strip() or 'Ok'
+
 def clean(t): return re.sub(r'\s+', ' ', EMOJI.sub('', t)).strip()
 
 def read_wav(path):
@@ -25,8 +32,8 @@ def tts(text, ch, path):
         return (np.sin(2 * np.pi * (140 + ch['pitch']) * t) * (.3 + .3 * np.sin(2 * np.pi * 3.5 * t)) ** 2).astype(np.float32)
     import edge_tts
     mp3 = path + '.mp3'
-    safe = re.sub(r"[^\w\s.,!?'\u2019\-:;()%/]", ' ', text); safe = re.sub(r'\s+', ' ', safe).strip() or 'Ok'
-    alt = 'en-PH-RosaNeural' if ch['voice'].endswith('BlancaNeural') else 'en-PH-JamesNeural'
+    safe = speakable(text)
+    alt = 'en-US-JennyNeural' if ch.get('gender') == 'F' else 'en-US-GuyNeural'
     tries = [(ch['voice'], f"{ch['rate']:+d}%", f"{ch['pitch']:+d}Hz"), (ch['voice'], '+0%', f"{ch['pitch']:+d}Hz"),
              (ch['voice'], '+0%', '+0Hz'), (ch['voice'], '+0%', '+0Hz'), (alt, '+0%', '+0Hz')]
     last = None
@@ -84,7 +91,7 @@ def mix(total, lines, path):
         if fx is not None: e = min(len(out), s + len(fx)); out[s:e] += .5 * fx[:e - s]
     m = music(total)[:len(out)]; fade = np.ones(len(m)); k = int(1.2 * SR)
     fade[int(total * SR) - k:] = np.linspace(1, 0, k + len(m) - int(total * SR))[:len(m) - (int(total * SR) - k)]
-    out[:len(m)] += .06 * m * fade
+    out[:len(m)] += .03 * m * fade
     pk = np.abs(out).max()
     if pk > .92: out *= .92 / pk
     write_wav(path, out[:int(total * SR)])
