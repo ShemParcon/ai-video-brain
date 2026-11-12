@@ -112,5 +112,24 @@
     "voice": "fil-PH-AngeloNeural",
     "pitch": 10,
     "rate": 6
+  },
+  "pamilya:nanay": {
+    "page": "pamilya",
+    "role": "Nanay",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#6b2d1a",
+      "shirt": "#64748b",
+      "style": "long",
+      "glasses": true,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0
+    },
+    "voice": "fil-PH-BlancaNeural",
+    "pitch": 15,
+    "rate": -3
   }
 }
