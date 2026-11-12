@@ -23,11 +23,11 @@
       "built_rev": 0
     },
     "2026-11-12-pamilya-1": {
-      "state": "voicing",
-      "pct": 35,
+      "state": "rendering",
+      "pct": 60,
       "msg": "",
       "date": "2026-11-12",
-      "updated": "2026-11-12 16:03:23"
+      "updated": "2026-11-12 16:04:00"
     },
     "2026-11-12-pamilya-2": {
       "state": "queued",
