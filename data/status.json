@@ -29,11 +29,11 @@
       "updated": "2026-11-12 15:02:40"
     },
     "2026-11-12-pamilya-2": {
-      "state": "voicing",
-      "pct": 35,
-      "msg": "",
+      "state": "error",
+      "pct": 100,
+      "msg": "No audio was received. Please verify that your parameters are correct.",
       "date": "2026-11-12",
-      "updated": "2026-11-12 15:03:03"
+      "updated": "2026-11-12 15:03:17"
     },
     "2026-11-12-pagibig-1": {
       "state": "queued",

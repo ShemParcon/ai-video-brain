@@ -1,1 +1,59 @@
-{}
+{
+  "pamilya:anak": {
+    "page": "pamilya",
+    "role": "Anak",
+    "gender": "M",
+    "age": "kid",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#1f2a44",
+      "shirt": "#f59e0b",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 0.85
+    },
+    "voice": "fil-PH-AngeloNeural",
+    "pitch": 36,
+    "rate": 6
+  },
+  "pamilya:lola": {
+    "page": "pamilya",
+    "role": "Lola",
+    "gender": "F",
+    "age": "old",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#b9b9c0",
+      "shirt": "#f59e0b",
+      "style": "bun",
+      "glasses": true,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0
+    },
+    "voice": "fil-PH-BlancaNeural",
+    "pitch": -6,
+    "rate": -8
+  },
+  "pamilya:tatay": {
+    "page": "pamilya",
+    "role": "Tatay",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#d29b6b",
+      "hair": "#4a2e1f",
+      "shirt": "#ef4444",
+      "style": "bald",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0
+    },
+    "voice": "fil-PH-AngeloNeural",
+    "pitch": -5,
+    "rate": 0
+  }
+}
