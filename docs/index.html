@@ -29,6 +29,11 @@ const b64=s=>btoa(unescape(encodeURIComponent(s)));
 async function gwrite(path,obj,msg){let sha;const g=await fetch(API('/contents/'+path+'?ref=main'),{headers:H(false),cache:'no-store'});if(g.ok)sha=(await g.json()).sha;
  const r=await fetch(API('/contents/'+path),{method:'PUT',headers:{...H(false),'Content-Type':'application/json'},body:JSON.stringify({message:msg,content:b64(JSON.stringify(obj,null,2)),sha,branch:'main'})});if(!r.ok)throw new Error('save failed '+r.status+' (token needs repo access)');}
 async function dispatch(wf,inputs){const r=await fetch(API('/actions/workflows/'+wf+'/dispatches'),{method:'POST',headers:{...H(false),'Content-Type':'application/json'},body:JSON.stringify({ref:'main',inputs})});if(!r.ok)throw new Error('could not start ('+r.status+')')}
+async function stopRuns(){let n=0;
+ for(const st of ['in_progress','queued']){const r=await fetch(API('/actions/runs?status='+st+'&per_page=20'),{headers:H(false),cache:'no-store'});
+  if(!r.ok)throw new Error('cannot read runs ('+r.status+')');
+  for(const run of (await r.json()).workflow_runs){const c=await fetch(API('/actions/runs/'+run.id+'/cancel'),{method:'POST',headers:H(false)});if(c.ok)n++}}
+ await new Promise(r=>setTimeout(r,4000));return n}
 async function loadAll(){
  if(!S.repo){S.tab='settings';return render()}
  try{S.err='';
@@ -37,19 +42,21 @@ async function loadAll(){
   if(!S.date||!S.dates.includes(S.date))S.date=S.dates.includes(phToday())?phToday():S.dates[0]||phToday();
   S.plan=await gread('data/plans/'+S.date+'.json')||{date:S.date,items:[]};
   S.status=await gread('data/status.json')||{items:{}};S.res=await gread('data/results/'+S.date+'.json')||{items:{}};
-  const rr=await fetch(API('/actions/runs?per_page=6'),{headers:H(false),cache:'no-store'});S.runs=rr.ok?(await rr.json()).workflow_runs:[];
+  const rr=await fetch(API('/actions/runs?per_page=10'),{headers:H(false),cache:'no-store'});S.runs=rr.ok?(await rr.json()).workflow_runs:[];S.runsErr=rr.ok?'':'runs '+rr.status;
  }catch(e){S.err=e.message}
  render()}
+const isRun=(x,w)=>x&&((x.path||'').includes(w+'.yml')||x.name==w);
+const activeRun=()=>S.runs.some(x=>x.status!='completed')||(S.runsErr&&(S.status.run||{}).state=='running');
 const pageName=id=>(S.cfg.pages.find(p=>p.id==id)||{}).name||id;
 const PCT={queued:3,scripting:15,voicing:40,rendering:65,uploading:90,done:100,error:100};
 function dateSel(){return `<select data-act="date">${[...new Set([...S.dates,S.date])].map(d=>`<option ${d==S.date?'selected':''}>${d}</option>`).join('')}</select>`}
-function runBanner(){const r=S.runs.find(x=>x.name=='produce'),pl=S.runs.find(x=>x.name=='plan');const f=x=>x?`<a style="color:#7dd3fc" href="${x.html_url}" target="_blank">${x.name}: ${x.status=='completed'?x.conclusion:x.status}</a>`:'';
- const run=S.status.run||{};return `<div class="card mut">${[f(pl),f(r)].filter(Boolean).join(' · ')||'No runs yet'}${run.message?`<br>Last run: ${esc(run.message)} (${esc(run.updated||'')})`:''}</div>`}
+function runBanner(){const r=S.runs.find(x=>isRun(x,'produce')),pl=S.runs.find(x=>isRun(x,'plan'));const f=x=>x?`<a style="color:#7dd3fc" href="${x.html_url}" target="_blank">${x.name}: ${x.status=='completed'?x.conclusion:x.status}</a>`:'';
+ const run=S.status.run||{};return `<div class="card mut">${[f(pl),f(r)].filter(Boolean).join(' · ')||(S.runsErr?'Cannot read runs ('+S.runsErr+')':'No runs yet')}${run.message?`<br>Last run: ${esc(run.message)} (${esc(run.updated||'')})`:''}</div>`}
 const views={
 progress(){const its=S.plan.items.filter(i=>i.status!='skip');const done=its.filter(i=>(S.status.items[i.id]||{}).state=='done').length;
  return dateSel()+runBanner()+`<div class="card"><b>${done}/${its.length} videos ready</b><div class="bar"><i style="width:${its.length?done/its.length*100:0}%"></i></div>
- <button class="b" data-act="run">▶ Make videos now</button><button class="b g" data-act="reload">↻ Refresh</button></div>`+
- its.map(i=>{const s=S.status.items[i.id]||{},st=s.state||'waiting',stale=st=='done'&&s.built_rev!=(i.rev||0);return `<div class="card"><span class="chip">${esc(pageName(i.page))}</span> <span class="chip">${stale?'will remake':st}</span><div><b>${esc(i.title)}</b></div>
+ <button class="b" data-act="run">▶ Make videos now</button><button class="b r" data-act="stop">■ Stop</button><button class="b g" data-act="reload">↻ Refresh</button></div>`+
+ its.map(i=>{const s=S.status.items[i.id]||{},st0=s.state||'waiting',st=(!activeRun()&&['queued','scripting','voicing','rendering','uploading'].includes(st0))?'stopped':st0,stale=st=='done'&&s.built_rev!=(i.rev||0);return `<div class="card"><span class="chip">${esc(pageName(i.page))}</span> <span class="chip">${stale?'will remake':st}</span><div><b>${esc(i.title)}</b></div>
  <div class="bar"><i style="width:${PCT[st]||0}%;${st=='error'?'background:#ef4444':''}"></i></div>${s.msg?`<div class="err">${esc(s.msg)}</div>`:''}</div>`}).join('')||'<div class="card mut">No plan for this date yet. Open Plan → Generate.</div>'},
 videos(){const its=S.plan.items.filter(i=>S.res.items[i.id]);return dateSel()+(its.map(i=>{const r=S.res.items[i.id],posted=LS['posted:'+i.id];
  return `<div class="card"><span class="chip">${esc(pageName(i.page))}</span> <span class="chip">${r.duration}s</span> ${posted?'<span class="chip">✅ posted</span>':''}<div><b>${esc(i.title)}</b></div>
@@ -74,6 +81,8 @@ async function busy(fn){try{await fn()}catch(e){alert(e.message)}await loadAll()
 document.addEventListener('click',async e=>{const nb=e.target.closest('nav button');if(nb){S.tab=nb.dataset.t;return render()}
  const b=e.target.closest('[data-act]');if(!b||b.tagName=='SELECT')return;const a=b.dataset.act,n=+b.dataset.n,id=b.dataset.id;
  if(a=='reload')return loadAll();
+ if(a=='stop'){if(!confirm('Stop all running video jobs?'))return;return busy(async()=>{const n=await stopRuns();alert(n?'Stopped. Now you can tap Make videos now to start fresh.':'No running job found.')})}
+ if(a=='run'&&activeRun()){alert('Already running. Tap Stop first if you want to restart.');return}
  if(a=='run')return busy(async()=>{await dispatch('produce.yml',{date:S.date});alert('Started! Check Progress in a minute.')});
  if(a=='gen'){if(!confirm('Replace the plan for '+S.date+'?'))return;return busy(async()=>{await dispatch('plan.yml',{date:S.date,force:'true'});alert('Planning… refresh in about a minute.')})}
  if(a=='add'){S.plan.items.push({id:S.date+'-'+S.cfg.pages[0].id+'-'+Date.now().toString(36),page:S.cfg.pages[0].id,title:'',premise:'',roles:[],status:'planned',rev:0});return render()}
