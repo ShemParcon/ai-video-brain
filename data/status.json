@@ -36,11 +36,11 @@
       "updated": "2026-11-12 15:32:20"
     },
     "2026-11-12-pagibig-1": {
-      "state": "queued",
-      "pct": 0,
+      "state": "scripting",
+      "pct": 10,
       "msg": "",
       "date": "2026-11-12",
-      "updated": "2026-11-12 15:10:20"
+      "updated": "2026-11-12 15:32:21"
     },
     "2026-11-12-pagibig-2": {
       "state": "queued",
