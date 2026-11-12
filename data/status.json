@@ -8,11 +8,11 @@
   },
   "items": {
     "2026-11-12-opisina-1": {
-      "state": "scripting",
-      "pct": 10,
-      "msg": "",
+      "state": "error",
+      "pct": 100,
+      "msg": "AI writer unavailable (pollinations: {\"success\":false,\"error\":{\"message\":\"The model exhausted its output token limit before producing an answer. Increase the token limit or reduce reasoni). Add a free GEMINI_API_KEY secret.",
       "date": "2026-11-12",
-      "updated": "2026-11-12 14:24:47"
+      "updated": "2026-11-12 14:36:43"
     },
     "2026-11-12-opisina-2": {
       "state": "queued",
