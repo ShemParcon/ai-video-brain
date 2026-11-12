@@ -8,11 +8,11 @@
   },
   "items": {
     "2026-11-12-opisina-1": {
-      "state": "scripting",
-      "pct": 10,
-      "msg": "",
+      "state": "error",
+      "pct": 100,
+      "msg": "AI writer failed. gemini: gemini-omni-flash-preview 429; gemini-omni-1.2-flash 429; gemini-omni-1.1-flash 429; gemini-2.5-flash 404 | pollinations: pollinations: {\"success\":false,\"error\":{\"message\":\"The model exhausted its output token limit before producing an answer. Increase the token limit or re",
       "date": "2026-11-12",
-      "updated": "2026-11-12 15:49:51"
+      "updated": "2026-11-12 15:56:42"
     },
     "2026-11-12-opisina-2": {
       "state": "queued",
