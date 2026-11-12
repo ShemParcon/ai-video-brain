@@ -96,11 +96,11 @@
       "built_rev": 0
     },
     "2026-11-12-pananampalataya-2": {
-      "state": "queued",
-      "pct": 0,
+      "state": "scripting",
+      "pct": 10,
       "msg": "",
       "date": "2026-11-12",
-      "updated": "2026-11-12 17:10:49"
+      "updated": "2026-11-12 17:25:09"
     }
   }
 }
