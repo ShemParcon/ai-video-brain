@@ -232,5 +232,53 @@
     "voice": "en-AU-NatashaNeural",
     "pitch": 0,
     "rate": 5
+  },
+  "pagibig:girl": {
+    "v": 3,
+    "page": "pagibig",
+    "role": "Girl",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#1f2a44",
+      "shirt": "#f59e0b",
+      "style": "long",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#1f2937",
+      "skirt": true,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-US-MichelleNeural",
+    "pitch": 0,
+    "rate": 7
+  },
+  "pagibig:ex-boyfriend": {
+    "v": 3,
+    "page": "pagibig",
+    "role": "Ex-Boyfriend",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#e8b98a",
+      "hair": "#6b2d1a",
+      "shirt": "#ec4899",
+      "style": "cap",
+      "glasses": true,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-SteffanNeural",
+    "pitch": 0,
+    "rate": 3
   }
 }
