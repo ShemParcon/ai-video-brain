@@ -448,5 +448,53 @@
     "voice": "en-GB-SoniaNeural",
     "pitch": 0,
     "rate": 5
+  },
+  "pananampalataya:teen": {
+    "v": 3,
+    "page": "pananampalataya",
+    "role": "Teen",
+    "gender": "M",
+    "age": "kid",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#6b2d1a",
+      "shirt": "#10b981",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 0.85,
+      "pants": "#4b5563",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-US-AnaNeural",
+    "pitch": 0,
+    "rate": 4
+  },
+  "pananampalataya:teacher": {
+    "v": 3,
+    "page": "pananampalataya",
+    "role": "Teacher",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#1f2a44",
+      "shirt": "#10b981",
+      "style": "long",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-AU-NatashaNeural",
+    "pitch": 0,
+    "rate": 2
   }
 }
