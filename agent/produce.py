@@ -9,14 +9,15 @@ EMOS = {"neutral", "happy", "angry", "sad", "surprised"}
 
 def gen_script(item, page, cfg):
     if os.getenv("DRY_SCRIPT"): return load(os.getenv("DRY_SCRIPT"))
-    prompt = """Write a script for a vertical cartoon skit video that is under 50 seconds when spoken.
-Language: __LANG__. Natural conversation, short lines (max 12 words each), 8 to 12 lines total, 1 to 3 characters.
+    prompt = """Write a script for a funny vertical cartoon skit video that is under 45 seconds when spoken.
+Language: __LANG__. Fast back-and-forth: 10 to 14 short lines (max 10 words each), 2 to 3 characters.
 Page: __PAGE__ (__NICHE__). Title: __TITLE__. Story: __PREMISE__. Roles to use: __ROLES__.
-Start with a strong hook line. End with a punchline or a gentle lesson. Wholesome only: no real people, brands, copyrighted characters, harmful or sexual content, no income or medical guarantees.
-Allowed settings: opisina, bahay, kusina, kwarto, paaralan, kalye, palengke, simbahan, cafe, parke.
+Open with a hook line that grabs attention in the first 2 seconds. Escalate the situation with each line and finish with a surprising twist or a punchline. Relatable and wholesome: no real people, brands, copyrighted characters, harmful or sexual content.
+Write every line exactly as a text-to-speech voice should read it: plain words, NO hyphenated words, NO acronyms, NO emojis or symbols, numbers written in words, normal spelling.
+Allowed settings: office, home, kitchen, bedroom, school, street, market, church, cafe, park.
 Allowed emotions: neutral, happy, angry, sad, surprised. Allowed sfx (or null): pop, ding, whoosh, bonk, sad, laugh.
 Return ONLY JSON:
-{"characters":[{"role":"Boss","gender":"M","age":"adult"}],"scenes":[{"setting":"opisina","lines":[{"who":"Boss","text":"...","emotion":"angry","sfx":null}]}],"youtube_title":"max 70 chars","hook":"on-screen hook, max 6 words","caption":"2-3 sentence Filipino caption with emojis ending with a question for comments","hashtags":["#tag1","#tag2","#tag3","#tag4","#tag5","#tag6","#tag7","#tag8"]}
+{"characters":[{"role":"Boss","gender":"M","age":"adult"}],"scenes":[{"setting":"office","lines":[{"who":"Boss","text":"...","emotion":"angry","sfx":null}]}],"youtube_title":"max 70 chars","hook":"on-screen hook, max 6 words","caption":"1-2 funny sentences with emojis ending with a question for comments","hashtags":["#tag1","#tag2","#tag3","#tag4","#tag5","#tag6","#tag7","#tag8"]}
 gender is M or F; age is kid, adult, or old.""".replace("__LANG__", cfg.get("language", "Filipino")).replace("__PAGE__", page["name"]) \
         .replace("__NICHE__", page["niche"]).replace("__TITLE__", item["title"]).replace("__PREMISE__", item["premise"]) \
         .replace("__ROLES__", ", ".join(item.get("roles", [])) or "your choice")
