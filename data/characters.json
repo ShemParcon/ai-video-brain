@@ -55,5 +55,62 @@
     "voice": "fil-PH-AngeloNeural",
     "pitch": -5,
     "rate": 0
+  },
+  "opisina:hr": {
+    "page": "opisina",
+    "role": "HR",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#1f2a44",
+      "shirt": "#8b5cf6",
+      "style": "bun",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0
+    },
+    "voice": "fil-PH-BlancaNeural",
+    "pitch": 2,
+    "rate": -2
+  },
+  "opisina:empleyado1": {
+    "page": "opisina",
+    "role": "Empleyado1",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#2e1f16",
+      "shirt": "#f59e0b",
+      "style": "cap",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0
+    },
+    "voice": "fil-PH-AngeloNeural",
+    "pitch": -5,
+    "rate": 0
+  },
+  "opisina:boss": {
+    "page": "opisina",
+    "role": "Boss",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#e8b98a",
+      "hair": "#1f2a44",
+      "shirt": "#64748b",
+      "style": "short",
+      "glasses": false,
+      "tie": true,
+      "cap": "#16a34a",
+      "scale": 1.0
+    },
+    "voice": "fil-PH-AngeloNeural",
+    "pitch": 10,
+    "rate": 6
   }
 }

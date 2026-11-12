@@ -15,11 +15,12 @@
       "updated": "2026-11-12 15:56:42"
     },
     "2026-11-12-opisina-2": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-12",
-      "updated": "2026-11-12 16:01:58"
+      "updated": "2026-11-12 16:02:03",
+      "built_rev": 0
     },
     "2026-11-12-pamilya-1": {
       "state": "queued",
