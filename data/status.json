@@ -22,11 +22,11 @@
       "updated": "2026-11-12 14:49:06"
     },
     "2026-11-12-pamilya-1": {
-      "state": "scripting",
-      "pct": 10,
-      "msg": "",
+      "state": "error",
+      "pct": 100,
+      "msg": "AI writer unavailable (pollinations: {\"success\":false,\"error\":{\"message\":\"The model exhausted its output token limit before producing an answer. Increase the token limit or reduce reasoni). Add a free GEMINI_API_KEY secret.",
       "date": "2026-11-12",
-      "updated": "2026-11-12 14:49:07"
+      "updated": "2026-11-12 15:02:40"
     },
     "2026-11-12-pamilya-2": {
       "state": "queued",
