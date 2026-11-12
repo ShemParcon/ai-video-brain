@@ -8,11 +8,11 @@
   },
   "items": {
     "2026-11-12-opisina-1": {
-      "state": "scripting",
-      "pct": 10,
-      "msg": "",
+      "state": "error",
+      "pct": 100,
+      "msg": "AI writer failed. gemini: gemini-2.5-flash-lite HTTP 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new us | pollinations: pollinations: {\"success\":false,\"error\":{\"message\":\"The model exhausted its output token limit before prod",
       "date": "2026-11-12",
-      "updated": "2026-11-12 15:10:22"
+      "updated": "2026-11-12 15:17:15"
     },
     "2026-11-12-opisina-2": {
       "state": "queued",
