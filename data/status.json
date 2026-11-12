@@ -80,11 +80,11 @@
       "built_rev": 0
     },
     "2026-11-12-pera-2": {
-      "state": "scripting",
-      "pct": 10,
+      "state": "voicing",
+      "pct": 35,
       "msg": "",
       "date": "2026-11-12",
-      "updated": "2026-11-12 17:22:47"
+      "updated": "2026-11-12 17:23:08"
     },
     "2026-11-12-pananampalataya-1": {
       "state": "queued",
