@@ -95,6 +95,7 @@
     "rate": 0
   },
   "opisina:boss": {
+    "v": 3,
     "page": "opisina",
     "role": "Boss",
     "gender": "M",
@@ -107,10 +108,14 @@
       "glasses": false,
       "tie": true,
       "cap": "#16a34a",
-      "scale": 1.0
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#0f766e"
     },
-    "voice": "fil-PH-AngeloNeural",
-    "pitch": 10,
+    "voice": "en-US-SteffanNeural",
+    "pitch": 0,
     "rate": 6
   },
   "pamilya:nanay": {
@@ -131,5 +136,29 @@
     "voice": "fil-PH-BlancaNeural",
     "pitch": 15,
     "rate": -3
+  },
+  "opisina:employee": {
+    "v": 3,
+    "page": "opisina",
+    "role": "Employee",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#d29b6b",
+      "hair": "#2e1f16",
+      "shirt": "#f97316",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#4b5563",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-RogerNeural",
+    "pitch": 0,
+    "rate": 7
   }
 }
