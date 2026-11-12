@@ -15,11 +15,11 @@
       "updated": "2026-11-12 15:17:15"
     },
     "2026-11-12-opisina-2": {
-      "state": "scripting",
-      "pct": 10,
-      "msg": "",
+      "state": "error",
+      "pct": 100,
+      "msg": "AI writer failed. gemini: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120) | pollinations: pollinations: {\"success\":false,\"error\":{\"message\":\"The model exhausted its output token limit before producing an answer. Increase the token limit or ",
       "date": "2026-11-12",
-      "updated": "2026-11-12 15:17:16"
+      "updated": "2026-11-12 15:25:52"
     },
     "2026-11-12-pamilya-1": {
       "state": "queued",
