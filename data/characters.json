@@ -424,5 +424,29 @@
     "voice": "en-US-AriaNeural",
     "pitch": 0,
     "rate": 6
+  },
+  "pera:banker": {
+    "v": 3,
+    "page": "pera",
+    "role": "Banker",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#2e1f16",
+      "shirt": "#8b5cf6",
+      "style": "bun",
+      "glasses": true,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#3f3f46",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-GB-SoniaNeural",
+    "pitch": 0,
+    "rate": 5
   }
 }
