@@ -39,11 +39,11 @@
       "built_rev": 0
     },
     "2026-11-12-pagibig-1": {
-      "state": "scripting",
-      "pct": 10,
-      "msg": "",
+      "state": "error",
+      "pct": 100,
+      "msg": "AI writer failed. gemini: gemini-omni-flash-preview 429; gemini-omni-1.2-flash 429; gemini-omni-1.1-flash 429; gemini-2.5-flash 404 | pollinations: Expecting ',' delimiter: line 1 column 484 (char 483)",
       "date": "2026-11-12",
-      "updated": "2026-11-12 16:05:55"
+      "updated": "2026-11-12 16:10:09"
     },
     "2026-11-12-pagibig-2": {
       "state": "queued",
