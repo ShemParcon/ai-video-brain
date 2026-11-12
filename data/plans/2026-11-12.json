@@ -1,4 +1,164 @@
 {
   "date": "2026-11-12",
-  "items": []
+  "items": [
+    {
+      "id": "2026-11-12-opisina-1",
+      "page": "opisina",
+      "title": "I-Email ng Diwa",
+      "premise": "Boss dives into the day’s emails, only to discover the staff has replaced all subject lines with song titles. Panic ensues, but the final email banner sars the tension—“I love it when the deadline is hit!” Punchline: it’s not the email, it’s the music that keeps the office marching on.",
+      "roles": [
+        "Boss",
+        "Empleyado1",
+        "Empleyado2"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-12-opisina-2",
+      "page": "opisina",
+      "title": "Meeting na Kumukupas",
+      "premise": "HR forces a 10‑minute meeting in the break room, which begins with popcorn on the coffee machine. The twist: the popcorn ends up being a time‑bomb for everyone’s workflow. Punchline: “When meetings end up popping, it’s time to get out of the loop.”",
+      "roles": [
+        "Boss",
+        "HR",
+        "Empleyado1",
+        "Empleyado2"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-12-pamilya-1",
+      "page": "pamilya",
+      "title": "Gabi-gabi Gabi‑ram",
+      "premise": "Nanay reminds the family to turn off the lights before bedtime. Tatay, juggling chores, forgets to turn off the lamp, causing a hilarious chain reaction. Punchline: “Kahit saan ang ilaw, ang lakas ng pamilya ay hindi magsasayang!”",
+      "roles": [
+        "Nanay",
+        "Tatay",
+        "Anak",
+        "Lola"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-12-pamilya-2",
+      "page": "pamilya",
+      "title": "Biglaang Baon",
+      "premise": "Anak brings a ‘healthy salad’ for school, but Lola’s secret sauce turns it into a mess. The family decides to turn the disaster into a recipe contest. Punchline: “Ang tunay na baon ng pamilya: shared love that tastes extra salty.”",
+      "roles": [
+        "Nanay",
+        "Tatay",
+        "Anak",
+        "Lola"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-12-pagibig-1",
+      "page": "pagibig",
+      "title": "Crush ng Akarel",
+      "premise": "A shy guy crushes his crush with a hidden video message, but tech glitches scramble the screen. The friend’s advice turns the mistake into a viral meme. Punchline: “When love goes haywire, memes are the sweetest confession.”",
+      "roles": [
+        "Crush",
+        "Bestfriend",
+        "Crush’s Friend"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-12-pagibig-2",
+      "page": "pagibig",
+      "title": "Ghost sa Pag-bandera",
+      "premise": "Bestfriend gets ghosted for a second date, yet the hauntings within her apartment hold a surprise. Final scene: the ghost is actually her old love letter, reminding her of her own worth. Punchline: “Bakit maghuhula ang mahal, kapag na-reconnect pa talaga ang puso?”",
+      "roles": [
+        "Friend",
+        "Former Crater",
+        "Ghost"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-12-estudyante-1",
+      "page": "estudyante",
+      "title": "Canteen Cash‑Out",
+      "premise": "A group of classmates bet on who can buy the maximum mid‑day snack with a fake wallet. Their boredom morphs into a chaotic snack‑frenzy that ends with an unexpected voucher. Punchline: “Malalasakit sa potong magkaansik, pero ang tunay na deal, may ganap na lunas.”",
+      "roles": [
+        "Guro",
+        "Estudyante1",
+        "Estudyante2"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-12-estudyante-2",
+      "page": "estudyante",
+      "title": "Project na Mainit‑Mainit",
+      "premise": "Project deadline bites, so classmates decide to ‘heat up’ their presentations instantly using a micro‑microwave. Chaos erupts, until the teacher reveals she loves them. Punchline: “Kahit mikrosnowman, sa materyal na pag‑ibig, ang last minute ay napaka‑delicious.”",
+      "roles": [
+        "Guro",
+        "Estudyante1",
+        "Estudyante2"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-12-pera-1",
+      "page": "pera",
+      "title": "Cashcard sa Mangga",
+      "premise": "A student uses a cheap cash‑card to buy mangoes but is swindled by an unrelated vendor. The student then runs the scam through a social media challenge. Punchline: “If e‑commerce goes wild, budget power is the safest shore.”",
+      "roles": [
+        "Student",
+        "Vendor",
+        "Investor"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-12-pera-2",
+      "page": "pera",
+      "title": "Ane‑Mena na Ibon",
+      "premise": "A father explains budgeting using a birdhoused library of antimoneys, but the bird’s wind supplies quirky rewards. The sibling realises savings can be as simple as watching the bird fly. Punchline: “Saving na ‘lumipad’—no ima‑pay, just iplata.”",
+      "roles": [
+        "Father",
+        "Child",
+        "Angry Annoying Neighbor"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-12-pananampalataya-1",
+      "page": "pananampalataya",
+      "title": "Senteng Lathala",
+      "premise": "Mother Church’s narrator warns that faith is a house; but the family’s laurel‑close story about broken vows is called, revealing a hidden blessing. They rewrite the scripture with a fresh twist. Punchline: “Ibang kapalaran, bagong pagbabasa: When God writes again, it feels even stronger.”",
+      "roles": [
+        "Mother Church",
+        "Child",
+        "Father"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-12-pananampalataya-2",
+      "page": "pananampalataya",
+      "title": "Biyahe ng Batanang",
+      "premise": "The priest’s light-bulb moment: if prayers are the cars, get the mileage over heartbreak. A story about a miracle in the house of faith shows the open heart. Punchline: “Pangasiwaan ang hiyas ng bibihyang ng iyong puso, sa gulong ng biyaya.”",
+      "roles": [
+        "Priest",
+        "Parishioner",
+        "Friend"
+      ],
+      "status": "planned",
+      "rev": 0
+    }
+  ]
 }
