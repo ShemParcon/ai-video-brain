@@ -280,5 +280,77 @@
     "voice": "en-US-SteffanNeural",
     "pitch": 0,
     "rate": 3
+  },
+  "estudyante:student a": {
+    "v": 3,
+    "page": "estudyante",
+    "role": "Student A",
+    "gender": "M",
+    "age": "kid",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#2e1f16",
+      "shirt": "#3b82f6",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 0.85,
+      "pants": "#334155",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-AnaNeural",
+    "pitch": 0,
+    "rate": 4
+  },
+  "estudyante:teacher": {
+    "v": 3,
+    "page": "estudyante",
+    "role": "Teacher",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#1f2a44",
+      "shirt": "#f59e0b",
+      "style": "long",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#f8fafc",
+      "skirt": true,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-MichelleNeural",
+    "pitch": 0,
+    "rate": 7
+  },
+  "estudyante:slacker student": {
+    "v": 3,
+    "page": "estudyante",
+    "role": "Slacker Student",
+    "gender": "M",
+    "age": "kid",
+    "look": {
+      "skin": "#e8b98a",
+      "hair": "#4a2e1f",
+      "shirt": "#ec4899",
+      "style": "short",
+      "glasses": true,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 0.85,
+      "pants": "#334155",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-GuyNeural",
+    "pitch": 0,
+    "rate": 4
   }
 }
