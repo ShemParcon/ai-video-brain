@@ -32,7 +32,7 @@ async function dispatch(wf,inputs){const r=await fetch(API('/actions/workflows/'
 async function stopRuns(){let n=0;
  for(const st of ['in_progress','queued']){const r=await fetch(API('/actions/runs?status='+st+'&per_page=20'),{headers:H(false),cache:'no-store'});
   if(!r.ok)throw new Error('cannot read runs ('+r.status+')');
-  for(const run of (await r.json()).workflow_runs){const c=await fetch(API('/actions/runs/'+run.id+'/cancel'),{method:'POST',headers:H(false)});if(c.ok)n++}}
+  for(const run of (await r.json()).workflow_runs){if(!(run.path||'').includes('produce.yml'))continue;const c=await fetch(API('/actions/runs/'+run.id+'/cancel'),{method:'POST',headers:H(false)});if(c.ok)n++}}
  await new Promise(r=>setTimeout(r,4000));return n}
 async function loadAll(){
  if(!S.repo){S.tab='settings';return render()}
@@ -65,7 +65,7 @@ videos(){const its=S.plan.items.filter(i=>S.res.items[i.id]);return dateSel()+(i
  <button class="b g" data-act="copy" data-id="${i.id}" data-k="yt_title">Copy YT title</button><button class="b g" data-act="copy" data-id="${i.id}" data-k="yt_desc">Copy YT caption</button>
  <button class="b g" data-act="copy" data-id="${i.id}" data-k="tiktok">Copy TikTok</button><button class="b g" data-act="copy" data-id="${i.id}" data-k="facebook">Copy Facebook</button>
  <div><button class="b g" data-act="posted" data-id="${i.id}">${posted?'Undo posted':'Mark posted'}</button><button class="b r" data-act="remake" data-id="${i.id}">Remake</button></div></div>`}).join('')||'<div class="card mut">No finished videos for this date yet.</div>')},
-plan(){return dateSel()+`<div class="card"><button class="b" data-act="save">💾 Save changes</button><button class="b g" data-act="add">＋ Add video</button><button class="b g" data-act="gen">✨ Generate new plan</button><div class="mut">Edit anything before the daily run. Generate replaces this date's plan.</div></div>`+
+plan(){return dateSel()+`<div class="card"><button class="b" data-act="save">💾 Save changes</button><button class="b g" data-act="add">＋ Add video</button><button class="b g" data-act="gen">✨ Generate new plan</button><button class="b r" data-act="clear">🗑 Clear all</button><div class="mut">Edit anything before the daily run. Generate replaces this date's plan.</div></div>`+
  S.plan.items.map((i,n)=>`<div class="card"><select data-f="page" data-n="${n}">${S.cfg.pages.map(p=>`<option value="${p.id}" ${p.id==i.page?'selected':''}>${esc(p.name)}</option>`).join('')}</select>
  <input data-f="title" data-n="${n}" value="${esc(i.title)}" placeholder="Title"><textarea data-f="premise" data-n="${n}" placeholder="Story idea">${esc(i.premise)}</textarea>
  <button class="b g" data-act="skip" data-n="${n}">${i.status=='skip'?'Skipped – include':'Skip this'}</button><button class="b r" data-act="del" data-n="${n}">Delete</button></div>`).join('')},
@@ -86,6 +86,7 @@ document.addEventListener('click',async e=>{const nb=e.target.closest('nav butto
  if(a=='run'&&activeRun()){alert('Already running. Tap Stop first if you want to restart.');return}
  if(a=='run')return busy(async()=>{await dispatch('produce.yml',{date:S.date});alert('Started! Check Progress in a minute.')});
  if(a=='gen'){if(!confirm('Replace the plan for '+S.date+'?'))return;return busy(async()=>{await dispatch('plan.yml',{date:S.date,force:'true'});alert('Planning… refresh in about a minute.')})}
+ if(a=='clear'){if(!confirm('Remove ALL ideas from this date? (then tap Save changes)'))return;S.plan.items=[];return render()}
  if(a=='add'){S.plan.items.push({id:S.date+'-'+S.cfg.pages[0].id+'-'+Date.now().toString(36),page:S.cfg.pages[0].id,title:'',premise:'',roles:[],status:'planned',rev:0});return render()}
  if(a=='del'){S.plan.items.splice(n,1);return render()}
  if(a=='skip'){const i=S.plan.items[n];i.status=i.status=='skip'?'planned':'skip';return render()}
