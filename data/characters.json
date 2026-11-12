@@ -496,5 +496,53 @@
     "voice": "en-AU-NatashaNeural",
     "pitch": 0,
     "rate": 2
+  },
+  "pananampalataya:young man": {
+    "v": 3,
+    "page": "pananampalataya",
+    "role": "Young Man",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#1f2a44",
+      "shirt": "#ec4899",
+      "style": "cap",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-SteffanNeural",
+    "pitch": 0,
+    "rate": 3
+  },
+  "pananampalataya:grandma": {
+    "v": 3,
+    "page": "pananampalataya",
+    "role": "Grandma",
+    "gender": "F",
+    "age": "old",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#b9b9c0",
+      "shirt": "#ef4444",
+      "style": "bun",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#4b5563",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-GB-SoniaNeural",
+    "pitch": -6,
+    "rate": -4
   }
 }

@@ -96,11 +96,12 @@
       "built_rev": 0
     },
     "2026-11-12-pananampalataya-2": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-12",
-      "updated": "2026-11-12 17:26:15"
+      "updated": "2026-11-12 17:26:18",
+      "built_rev": 0
     }
   }
 }
