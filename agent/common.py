@@ -40,23 +40,38 @@ def git_push(msg):
         time.sleep(2)
 
 # ---------- LLM (free): Gemini if key present, else Pollinations ----------
+def _gemini_models(key):
+    base = ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.0-flash"]
+    try:
+        r = requests.get("https://generativelanguage.googleapis.com/v1beta/models", headers={"x-goog-api-key": key}, params={"pageSize": 200}, timeout=30)
+        names = [m["name"].split("/")[-1] for m in r.json().get("models", []) if "generateContent" in m.get("supportedGenerationMethods", [])]
+        good = sorted([n for n in names if "flash" in n and not any(x in n for x in ("lite", "image", "tts", "audio", "live", "exp", "thinking", "8b"))], reverse=True)
+        return list(dict.fromkeys(base[:1] + good[:3] + base[1:]))
+    except Exception:
+        return base
+
 def _gemini(prompt):
     key = (os.getenv("GEMINI_API_KEY") or "").strip()
     if not key: raise RuntimeError("GEMINI_API_KEY is empty or missing in this run")
-    err = ""
-    for m in ("gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest", "gemini-2.5-flash-lite"):
-        for attempt in range(2):
-            r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent",
-                headers={"x-goog-api-key": key, "Content-Type": "application/json"}, timeout=120,
-                json={"contents": [{"parts": [{"text": prompt}]}],
-                      "generationConfig": {"responseMimeType": "application/json", "temperature": 1.0, "maxOutputTokens": 8192}})
+    errs = []
+    for m in _gemini_models(key)[:5]:
+        for think in ((True, False) if "2.5" in m else (False,)):
+            cfg = {"responseMimeType": "application/json", "temperature": 1.0, "maxOutputTokens": 8192}
+            if think: cfg["thinkingConfig"] = {"thinkingBudget": 0}
+            try:
+                r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent",
+                    headers={"x-goog-api-key": key, "Content-Type": "application/json"}, timeout=90,
+                    json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": cfg})
+            except Exception as e:
+                errs.append(f"{m} {str(e)[:50]}"); break
             if r.ok:
                 try: return r.json()["candidates"][0]["content"]["parts"][0]["text"]
-                except Exception: err = f"{m}: empty answer"; break
-            err = f"{m} HTTP {r.status_code}: {r.text[:120]}"
-            if r.status_code == 429 and attempt == 0: time.sleep(25); continue
+                except Exception: errs.append(f"{m} empty"); break
+            errs.append(f"{m} {r.status_code}")
+            if r.status_code == 429: time.sleep(20)
+            if r.status_code == 400 and think: continue
             break
-    raise RuntimeError(err)
+    raise RuntimeError("; ".join(errs[-4:]))
 
 def _pollinations(prompt):
     err = ""
