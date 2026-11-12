@@ -1,10 +1,10 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><meta name="theme-color" content="#111827"><title>Video Brain</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#0b1020;color:#e5e7eb;font:15px system-ui,sans-serif;padding-bottom:84px}
+*{box-sizing:border-box}body{margin:0;background:#0b1020;color:#e5e7eb;font:15px system-ui,sans-serif;padding-bottom:24px}
 header{padding:14px 16px;font-weight:700;font-size:18px;background:#111827;position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center}
-main{padding:12px;max-width:640px;margin:auto}nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#111827;border-top:1px solid #1f2937;padding-bottom:env(safe-area-inset-bottom)}
-nav button{flex:1;background:none;border:0;color:#9ca3af;padding:14px 4px;font-size:13px}nav button.on{color:#22c55e;font-weight:700}
+main{padding:12px;max-width:640px;margin:auto}nav{position:sticky;top:52px;z-index:4;display:flex;background:#111827;border-bottom:1px solid #1f2937}
+nav button{flex:1;background:none;border:0;color:#9ca3af;padding:14px 4px;font-size:14px}nav button.on{color:#22c55e;font-weight:700}
 .card{background:#151c30;border:1px solid #1f2937;border-radius:14px;padding:12px;margin:10px 0}
 input,select,textarea{width:100%;background:#0b1020;color:#e5e7eb;border:1px solid #2b3550;border-radius:10px;padding:10px;font:inherit;margin:4px 0}
 textarea{min-height:80px}button.b{background:#22c55e;color:#06220f;border:0;border-radius:10px;padding:10px 14px;font-weight:700;margin:4px 4px 4px 0}
@@ -12,8 +12,8 @@ button.g{background:#26304d;color:#e5e7eb}button.r{background:#7f1d1d;color:#fff
 .bar{height:8px;background:#26304d;border-radius:9px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:#22c55e}
 .err{color:#fca5a5;font-size:13px}.mut{color:#94a3b8;font-size:13px}video{width:100%;border-radius:10px;background:#000;max-height:60vh}
 </style></head><body>
-<header><span>🎬 Video Brain</span><span id="runs" class="mut"></span></header><main id="app">Loading…</main>
-<nav><button data-t="progress">Progress</button><button data-t="videos">Videos</button><button data-t="plan">Plan</button><button data-t="settings">Settings</button></nav>
+<header><span>🎬 Video Brain</span><span id="runs" class="mut"></span></header><nav><button data-t="progress">Progress</button><button data-t="videos">Videos</button><button data-t="plan">Plan</button><button data-t="settings">Settings</button></nav><main id="app">Loading…</main>
+
 <script>
 const LS=localStorage,$=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -43,7 +43,7 @@ async function loadAll(){
 const pageName=id=>(S.cfg.pages.find(p=>p.id==id)||{}).name||id;
 const PCT={queued:3,scripting:15,voicing:40,rendering:65,uploading:90,done:100,error:100};
 function dateSel(){return `<select data-act="date">${[...new Set([...S.dates,S.date])].map(d=>`<option ${d==S.date?'selected':''}>${d}</option>`).join('')}</select>`}
-function runBanner(){const r=S.runs.find(x=>x.name=='produce'),pl=S.runs.find(x=>x.name=='plan');const f=x=>x?`${x.name}: ${x.status=='completed'?x.conclusion:x.status}`:'';
+function runBanner(){const r=S.runs.find(x=>x.name=='produce'),pl=S.runs.find(x=>x.name=='plan');const f=x=>x?`<a style="color:#7dd3fc" href="${x.html_url}" target="_blank">${x.name}: ${x.status=='completed'?x.conclusion:x.status}</a>`:'';
  const run=S.status.run||{};return `<div class="card mut">${[f(pl),f(r)].filter(Boolean).join(' · ')||'No runs yet'}${run.message?`<br>Last run: ${esc(run.message)} (${esc(run.updated||'')})`:''}</div>`}
 const views={
 progress(){const its=S.plan.items.filter(i=>i.status!='skip');const done=its.filter(i=>(S.status.items[i.id]||{}).state=='done').length;
