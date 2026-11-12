@@ -1,41 +1,42 @@
 {
+  "version": 2,
   "max_videos_per_day": 15,
-  "language": "Filipino (Taglish allowed, English only when necessary)",
+  "language": "English (casual, punchy, funny TikTok-style humor)",
   "pages": [
     {
       "id": "opisina",
-      "name": "Opisina Chronicles",
-      "niche": "office life comedy: boss vs employees, deadlines, payday, HR, meetings",
+      "name": "Office Chaos",
+      "niche": "office comedy: clueless boss, lazy coworkers, meetings that should have been emails, payday",
       "per_day": 2
     },
     {
       "id": "pamilya",
-      "name": "Pamilya Vibes",
-      "niche": "Filipino family comedy: Nanay, Tatay, Anak, Lola; chores, baon, pagkain, uwian",
+      "name": "Family Fiasco",
+      "niche": "family comedy: Mom, Dad, siblings, grandparents, chores, awkward dinners, road trips",
       "per_day": 2
     },
     {
       "id": "pagibig",
-      "name": "Kwentong Pag-ibig",
-      "niche": "relationship and friendship stories: crush, ghosting, bestfriend advice, funny or touching endings",
+      "name": "Dating Disasters",
+      "niche": "dating and friendship comedy: awkward dates, ghosting, bestfriend advice, funny twist endings",
       "per_day": 2
     },
     {
       "id": "estudyante",
-      "name": "Buhay Estudyante",
-      "niche": "school life: teacher, classmates, exams, projects, canteen, group work",
+      "name": "School Survival",
+      "niche": "school life: teachers, exams, group projects, cafeteria, excuses",
       "per_day": 2
     },
     {
       "id": "pera",
-      "name": "Aral sa Pera",
-      "niche": "money lessons through skits: budgeting, ipon, utang, scam awareness, simple accounting tips",
+      "name": "Broke Life",
+      "niche": "money humor with a smart lesson: budgeting fails, scams, bills, saving tips hidden inside jokes",
       "per_day": 2
     },
     {
       "id": "pananampalataya",
-      "name": "Liwanag ng Pag-asa",
-      "niche": "faith and hope short stories: encouragement, forgiveness, gratitude, Bible-inspired lessons",
+      "name": "Wholesome Wins",
+      "niche": "feel-good funny stories: kindness, gratitude, forgiveness, with a humorous twist",
       "per_day": 2
     }
   ]
