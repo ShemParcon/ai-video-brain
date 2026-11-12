@@ -6,13 +6,13 @@ def make_plan(date, cfg):
     pages = cfg["pages"]
     hist = load(p("data", "history.json"), [])[-80:]
     spec = "\n".join(f"- id={g['id']} | {g['name']} | niche: {g['niche']} | videos: {g['per_day']}" for g in pages)
-    prompt = f"""You are the content planner for short vertical cartoon skit videos (under 1 minute) for Filipino audiences on YouTube Shorts, TikTok and Facebook Reels.
+    prompt = f"""You are the content planner for short vertical cartoon skit videos (under 1 minute) for a broad English-speaking audience on YouTube Shorts, TikTok and Facebook Reels.
 Plan the ideas for {date}. One list item per video, for these pages:
 {spec}
 Language: {cfg.get('language','Filipino')}.
-Rules: relatable, funny or heartwarming, wholesome, strong hook in the first 3 seconds, a punchline or lesson at the end. Every idea must be new and different from these recent titles: {hist}.
-Reuse recurring roles (Boss, Empleyado, Nanay, Tatay, Anak, Lola, Guro, Estudyante, etc.) so characters stay consistent.
-Return ONLY JSON: {{"items":[{{"page":"<page id>","title":"short Filipino title","premise":"2-3 sentence outline including the punchline","roles":["Role1","Role2"]}}]}}"""
+Rules: relatable, genuinely funny, wholesome, strong hook in the first 3 seconds, a punchline or lesson at the end. Every idea must be new and different from these recent titles: {hist}.
+Reuse recurring roles (Boss, Employee, Mom, Dad, Teen, Grandma, Teacher, Student, etc.) so characters stay consistent.
+Return ONLY JSON: {{"items":[{{"page":"<page id>","title":"short catchy English title","premise":"2-3 sentence outline including the punchline","roles":["Role1","Role2"]}}]}}"""
     items = llm_json(prompt).get("items", [])
     ids = {g["id"] for g in pages}; counts = {}; out = []
     for it in items:
