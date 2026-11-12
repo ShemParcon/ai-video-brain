@@ -36,11 +36,11 @@
       "updated": "2026-11-12 15:32:20"
     },
     "2026-11-12-pagibig-1": {
-      "state": "scripting",
-      "pct": 10,
-      "msg": "",
+      "state": "error",
+      "pct": 100,
+      "msg": "AI writer failed. gemini: gemini-2.5-flash-lite HTTP 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new us | pollinations: Expecting ',' delimiter: line 1 column 484 (char 483)",
       "date": "2026-11-12",
-      "updated": "2026-11-12 15:32:21"
+      "updated": "2026-11-12 15:44:40"
     },
     "2026-11-12-pagibig-2": {
       "state": "queued",
