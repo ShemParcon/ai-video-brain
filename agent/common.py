@@ -45,8 +45,13 @@ def _gemini_models(key):
     try:
         r = requests.get("https://generativelanguage.googleapis.com/v1beta/models", headers={"x-goog-api-key": key}, params={"pageSize": 200}, timeout=30)
         names = [m["name"].split("/")[-1] for m in r.json().get("models", []) if "generateContent" in m.get("supportedGenerationMethods", [])]
-        good = sorted([n for n in names if "flash" in n and not any(x in n for x in ("lite", "image", "tts", "audio", "live", "exp", "thinking", "8b"))], reverse=True)
-        return list(dict.fromkeys(base[:1] + good[:3] + base[1:]))
+        bad = ("lite", "image", "tts", "audio", "live", "thinking", "8b", "robotics", "embedding", "computer", "vision")
+        flash = [n for n in names if "flash" in n and not any(x in n for x in bad)]
+        late = ("omni", "preview", "exp")
+        main = sorted([n for n in flash if not any(x in n for x in late)], reverse=True)
+        rest = sorted([n for n in flash if any(x in n for x in late)], reverse=True)
+        lite = sorted([n for n in names if "flash-lite" in n and "image" not in n and "tts" not in n], reverse=True)
+        return list(dict.fromkeys(["gemini-flash-latest"] + main + base[1:] + lite + rest))
     except Exception:
         return base
 
@@ -54,23 +59,21 @@ def _gemini(prompt):
     key = (os.getenv("GEMINI_API_KEY") or "").strip()
     if not key: raise RuntimeError("GEMINI_API_KEY is empty or missing in this run")
     errs = []
-    for m in _gemini_models(key)[:5]:
-        for think in ((True, False) if "2.5" in m else (False,)):
-            cfg = {"responseMimeType": "application/json", "temperature": 1.0, "maxOutputTokens": 8192}
-            if think: cfg["thinkingConfig"] = {"thinkingBudget": 0}
+    for m in _gemini_models(key)[:9]:
+        base = {"responseMimeType": "application/json", "temperature": 1.0, "maxOutputTokens": 8192}
+        variants = ([{**base, "thinkingConfig": {"thinkingBudget": 0}}] if "2.5" in m else []) + [base, {k: v for k, v in base.items() if k != "responseMimeType"}]
+        for cfg in variants:
             try:
                 r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent",
                     headers={"x-goog-api-key": key, "Content-Type": "application/json"}, timeout=90,
                     json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": cfg})
             except Exception as e:
-                errs.append(f"{m} {str(e)[:50]}"); break
+                errs.append(f"{m} {str(e)[:40]}"); break
             if r.ok:
                 try: return r.json()["candidates"][0]["content"]["parts"][0]["text"]
                 except Exception: errs.append(f"{m} empty"); break
-            errs.append(f"{m} {r.status_code}")
-            if r.status_code == 429: time.sleep(20)
-            if r.status_code == 400 and think: continue
-            break
+            if r.status_code == 400: continue
+            errs.append(f"{m} {r.status_code}"); time.sleep(1); break
     raise RuntimeError("; ".join(errs[-4:]))
 
 def _pollinations(prompt):
@@ -98,5 +101,5 @@ def llm_json(prompt, retries=3):
         for fn in (_gemini, _pollinations):
             try: return parse_json(fn(prompt))
             except Exception as e: errs.append(f"{fn.__name__[1:]}: {str(e)[:170]}")
-        time.sleep(4 * (i + 1))
+        time.sleep(30 if any('429' in e for e in errs[-2:]) else 4 * (i + 1))
     raise RuntimeError("AI writer failed. " + " | ".join(errs[-2:]))
