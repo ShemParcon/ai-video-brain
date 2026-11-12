@@ -53,10 +53,17 @@ def _gemini(prompt):
     raise RuntimeError("gemini: " + err)
 
 def _pollinations(prompt):
-    r = requests.post("https://text.pollinations.ai/openai", timeout=180,
-        json={"model": "openai", "messages": [{"role": "user", "content": prompt}], "jsonMode": True})
-    if not r.ok: raise RuntimeError("pollinations: " + r.text[:200])
-    return r.json()["choices"][0]["message"]["content"]
+    err = ""
+    for m in ("openai-fast", "mistral", "llama", "openai"):
+        try:
+            r = requests.post("https://text.pollinations.ai/openai", timeout=180,
+                json={"model": m, "max_tokens": 6000, "messages": [{"role": "user", "content": prompt}], "jsonMode": True})
+            if r.ok:
+                txt = r.json()["choices"][0]["message"]["content"]
+                if txt and txt.strip(): return txt
+            err = r.text[:150]
+        except Exception as e: err = str(e)[:150]
+    raise RuntimeError("pollinations: " + err)
 
 def parse_json(txt):
     txt = re.sub(r"^```(?:json)?|```$", "", txt.strip(), flags=re.M).strip()
