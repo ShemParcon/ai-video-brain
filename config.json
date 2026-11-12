@@ -2,11 +2,41 @@
   "max_videos_per_day": 15,
   "language": "Filipino (Taglish allowed, English only when necessary)",
   "pages": [
-    {"id": "opisina", "name": "Opisina Chronicles", "niche": "office life comedy: boss vs employees, deadlines, payday, HR, meetings", "per_day": 2},
-    {"id": "pamilya", "name": "Pamilya Vibes", "niche": "Filipino family comedy: Nanay, Tatay, Anak, Lola; chores, baon, pagkain, uwian", "per_day": 2},
-    {"id": "pagibig", "name": "Kwentong Pag-ibig", "niche": "relationship and friendship stories: crush, ghosting, bestfriend advice, funny or touching endings", "per_day": 2},
-    {"id": "estudyante", "name": "Buhay Estudyante", "niche": "school life: teacher, classmates, exams, projects, canteen, group work", "per_day": 2},
-    {"id": "pera", "name": "Aral sa Pera", "niche": "money lessons through skits: budgeting, ipon, utang, scam awareness, simple accounting tips", "per_day": 2},
-    {"id": "pananampalataya", "name": "Liwanag ng Pag-asa", "niche": "faith and hope short stories: encouragement, forgiveness, gratitude, Bible-inspired lessons", "per_day": 2}
+    {
+      "id": "opisina",
+      "name": "Opisina Chronicles",
+      "niche": "office life comedy: boss vs employees, deadlines, payday, HR, meetings",
+      "per_day": 2
+    },
+    {
+      "id": "pamilya",
+      "name": "Pamilya Vibes",
+      "niche": "Filipino family comedy: Nanay, Tatay, Anak, Lola; chores, baon, pagkain, uwian",
+      "per_day": 2
+    },
+    {
+      "id": "pagibig",
+      "name": "Kwentong Pag-ibig",
+      "niche": "relationship and friendship stories: crush, ghosting, bestfriend advice, funny or touching endings",
+      "per_day": 2
+    },
+    {
+      "id": "estudyante",
+      "name": "Buhay Estudyante",
+      "niche": "school life: teacher, classmates, exams, projects, canteen, group work",
+      "per_day": 2
+    },
+    {
+      "id": "pera",
+      "name": "Aral sa Pera",
+      "niche": "money lessons through skits: budgeting, ipon, utang, scam awareness, simple accounting tips",
+      "per_day": 2
+    },
+    {
+      "id": "pananampalataya",
+      "name": "Liwanag ng Pag-asa",
+      "niche": "faith and hope short stories: encouragement, forgiveness, gratitude, Bible-inspired lessons",
+      "per_day": 2
+    }
   ]
 }
