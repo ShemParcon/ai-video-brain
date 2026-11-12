@@ -55,7 +55,7 @@ function runBanner(){const r=S.runs.find(x=>isRun(x,'produce')),pl=S.runs.find(x
 const views={
 progress(){const its=S.plan.items.filter(i=>i.status!='skip');const done=its.filter(i=>(S.status.items[i.id]||{}).state=='done').length;
  return dateSel()+runBanner()+`<div class="card"><b>${done}/${its.length} videos ready</b><div class="bar"><i style="width:${its.length?done/its.length*100:0}%"></i></div>
- <button class="b" data-act="run">▶ Make videos now</button><button class="b r" data-act="stop">■ Stop</button><button class="b g" data-act="reload">↻ Refresh</button></div>`+
+ <button class="b" data-act="run">▶ Make videos now</button><button class="b r" data-act="stop">■ Stop</button><button class="b g" data-act="remakeall">↻ Remake all</button><button class="b g" data-act="reload">↻ Refresh</button></div>`+
  its.map(i=>{const s=S.status.items[i.id]||{},st0=s.state||'waiting',st=(!activeRun()&&['queued','scripting','voicing','rendering','uploading'].includes(st0))?'stopped':st0,stale=st=='done'&&s.built_rev!=(i.rev||0);return `<div class="card"><span class="chip">${esc(pageName(i.page))}</span> <span class="chip">${stale?'will remake':st}</span><div><b>${esc(i.title)}</b></div>
  <div class="bar"><i style="width:${PCT[st]||0}%;${st=='error'?'background:#ef4444':''}"></i></div>${s.msg?`<div class="err">${esc(s.msg)}</div>`:''}</div>`}).join('')||'<div class="card mut">No plan for this date yet. Open Plan → Generate.</div>'},
 videos(){const its=S.plan.items.filter(i=>S.res.items[i.id]);return dateSel()+(its.map(i=>{const r=S.res.items[i.id],posted=LS['posted:'+i.id];
@@ -82,6 +82,7 @@ document.addEventListener('click',async e=>{const nb=e.target.closest('nav butto
  const b=e.target.closest('[data-act]');if(!b||b.tagName=='SELECT')return;const a=b.dataset.act,n=+b.dataset.n,id=b.dataset.id;
  if(a=='reload')return loadAll();
  if(a=='stop'){if(!confirm('Stop all running video jobs?'))return;return busy(async()=>{const n=await stopRuns();alert(n?'Stopped. Now you can tap Make videos now to start fresh.':'No running job found.')})}
+ if(a=='remakeall'){if(activeRun()){alert('Tap Stop first.');return}if(!confirm('Make ALL videos for '+S.date+' again?'))return;return busy(async()=>{S.plan.items.forEach(i=>i.rev=(i.rev||0)+1);await gwrite('data/plans/'+S.date+'.json',S.plan,'remake all');await dispatch('produce.yml',{date:S.date});alert('Remaking all videos…')})}
  if(a=='run'&&activeRun()){alert('Already running. Tap Stop first if you want to restart.');return}
  if(a=='run')return busy(async()=>{await dispatch('produce.yml',{date:S.date});alert('Started! Check Progress in a minute.')});
  if(a=='gen'){if(!confirm('Replace the plan for '+S.date+'?'))return;return busy(async()=>{await dispatch('plan.yml',{date:S.date,force:'true'});alert('Planning… refresh in about a minute.')})}
