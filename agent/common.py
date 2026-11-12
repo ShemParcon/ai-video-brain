@@ -41,16 +41,22 @@ def git_push(msg):
 
 # ---------- LLM (free): Gemini if key present, else Pollinations ----------
 def _gemini(prompt):
-    key = os.getenv("GEMINI_API_KEY")
-    if not key: raise RuntimeError("no gemini key")
+    key = (os.getenv("GEMINI_API_KEY") or "").strip()
+    if not key: raise RuntimeError("GEMINI_API_KEY is empty or missing in this run")
     err = ""
-    for m in ("gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest"):
-        r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent",
-            params={"key": key}, timeout=120,
-            json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"responseMimeType": "application/json", "temperature": 1.0}})
-        if r.ok: return r.json()["candidates"][0]["content"]["parts"][0]["text"]
-        err = r.text[:200]
-    raise RuntimeError("gemini: " + err)
+    for m in ("gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest", "gemini-2.5-flash-lite"):
+        for attempt in range(2):
+            r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent",
+                headers={"x-goog-api-key": key, "Content-Type": "application/json"}, timeout=120,
+                json={"contents": [{"parts": [{"text": prompt}]}],
+                      "generationConfig": {"responseMimeType": "application/json", "temperature": 1.0, "maxOutputTokens": 8192}})
+            if r.ok:
+                try: return r.json()["candidates"][0]["content"]["parts"][0]["text"]
+                except Exception: err = f"{m}: empty answer"; break
+            err = f"{m} HTTP {r.status_code}: {r.text[:120]}"
+            if r.status_code == 429 and attempt == 0: time.sleep(25); continue
+            break
+    raise RuntimeError(err)
 
 def _pollinations(prompt):
     err = ""
@@ -72,10 +78,10 @@ def parse_json(txt):
     return json.loads(txt[a:b])
 
 def llm_json(prompt, retries=3):
-    last = None
+    errs = []
     for i in range(retries):
         for fn in (_gemini, _pollinations):
             try: return parse_json(fn(prompt))
-            except Exception as e: last = e
+            except Exception as e: errs.append(f"{fn.__name__[1:]}: {str(e)[:170]}")
         time.sleep(4 * (i + 1))
-    raise RuntimeError(f"AI writer unavailable ({last}). Add a free GEMINI_API_KEY secret.")
+    raise RuntimeError("AI writer failed. " + " | ".join(errs[-2:]))
