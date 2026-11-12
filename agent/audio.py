@@ -25,12 +25,20 @@ def tts(text, ch, path):
         return (np.sin(2 * np.pi * (140 + ch['pitch']) * t) * (.3 + .3 * np.sin(2 * np.pi * 3.5 * t)) ** 2).astype(np.float32)
     import edge_tts
     mp3 = path + '.mp3'
-    for i in range(4):
+    safe = re.sub(r"[^\w\s.,!?'\u2019\-:;()%/]", ' ', text); safe = re.sub(r'\s+', ' ', safe).strip() or 'Ok'
+    alt = 'en-PH-RosaNeural' if ch['voice'].endswith('BlancaNeural') else 'en-PH-JamesNeural'
+    tries = [(ch['voice'], f"{ch['rate']:+d}%", f"{ch['pitch']:+d}Hz"), (ch['voice'], '+0%', f"{ch['pitch']:+d}Hz"),
+             (ch['voice'], '+0%', '+0Hz'), (ch['voice'], '+0%', '+0Hz'), (alt, '+0%', '+0Hz')]
+    last = None
+    for v, r, pch in tries:
         try:
-            asyncio.run(edge_tts.Communicate(text, ch['voice'], rate=f"{ch['rate']:+d}%", pitch=f"{ch['pitch']:+d}Hz").save(mp3)); break
-        except Exception:
-            if i == 3: raise
-            time.sleep(2 + i)
+            if os.path.exists(mp3): os.remove(mp3)
+            asyncio.run(edge_tts.Communicate(safe, v, rate=r, pitch=pch).save(mp3))
+            if os.path.getsize(mp3) > 1000: break
+        except Exception as e:
+            last = e; time.sleep(2)
+    else:
+        raise RuntimeError(f'voice failed: {str(last)[:150]}')
     wav = path + '.wav'
     subprocess.run(['ffmpeg', '-y', '-v', 'error', '-i', mp3, '-ar', str(SR), '-ac', '1', wav], check=True)
     return trim(read_wav(wav))
