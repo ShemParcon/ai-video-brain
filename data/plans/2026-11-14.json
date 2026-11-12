@@ -1,0 +1,150 @@
+{
+  "date": "2026-11-14",
+  "items": [
+    {
+      "id": "2026-11-14-opisina-1",
+      "page": "opisina",
+      "title": "The Microwave Incident",
+      "premise": "Boss implements strict new rules about office lunch etiquette and cleanliness. Seconds later, he accidentally sets off the smoke alarm by reheating fish for fifteen minutes.",
+      "roles": [
+        "Boss",
+        "Employee"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-14-opisina-2",
+      "page": "opisina",
+      "title": "Reply All Disaster",
+      "premise": "An Employee panics after accidentally hitting 'Reply All' on a company-wide email with a rant about the freezing office temperature. The panic turns to relief when the Boss replies all agreeing and offering hot cocoa.",
+      "roles": [
+        "Boss",
+        "Employee"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-14-pamilya-1",
+      "page": "pamilya",
+      "title": "The Wi-Fi Hostage",
+      "premise": "Mom changes the household Wi-Fi password to the answer of 'What time did you clean your room?' Teen tries every possible lie as the password before actually doing the chore.",
+      "roles": [
+        "Mom",
+        "Teen"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-14-pamilya-2",
+      "page": "pamilya",
+      "title": "Dad's GPS Rivalry",
+      "premise": "Dad refuses to follow the GPS voice instructions on a family road trip, insisting his shortcut is faster. The shortcut leads the family directly into a muddy cornfield while Grandma eats snacks in the back.",
+      "roles": [
+        "Dad",
+        "Teen",
+        "Grandma"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-14-pagibig-1",
+      "page": "pagibig",
+      "title": "The Overthinker Date",
+      "premise": "A guy spent two hours overanalyzing a cryptic text message from his date with his Best Friend. When he arrives at dinner, he discovers it was just a typo meant for her mom.",
+      "roles": [
+        "Date A",
+        "Best Friend"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-14-pagibig-2",
+      "page": "pagibig",
+      "title": "First Date Checklist",
+      "premise": "A picky guy brings a literal scoring rubric to a first date to evaluate her compatibility. The girl takes the clipboard, scores him zero on social skills, and makes him pay for her meal.",
+      "roles": [
+        "Date A",
+        "Date B"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-14-estudyante-1",
+      "page": "estudyante",
+      "title": "Essay Word Count Padding",
+      "premise": "A Student uses every fancy adjective and giant font trick to stretch a two-sentence thought into a five-page essay. Teacher returns it graded with a single giant 'Nice Try' red stamp.",
+      "roles": [
+        "Student",
+        "Teacher"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-14-estudyante-2",
+      "page": "estudyante",
+      "title": "Pop Quiz Poker Face",
+      "premise": "A Student acts extremely confident during a surprise pop quiz to intimidate classmates into thinking it's easy. At the end, he hands in a paper with just his name and a cry for help.",
+      "roles": [
+        "Student",
+        "Teacher"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-14-pera-1",
+      "page": "pera",
+      "title": "The 90 Percent Off Trap",
+      "premise": "Guy brags to his Smart Friend about saving hundreds of dollars during a mega clearance sale. Smart Friend points out he spent his entire rent budget on unneeded inflatable kayaks.",
+      "roles": [
+        "Broke Guy",
+        "Smart Friend"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-14-pera-2",
+      "page": "pera",
+      "title": "Forgotten Subscription Audit",
+      "premise": "Guy investigates why his bank balance is zero despite eating instant noodles all week. He discovers he has been paying monthly fees for three gym memberships he never stepped foot in.",
+      "roles": [
+        "Broke Guy",
+        "Smart Friend"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-14-pananampalataya-1",
+      "page": "pananampalataya",
+      "title": "The Bus Stop Umbrella",
+      "premise": "A guy willingly gets soaked in a downpour to share his small umbrella with a stranger at a bus stop. When he arrives late for a job interview, the stranger turns out to be the hiring manager.",
+      "roles": [
+        "Kind Guy",
+        "Interviewer"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-14-pananampalataya-2",
+      "page": "pananampalataya",
+      "title": "Grandma's Secret Recipe",
+      "premise": "A pushy Neighbor tries to sneakily copy Grandma's famous pie recipe while visiting. Grandma catches the Neighbor, laughs, and invites them into the kitchen to teach them step-by-step with love.",
+      "roles": [
+        "Grandma",
+        "Neighbor"
+      ],
+      "status": "planned",
+      "rev": 0
+    }
+  ]
+}
