@@ -2,17 +2,17 @@
   "run": {
     "state": "running",
     "date": "2026-11-12",
-    "total": 12,
+    "total": 9,
     "message": "started",
-    "updated": "2026-11-12 15:49:50"
+    "updated": "2026-11-12 17:10:49"
   },
   "items": {
     "2026-11-12-opisina-1": {
-      "state": "error",
-      "pct": 100,
-      "msg": "AI writer failed. gemini: gemini-omni-flash-preview 429; gemini-omni-1.2-flash 429; gemini-omni-1.1-flash 429; gemini-2.5-flash 404 | pollinations: pollinations: {\"success\":false,\"error\":{\"message\":\"The model exhausted its output token limit before producing an answer. Increase the token limit or re",
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
       "date": "2026-11-12",
-      "updated": "2026-11-12 15:56:42"
+      "updated": "2026-11-12 17:10:49"
     },
     "2026-11-12-opisina-2": {
       "state": "done",
@@ -39,60 +39,60 @@
       "built_rev": 0
     },
     "2026-11-12-pagibig-1": {
-      "state": "error",
-      "pct": 100,
-      "msg": "AI writer failed. gemini: gemini-omni-flash-preview 429; gemini-omni-1.2-flash 429; gemini-omni-1.1-flash 429; gemini-2.5-flash 404 | pollinations: Expecting ',' delimiter: line 1 column 484 (char 483)",
-      "date": "2026-11-12",
-      "updated": "2026-11-12 16:10:09"
-    },
-    "2026-11-12-pagibig-2": {
-      "state": "error",
-      "pct": 100,
-      "msg": "AI writer failed. gemini: gemini-omni-flash-preview 429; gemini-omni-1.2-flash 429; gemini-omni-1.1-flash 429; gemini-2.5-flash 404 | pollinations: pollinations: {\"status\":402,\"success\":false,\"error\":{\"code\":\"FREE_LIMIT\",\"message\":\"Free limit reached: 1 reply every 45 seconds per IP. Retry after 45s",
-      "date": "2026-11-12",
-      "updated": "2026-11-12 16:14:12"
-    },
-    "2026-11-12-estudyante-1": {
-      "state": "error",
-      "pct": 100,
-      "msg": "AI writer failed. gemini: gemini-omni-flash-preview 429; gemini-omni-1.2-flash 429; gemini-omni-1.1-flash 429; gemini-2.5-flash 404 | pollinations: pollinations: {\"status\":402,\"success\":false,\"error\":{\"code\":\"FREE_LIMIT\",\"message\":\"Free limit reached: 1 reply every 45 seconds per IP. Retry after 45s",
-      "date": "2026-11-12",
-      "updated": "2026-11-12 16:19:55"
-    },
-    "2026-11-12-estudyante-2": {
-      "state": "scripting",
-      "pct": 10,
+      "state": "queued",
+      "pct": 0,
       "msg": "",
       "date": "2026-11-12",
-      "updated": "2026-11-12 16:19:56"
+      "updated": "2026-11-12 17:10:49"
+    },
+    "2026-11-12-pagibig-2": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-12",
+      "updated": "2026-11-12 17:10:49"
+    },
+    "2026-11-12-estudyante-1": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-12",
+      "updated": "2026-11-12 17:10:49"
+    },
+    "2026-11-12-estudyante-2": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-12",
+      "updated": "2026-11-12 17:10:49"
     },
     "2026-11-12-pera-1": {
       "state": "queued",
       "pct": 0,
       "msg": "",
       "date": "2026-11-12",
-      "updated": "2026-11-12 15:49:50"
+      "updated": "2026-11-12 17:10:49"
     },
     "2026-11-12-pera-2": {
       "state": "queued",
       "pct": 0,
       "msg": "",
       "date": "2026-11-12",
-      "updated": "2026-11-12 15:49:50"
+      "updated": "2026-11-12 17:10:49"
     },
     "2026-11-12-pananampalataya-1": {
       "state": "queued",
       "pct": 0,
       "msg": "",
       "date": "2026-11-12",
-      "updated": "2026-11-12 15:49:50"
+      "updated": "2026-11-12 17:10:49"
     },
     "2026-11-12-pananampalataya-2": {
       "state": "queued",
       "pct": 0,
       "msg": "",
       "date": "2026-11-12",
-      "updated": "2026-11-12 15:49:50"
+      "updated": "2026-11-12 17:10:49"
     }
   }
 }
