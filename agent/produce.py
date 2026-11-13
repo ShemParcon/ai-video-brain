@@ -11,15 +11,15 @@ def gen_script(item, page, cfg):
     if os.getenv("DRY_SCRIPT"): return load(os.getenv("DRY_SCRIPT"))
     prompt = """Write a short viral joke skit for a vertical cartoon video. Total spoken time 14 to 24 seconds: 5 to 9 short lines (max 12 words each), 1 to 3 characters.
 Language: __LANG__.
-Page: __PAGE__ (__NICHE__). Joke title: __TITLE__. The joke or idea: __PREMISE__. Roles to use: __ROLES__.
-The first line is the hook and must grab attention immediately. Build the setup fast and deliver the punchline in the final lines. You may add one short reaction line after the punchline (a groan, a laugh, or Dad stop). Keep it clean and wholesome: no real people, brands, copyrighted characters or lines from copyrighted comedy, nothing harmful or sexual.
+Page: __PAGE__ (__NICHE__). Style guide: __GUIDE__. Joke title: __TITLE__. The joke or idea: __PREMISE__. Roles to use: __ROLES__.
+The first line is the hook and must grab attention immediately. Build the setup fast and deliver the punchline in the final lines. You may add one short reaction line after the punchline (a groan, a laugh, or Dad stop). Keep it clean and wholesome: no real people, brands, copyrighted characters or lines from copyrighted comedy, no weapons, no violence, nothing harmful or sexual.
 Write every line exactly as a text-to-speech voice should read it: plain words, NO hyphenated words, NO acronyms, NO emojis or symbols, numbers written in words, normal spelling.
 Allowed settings: office, home, kitchen, bedroom, school, street, market, church, cafe, park.
 Allowed emotions: neutral, happy, angry, sad, surprised. Allowed sfx (or null): pop, ding, whoosh, bonk, sad, laugh, rimshot (use rimshot right after the punchline).
 Return ONLY JSON:
 {"characters":[{"role":"Dad","gender":"M","age":"adult"}],"scenes":[{"setting":"kitchen","lines":[{"who":"Dad","text":"...","emotion":"happy","sfx":null}]}],"youtube_title":"max 70 chars","hook":"on-screen hook, max 5 words","caption":"1-2 funny sentences with emojis ending with a question for comments","hashtags":["#dadjokes","#tag2","#tag3","#tag4","#tag5","#tag6","#tag7","#tag8"]}
 gender is M or F; age is kid, adult, or old.""".replace("__LANG__", cfg.get("language", "Filipino")).replace("__PAGE__", page["name"]) \
-        .replace("__NICHE__", page["niche"]).replace("__TITLE__", item["title"]).replace("__PREMISE__", item["premise"]) \
+        .replace("__NICHE__", page["niche"]).replace("__GUIDE__", page.get("guide") or "natural, punchy and funny").replace("__TITLE__", item["title"]).replace("__PREMISE__", item["premise"]) \
         .replace("__ROLES__", ", ".join(item.get("roles", [])) or "your choice")
     return llm_json(prompt)
 
@@ -74,7 +74,7 @@ def build(item, page, cfg, reg, st, date, res):
     total = lines[-1]["end"] + 1.4
     stage("rendering", 60)
     wav = p("out", "tmp", f"{id}.wav"); audio.mix(total, lines, wav)
-    mp4 = p("out", f"{id}.mp4"); render.render(rscenes, lines, chars, total, wav, mp4)
+    mp4 = p("out", f"{id}.mp4"); render.render(rscenes, lines, chars, total, wav, mp4, style=page.get('style', 'color'), watermark=page.get('watermark') or ('@' + page['name'].replace(' ', '_') if page.get('style') == 'sketch' else ''))
     stage("uploading", 90)
     url = upload(date, mp4)
     res["items"][id] = dict(page=page["id"], title=item["title"], url=url, duration=round(total, 1), **posts(sc, item))
