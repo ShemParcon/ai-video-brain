@@ -1,10 +1,10 @@
 {
   "run": {
-    "state": "running",
+    "state": "finished",
     "date": "2026-11-13",
     "total": 15,
-    "message": "started",
-    "updated": "2026-11-13 12:16:04"
+    "message": "12 done, 3 failed",
+    "updated": "2026-11-13 12:24:28"
   },
   "items": {
     "2026-11-12-opisina-1": {
