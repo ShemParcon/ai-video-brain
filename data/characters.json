@@ -808,5 +808,53 @@
     "voice": "en-US-SteffanNeural",
     "pitch": 0,
     "rate": 4
+  },
+  "pananampalataya:good samaritan": {
+    "v": 3,
+    "page": "pananampalataya",
+    "role": "Good Samaritan",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#d29b6b",
+      "hair": "#1f2a44",
+      "shirt": "#3b82f6",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#4b5563",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-GuyNeural",
+    "pitch": 0,
+    "rate": 3
+  },
+  "pananampalataya:cashier": {
+    "v": 3,
+    "page": "pananampalataya",
+    "role": "Cashier",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#1f2a44",
+      "shirt": "#14b8a6",
+      "style": "long",
+      "glasses": true,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-US-MichelleNeural",
+    "pitch": 0,
+    "rate": 8
   }
 }
