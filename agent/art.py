@@ -1,4 +1,4 @@
-import random, functools, json
+import random, math
 from PIL import Image, ImageDraw
 
 W, H = 720, 1280
@@ -38,85 +38,123 @@ def get_char(reg, page, role, gender='M', age='adult'):
                     pitch=-6 if age == 'old' else 0, rate={'kid': 4, 'old': -4}.get(age, r.randint(2, 8)))
     return reg[key]
 
-class SD:
-    def __init__(s, d, k): s.d, s.k = d, k
+
+class Tr:
+    """Drawing wrapper: world coords (720x1280) -> camera view (pan/zoom), everything stays vector-sharp."""
+    def __init__(s, d, k, cx, cy, ow, oh): s.d, s.k, s.cx, s.cy, s.ox, s.oy = d, k, cx, cy, ow / 2, oh / 2
+    def p(s, x, y): return ((x - s.cx) * s.k + s.ox, (y - s.cy) * s.k + s.oy)
     def _s(s, v):
-        return [(x * s.k, y * s.k) for x, y in v] if isinstance(v[0], (tuple, list)) else [x * s.k for x in v]
-    def _w(s, w): return max(1, int(w * s.k))
+        if isinstance(v[0], (tuple, list)): return [s.p(x, y) for x, y in v]
+        out = []
+        for i in range(0, len(v), 2): out.extend(s.p(v[i], v[i + 1]))
+        return out
+    def _w(s, w): return max(1, int(round(w * s.k)))
     def ellipse(s, box, fill=None, outline=None, width=1): s.d.ellipse(s._s(box), fill=fill, outline=outline, width=s._w(width))
     def rectangle(s, box, fill=None, outline=None, width=1): s.d.rectangle(s._s(box), fill=fill, outline=outline, width=s._w(width))
     def rounded_rectangle(s, box, radius=0, fill=None, outline=None, width=1): s.d.rounded_rectangle(s._s(box), radius=radius * s.k, fill=fill, outline=outline, width=s._w(width))
-    def polygon(s, pts, fill=None, outline=None): s.d.polygon(s._s(pts), fill=fill, outline=outline, width=s.k)
-    def line(s, pts, fill=None, width=1, joint=None): s.d.line(s._s(pts), fill=fill, width=s._w(width), joint=joint)
+    def polygon(s, pts, fill=None, outline=None, width=1): s.d.polygon(s._s(pts), fill=fill, outline=outline, width=s._w(width))
+    def line(s, pts, fill=None, width=1): s.d.line(s._s(pts), fill=fill, width=s._w(width))
     def arc(s, box, start, end, fill=None, width=1): s.d.arc(s._s(box), start, end, fill=fill, width=s._w(width))
     def pieslice(s, box, start, end, fill=None, outline=None, width=1): s.d.pieslice(s._s(box), start, end, fill=fill, outline=outline, width=s._w(width))
 
-def _draw(look, mouth, emo, blink, pose=0):
-    im = Image.new('RGBA', (1200, 2360), (0, 0, 0, 0)); d = SD(ImageDraw.Draw(im), 2)
-    skin, hair, shirt, style = look['skin'], look['hair'], look['shirt'], look['style']; w = 9
-    pants = look.get('pants', '#334155'); shoe = look.get('shoe', '#1f2937'); skirt = look.get('skirt', False)
-    d.ellipse((120, 1110, 480, 1160), fill=(0, 0, 0, 45))
-    if style == 'long': d.rounded_rectangle((115, 190, 485, 720), radius=120, fill=hair, outline=OL, width=w)
-    if skirt:
-        for x0 in (205, 315): d.rectangle((x0, 960, x0 + 80, 1100), fill=skin, outline=OL, width=w)
-    else:
-        for x0 in (195, 315): d.rounded_rectangle((x0, 850, x0 + 90, 1100), radius=30, fill=pants, outline=OL, width=w)
-    for x0 in (165, 305): d.ellipse((x0, 1065, x0 + 130, 1135), fill=shoe, outline=OL, width=w)
-    d.rectangle((255, 450, 345, 600), fill=skin, outline=OL, width=w)
-    d.rounded_rectangle((140, 570, 460, 890), radius=80, fill=shirt, outline=OL, width=w)
-    if skirt: d.polygon([(150, 860), (450, 860), (490, 1000), (110, 1000)], fill=look.get('skirtc', pants), outline=OL)
-    d.polygon([(262, 572), (338, 572), (300, 640)], fill=skin, outline=OL)
-    if look.get('tie'): d.polygon([(288, 600), (312, 600), (322, 700), (300, 735), (278, 700)], fill='#b3202a', outline=OL)
-    def arm(pts):
-        d.line(pts, fill=OL, width=66, joint='curve'); d.line(pts, fill=shirt, width=48, joint='curve')
-        x, y = pts[-1]; d.ellipse((x - 34, y - 34, x + 34, y + 34), fill=skin, outline=OL, width=w)
-    arm([(150, 625), (105, 740), (98, 840)] if pose != 2 else [(150, 625), (80, 700), (80, 540)])
-    arm([(450, 625), (495, 740), (502, 840)] if pose != 1 else [(450, 625), (520, 700), (520, 540)])
-    for x0 in (122, 428): d.ellipse((x0, 320, x0 + 50, 395), fill=skin, outline=OL, width=w)
-    d.ellipse((150, 170, 450, 500), fill=skin, outline=OL, width=w)
+def smooth(x):
+    x = min(1.0, max(0.0, x)); return x * x * (3 - 2 * x)
+
+def ease_back(p):
+    p = min(1.0, max(0.0, p)); c1 = 1.70158; c3 = c1 + 1
+    return 1 + c3 * (p - 1) ** 3 + c1 * (p - 1) ** 2
+
+# emotion = (brow tilt, brow lift, eye scale, smile)
+EMO = {'neutral': (0.0, 0, 1.0, 0.15), 'happy': (-0.25, 3, 0.92, 1.0), 'angry': (1.0, -5, 0.92, -0.5),
+       'sad': (-1.0, 3, 1.0, -1.0), 'surprised': (0.0, 16, 1.25, 0.0)}
+def emo_vec(a, b, p): return tuple(x + (y - x) * p for x, y in zip(EMO.get(a, EMO['neutral']), EMO.get(b, EMO['neutral'])))
+
+def draw_char(d, look, x0, gy, s, A):
+    """Procedural stick-bean character. x0,gy = feet position (world), s = scale, A = animation params."""
+    skin, hair, shirt, style = look['skin'], look['hair'], look['shirt'], look['style']
+    t, g, a, ph = A['t'], A['g'], A['a'], A['ph']
+    ow = 8 * s
+    hip = -262 + A['bob']; shy = hip - 220
+    xu = x0 + 5 * math.sin(t * 1.3 + ph) * s
+    U = lambda lx, ly: (xu + lx * s, gy + ly * s)
+    pants = look.get('pants', '#334155'); skirt = look.get('skirt', False)
+    d.ellipse((x0 - 95 * s, gy - 10 * s, x0 + 95 * s, gy + 16 * s), fill=A['shadow'])
+    # legs
+    legc = skin if skirt else pants
+    ank = []
+    for sd in (-1, 1):
+        hp = (xu + sd * 38 * s, gy + hip * s); an = (x0 + sd * 52 * s, gy - 16 * s)
+        kn = ((hp[0] + an[0]) / 2 + sd * 6 * s, (hp[1] + an[1]) / 2)
+        d.line([hp, kn, an], fill=OL, width=26 * s)
+        for q in (hp, kn, an): d.ellipse((q[0] - 13 * s, q[1] - 13 * s, q[0] + 13 * s, q[1] + 13 * s), fill=OL)
+        d.line([hp, kn, an], fill=legc, width=15 * s)
+        for q in (kn, an): d.ellipse((q[0] - 7.5 * s, q[1] - 7.5 * s, q[0] + 7.5 * s, q[1] + 7.5 * s), fill=legc)
+        ank.append(an)
+    for an in ank:
+        d.ellipse((an[0] - 42 * s, an[1] - 6 * s, an[0] + 42 * s, an[1] + 26 * s), fill=look.get('shoe', '#1f2937'), outline=OL, width=ow)
+    # torso
+    d.rounded_rectangle((xu - 80 * s, gy + (shy - 8) * s, xu + 80 * s, gy + (hip + 22) * s), radius=62 * s, fill=shirt, outline=OL, width=ow)
+    if skirt: d.polygon([U(-84, hip - 6), U(84, hip - 6), U(114, hip + 105), U(-114, hip + 105)], fill=look.get('skirtc', pants), outline=OL, width=ow)
+    if look.get('tie'): d.polygon([U(-14, shy + 12), U(14, shy + 12), U(20, shy + 95), U(0, shy + 125), U(-20, shy + 95)], fill='#b3202a', outline=OL, width=ow * .6)
+    # arms
+    for sd in (-1, 1):
+        gest = sd == A['arm_side']
+        if gest: au = 12 + g * (46 + 22 * math.sin(2 * math.pi * .9 * t + ph) + 28 * a); bend = 10 + g * (34 + 18 * math.sin(2 * math.pi * 1.3 * t + ph))
+        else: au = 10 + 4 * math.sin(1.2 * t + ph + sd) + g * 10; bend = 8 + 4 * math.sin(1.7 * t + ph) + g * 8
+        sx, sy = U(sd * 70, shy + 14)
+        a1, a2 = math.radians(au), math.radians(au + bend)
+        e = (sx + sd * math.sin(a1) * 118 * s, sy + math.cos(a1) * 118 * s); h = (e[0] + sd * math.sin(a2) * 108 * s, e[1] + math.cos(a2) * 108 * s)
+        d.line([(sx, sy), e, h], fill=OL, width=24 * s)
+        for q in ((sx, sy), e, h): d.ellipse((q[0] - 12 * s, q[1] - 12 * s, q[0] + 12 * s, q[1] + 12 * s), fill=OL)
+        d.line([(sx, sy), e], fill=shirt, width=14 * s); d.line([e, h], fill=skin, width=14 * s)
+        d.ellipse((sx - 7 * s, sy - 7 * s, sx + 7 * s, sy + 7 * s), fill=shirt); d.ellipse((e[0] - 7 * s, e[1] - 7 * s, e[0] + 7 * s, e[1] + 7 * s), fill=skin)
+        d.ellipse((h[0] - 19 * s, h[1] - 19 * s, h[0] + 19 * s, h[1] + 19 * s), fill=skin, outline=OL, width=ow * .8)
+    # head
+    hx, hy = U(0, shy - 112 + 5 * a)
+    rot = math.radians(3 * math.sin(1.1 * t + ph) + g * 4 * math.sin(2.3 * t + ph)); cs, sn = math.cos(rot), math.sin(rot)
+    HP = lambda dx, dy: (hx + (dx * cs - dy * sn) * s, hy + (dx * sn + dy * cs) * s)
+    if style == 'long': d.rounded_rectangle((hx - 128 * s, hy - 95 * s, hx + 128 * s, hy + 170 * s), radius=80 * s, fill=hair, outline=OL, width=ow)
+    for sd in (-1, 1):
+        ex, ey = HP(sd * 114, 10); d.ellipse((ex - 19 * s, ey - 19 * s, ex + 19 * s, ey + 19 * s), fill=skin, outline=OL, width=ow * .8)
+    d.ellipse((hx - 118 * s, hy - 118 * s, hx + 118 * s, hy + 118 * s), fill=skin, outline=OL, width=ow)
     if style != 'bald':
         c = look['cap'] if style == 'cap' else hair
-        d.pieslice((138, 150, 462, 440), 180, 360, fill=c); d.arc((138, 150, 462, 440), 180, 360, fill=OL, width=w)
-        if style == 'bun': d.ellipse((250, 85, 350, 175), fill=hair, outline=OL, width=w)
-        if style == 'cap': d.rounded_rectangle((300, 268, 500, 302), radius=16, fill=c, outline=OL, width=w)
-    for cx in (240, 360):
-        if emo == 'happy': d.arc((cx - 28, 335, cx + 28, 380), 200, 340, fill=OL, width=9)
-        elif blink: d.line((cx - 26, 352, cx + 26, 352), fill=OL, width=8)
-        else:
-            rw, rh = (34, 42) if emo == 'surprised' else (28, 34)
-            d.ellipse((cx - rw, 350 - rh, cx + rw, 350 + rh), fill='white', outline=OL, width=6)
-            pr = 8 if emo == 'surprised' else 13
-            d.ellipse((cx - pr, 350 - pr * 1.2, cx + pr, 350 + pr * 1.2), fill=OL)
-            d.ellipse((cx - 5, 340, cx + 3, 348), fill='white')
-    if emo == 'angry': d.line((200, 308, 272, 335), fill=OL, width=10); d.line((400, 308, 328, 335), fill=OL, width=10)
-    elif emo == 'sad': d.line((205, 335, 272, 308), fill=OL, width=10); d.line((395, 335, 328, 308), fill=OL, width=10)
-    elif emo == 'surprised': d.line((210, 290, 270, 285), fill=OL, width=9); d.line((390, 290, 330, 285), fill=OL, width=9)
-    else: d.line((210, 312, 268, 306), fill=OL, width=9); d.line((390, 312, 332, 306), fill=OL, width=9)
-    d.ellipse((182, 398, 228, 424), fill='#f4a6a0'); d.ellipse((372, 398, 418, 424), fill='#f4a6a0')
-    if mouth == 'closed':
-        if emo == 'happy': d.arc((255, 410, 345, 465), 20, 160, fill=OL, width=9)
-        elif emo == 'sad': d.arc((265, 445, 335, 485), 200, 340, fill=OL, width=9)
-        else: d.line((272, 442, 328, 442), fill=OL, width=9)
+        d.pieslice((hx - 122 * s, hy - 122 * s, hx + 122 * s, hy + 62 * s), 180, 360, fill=c)
+        d.arc((hx - 122 * s, hy - 122 * s, hx + 122 * s, hy + 62 * s), 180, 360, fill=OL, width=ow)
+        if style == 'bun': d.ellipse((hx - 36 * s, hy - 168 * s, hx + 36 * s, hy - 100 * s), fill=hair, outline=OL, width=ow)
+        if style == 'cap': d.rounded_rectangle((hx - 10 * s, hy - 44 * s, hx + 160 * s, hy - 16 * s), radius=14 * s, fill=c, outline=OL, width=ow)
+    tilt, lift, es, smile = A['emo']
+    for sd in (-1, 1):
+        cx_, cy_ = HP(sd * 43, 6)
+        rx = 27 * es * s; ry = 31 * es * s * (1 - .92 * A['blink']) * (1 - .3 * max(0, smile))
+        d.ellipse((cx_ - rx, cy_ - ry, cx_ + rx, cy_ + ry), fill='white', outline=OL, width=ow * .75)
+        if A['blink'] < .8:
+            pr = 12 * s; px = cx_ + A['gaze'] * 6 * s; py = cy_ + 1.5 * s
+            d.ellipse((px - pr, py - pr, px + pr, py + pr), fill=OL)
+        base = -52 - lift
+        d.line([HP(sd * 16, base + tilt * 16), HP(sd * 68, base - tilt * 16)], fill=OL, width=9 * s)
+    mx, my = HP(0, 66)
+    if a > .05:
+        w = 44 - 10 * a; h = 6 + 58 * a; top = my - 6 * s; bot = top + h * s
+        d.ellipse((mx - w * s, top, mx + w * s, bot), fill='#6b1020', outline=OL, width=ow * .75)
+        if a > .4: d.ellipse((mx - w * .55 * s, bot - .38 * h * s, mx + w * .55 * s, bot - 3 * s), fill='#e8707a')
+    elif abs(smile) < .2: d.line([HP(-26, 70), HP(26, 70)], fill=OL, width=8 * s)
+    elif smile > 0:
+        c = (8 + 30 * smile) * s; d.arc((mx - 40 * s, my - c, mx + 40 * s, my + c), 10, 170, fill=OL, width=8 * s)
     else:
-        box = {'small': (278, 425, 322, 458), 'open': (264, 420, 336, 478), 'wide': (250, 414, 350, 492)}[mouth]
-        d.ellipse(box, fill='#7a1f2b', outline=OL, width=7)
-        if mouth != 'small': d.ellipse((box[0] + 16, box[3] - 24, box[2] - 16, box[3] - 6), fill='#e8707a')
+        cy2 = my + 22 * s; c = (6 + 24 * -smile) * s; d.arc((mx - 32 * s, cy2 - c, mx + 32 * s, cy2 + c), 190, 350, fill=OL, width=8 * s)
     if look.get('glasses'):
-        for cx in (240, 360): d.ellipse((cx - 46, 304, cx + 46, 396), outline=OL, width=6)
-        d.line((286, 350, 314, 350), fill=OL, width=6)
-    return im
-
-@functools.lru_cache(maxsize=160)
-def sprite(look_json, mouth, emo, blink, pose, w, h):
-    return _draw(json.loads(look_json), mouth, emo, blink, pose).resize((w, h), Image.LANCZOS)
+        for sd in (-1, 1):
+            q = HP(sd * 43, 6); d.ellipse((q[0] - 40 * s, q[1] - 40 * s, q[0] + 40 * s, q[1] + 40 * s), outline=OL, width=5 * s)
+        d.line([HP(-3, 6), HP(3, 6)], fill=OL, width=5 * s)
 
 SETTINGS = {'opisina': ('#dbe7f3', '#8d99a6'), 'bahay': ('#fde8c8', '#b98b5e'), 'kusina': ('#e9f5e1', '#c9b28a'),
             'kwarto': ('#e6dcf5', '#a58bc9'), 'paaralan': ('#f7f1cf', '#9c8456'), 'kalye': ('#bfe3f7', '#6b7280'),
             'palengke': ('#ffe3d6', '#a8825a'), 'simbahan': ('#f3efe6', '#8b7355'), 'cafe': ('#f1e0d0', '#7a5a42'),
             'parke': ('#c7ecff', '#6abf69')}
-ALIAS = {'office': 'opisina', 'home': 'bahay', 'sala': 'bahay', 'kitchen': 'kusina', 'bedroom': 'kwarto', 'school': 'paaralan',
-         'classroom': 'paaralan', 'street': 'kalye', 'labas': 'kalye', 'market': 'palengke', 'tindahan': 'palengke',
-         'church': 'simbahan', 'park': 'parke', 'coffee': 'cafe', 'restaurant': 'cafe'}
+ALIAS = {'office': 'opisina', 'home': 'bahay', 'living': 'bahay', 'sala': 'bahay', 'kitchen': 'kusina', 'bedroom': 'kwarto', 'school': 'paaralan',
+         'classroom': 'paaralan', 'street': 'kalye', 'market': 'palengke', 'store': 'palengke', 'shop': 'palengke', 'church': 'simbahan',
+         'park': 'parke', 'coffee': 'cafe', 'restaurant': 'cafe', 'garden': 'parke', 'outside': 'kalye'}
 
 def norm_setting(s):
     s = (s or '').lower()
@@ -126,10 +164,14 @@ def norm_setting(s):
         if k in s: return v
     return 'bahay'
 
-def make_bg(setting):
+def shadow_color(setting):
+    f = SETTINGS.get(setting, SETTINGS['bahay'])[1].lstrip('#')
+    return tuple(int(int(f[i:i + 2], 16) * .78) for i in (0, 2, 4))
+
+def draw_bg(d, setting):
     wall, floor = SETTINGS.get(setting, SETTINGS['bahay'])
-    im = Image.new('RGB', (W, H), wall); d = ImageDraw.Draw(im)
-    d.rectangle((0, 830, W, H), fill=floor); d.line((0, 830, W, 830), fill=OL, width=6)
+    d.rectangle((-300, -300, W + 300, H + 300), fill=wall)
+    d.rectangle((-300, 830, W + 300, H + 300), fill=floor); d.line((-300, 830, W + 300, 830), fill=OL, width=6)
     def win(x, y, w, h, c='#bfe6ff'):
         d.rectangle((x, y, x + w, y + h), fill=c, outline=OL, width=6); d.line((x + w // 2, y, x + w // 2, y + h), fill=OL, width=5); d.line((x, y + h // 2, x + w, y + h // 2), fill=OL, width=5)
     if setting == 'opisina':
@@ -161,4 +203,3 @@ def make_bg(setting):
     elif setting == 'parke':
         d.ellipse((540, 80, 650, 190), fill='#ffe066', outline=OL, width=5)
         for x in (90, 560): d.rectangle((x - 25, 480, x + 25, 830), fill='#8a5a3c', outline=OL, width=6); d.ellipse((x - 130, 220, x + 130, 540), fill='#3fa34d', outline=OL, width=6)
-    return im
