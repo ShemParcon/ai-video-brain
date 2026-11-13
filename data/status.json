@@ -214,11 +214,11 @@
       "updated": "2026-11-13 12:17:07"
     },
     "2026-11-13-sketch-3": {
-      "state": "queued",
-      "pct": 0,
+      "state": "scripting",
+      "pct": 10,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:16:04"
+      "updated": "2026-11-13 12:17:09"
     },
     "2026-11-13-dadjokes-1": {
       "state": "queued",
