@@ -2,36 +2,47 @@
   "date": "2026-11-13",
   "items": [
     {
-      "id": "2026-11-13-opisina-1",
-      "page": "opisina",
-      "title": "The 5 PM Task Drop",
-      "premise": "Boss assigns a massive report right as the employee is putting on their jacket to leave. The employee dramatically clocks out in slow motion while staring deadpan into Boss's soul. Punchline: The boss finds out the next morning the file was just a blank document titled 'Happy Thursday'.",
+      "id": "2026-11-13-sketch-1",
+      "page": "sketch",
+      "title": "The Jury Selection",
+      "premise": "Location: Courtroom. Judge: \"Are you impartial?\" Juror: \"I don't know anyone here.\" Judge: \"Good. The defendant?\" Juror: \"My twin brother.\" Judge stares blankly. Silent reaction beat.",
       "roles": [
-        "Boss",
-        "Employee"
+        "Judge",
+        "Juror"
       ],
       "status": "planned",
       "rev": 0
     },
     {
-      "id": "2026-11-13-opisina-2",
-      "page": "opisina",
-      "title": "The Silent Printer Rebellion",
-      "premise": "An office printer jams on the single most important page right before a board meeting. Coworker tries to fix it by whispering gentle threats to the machine. Punchline: The printer spits out 50 blank pages only after the meeting has already ended.",
+      "id": "2026-11-13-sketch-2",
+      "page": "sketch",
+      "title": "The DMV Appointment",
+      "premise": "Location: Customer Service. Clerk: \"Next in line.\" Customer: \"I have an appointment.\" Clerk: \"For when?\" Customer: \"Three years ago.\" Clerk: \"You are five minutes early.\" Customer blinks silently.",
       "roles": [
-        "Employee",
-        "Coworker"
+        "Clerk",
+        "Customer"
       ],
       "status": "planned",
       "rev": 0
     },
     {
-      "id": "2026-11-13-pamilya-1",
-      "page": "pamilya",
-      "title": "The Tupperware Ransom Note",
-      "premise": "Mom discovers a missing high-end Tupperware container from last month's potluck and launches a full CSI-style investigation in the living house. Dad tries to frame the family dog. Punchline: The Tupperware is found in the freezer, completely full of ice cubes.",
+      "id": "2026-11-13-sketch-3",
+      "page": "sketch",
+      "title": "The Park Bench",
+      "premise": "Location: Park. Stranger A: \"Nice day today.\" Stranger B: \"I am invisible.\" Stranger A: \"I can see you.\" Stranger B: \"Then the spell failed.\" Stranger A slowly looks away. Silent reaction beat.",
       "roles": [
-        "Mom",
+        "Stranger A",
+        "Stranger B"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-dadjokes-1",
+      "page": "dadjokes",
+      "title": "Fake Spaghetti",
+      "premise": "Dad: \"Hey kid, what do you call a fake noodle?\" Teen: \"Please don't.\" Dad: \"An impasta!\" Teen groans and covers face. Dad winks at camera.",
+      "roles": [
         "Dad",
         "Teen"
       ],
@@ -39,110 +50,133 @@
       "rev": 0
     },
     {
-      "id": "2026-11-13-pamilya-2",
-      "page": "pamilya",
-      "title": "Grandma's Bluetooth Confusion",
-      "premise": "Grandma tries to connect her hearing aid to the living room smart TV to watch her soap opera in absolute peace. Instead, she accidentally hijacks Dad's heavy metal workout playlist at full blast. Punchline: Grandma starts headbanging while sipping her chamomile tea.",
+      "id": "2026-11-13-dadjokes-2",
+      "page": "dadjokes",
+      "title": "Elevator Skill",
+      "premise": "Dad: \"My job at the elevator company is amazing.\" Teen: \"Why?\" Dad: \"It has its ups and downs!\" Teen walks out of frame in silence while Dad chuckles.",
       "roles": [
-        "Grandma",
-        "Dad"
+        "Dad",
+        "Teen"
       ],
       "status": "planned",
       "rev": 0
     },
     {
-      "id": "2026-11-13-pagibig-1",
-      "page": "pagibig",
-      "title": "The Menu Speedrun",
-      "premise": "A nervous dater spends two hours memorizing the entire menu to sound cultured on a first date, only for the date to order plain chicken nuggets. Punchline: The date says, 'I actually can't read, I just wanted to see if you'd panic.'",
+      "id": "2026-11-13-puns-1",
+      "page": "puns",
+      "title": "The Musical Bike",
+      "premise": "Bicycle Host: \"Why couldn't the bicycle stand up by itself?\" Pedestrian: \"Why?\" Bicycle Host: \"Because it was two-tired!\" Pedestrian shakes head in disappointment.",
       "roles": [
-        "Dater",
-        "Date"
+        "Bicycle Host",
+        "Pedestrian"
       ],
       "status": "planned",
       "rev": 0
     },
     {
-      "id": "2026-11-13-pagibig-2",
-      "page": "pagibig",
-      "title": "The Third Wheel's Tactical Retreat",
-      "premise": "Bestfriend agrees to chaperone a couple's anniversary dinner to catch up on gossip, but ends up acting as a human privacy screen during a minor disagreement. Punchline: Bestfriend charges the couple a $20 consulting fee for relationship therapy.",
+      "id": "2026-11-13-puns-2",
+      "page": "puns",
+      "title": "The Calendar's Days",
+      "premise": "Planner: \"Why is the calendar always nervous?\" Calendar: \"Because my days are numbered!\" Planner stares at the calendar in disbelief.",
       "roles": [
-        "Bestfriend",
-        "Dater",
-        "Date"
+        "Calendar",
+        "Planner"
       ],
       "status": "planned",
       "rev": 0
     },
     {
-      "id": "2026-11-13-estudyante-1",
-      "page": "estudyante",
-      "title": "The Group Chat Hall of Shame",
-      "premise": "Student checks the school project group chat at 2 AM to find zero work done except for 400 random cat memes sent by the slacker teammate. Punchline: The teacher assigns individual grades based on contribution, instantly ending the slacker's career.",
+      "id": "2026-11-13-relatable-1",
+      "page": "relatable",
+      "title": "POV: Finding the Mug",
+      "premise": "Me: \"Where is my coffee?\" Brain: \"Check the fridge.\" Me opens fridge, finds coffee next to the milk. Me: \"Why did we put it there?\" Brain: \"It felt safe.\" Me takes a cold sip in defeat.",
       "roles": [
-        "Student",
-        "Teammate"
+        "Me",
+        "Brain"
       ],
       "status": "planned",
       "rev": 0
     },
     {
-      "id": "2026-11-13-estudyante-2",
-      "page": "estudyante",
-      "title": "The Exam Pencil Heist",
-      "premise": "Student realizes they forgot a pencil right before a major pop quiz and initiates a silent black-market trade across the classroom. Punchline: They successfully acquire a 0.5mm mechanical pencil like a spy escaping a bank vault, only to realize it has no lead inside.",
+      "id": "2026-11-13-relatable-2",
+      "page": "relatable",
+      "title": "The Online Order Confidence",
+      "premise": "Me: \"I bought clothes online without checking the size chart.\" Package arrives. Me tries on shirt: it fits like a doll shirt. Me: \"I am now a stylish fashion model for ants.\"",
       "roles": [
-        "Student",
-        "Classmate"
+        "Me",
+        "Package"
       ],
       "status": "planned",
       "rev": 0
     },
     {
-      "id": "2026-11-13-pera-1",
-      "page": "pera",
-      "title": "The Subscription Graveyard",
-      "premise": "Broke adult tries to cancel a tiny $3 monthly fitness app subscription, but the app forces them through a digital obstacle course of emotional guilt trips and fake crying avatars. Punchline: They accidentally upgrade to the VIP annual plan out of sheer panic.",
+      "id": "2026-11-13-riddles-1",
+      "page": "riddles",
+      "title": "The Heavy Feather",
+      "premise": "Riddle Master: \"What gets wetter the more it dries?\" Contestant: \"A sponge?\" Riddle Master: \"A towel!\" Contestant blinks: \"Wait... that actually makes total sense.\"",
       "roles": [
-        "Broke Adult",
-        "App Customer Service Bot"
+        "Riddle Master",
+        "Contestant"
       ],
       "status": "planned",
       "rev": 0
     },
     {
-      "id": "2026-11-13-pera-2",
-      "page": "pera",
-      "title": "The Instant Ramen Gourmet Hour",
-      "premise": "To save money until payday, Broke Adult tries to cook instant ramen like a fancy 5-star Michelin chef using sheer delusion and random pantry condiments. Punchline: It still tastes exactly like instant chicken sodium packets, but now it costs twice as much in electricity.",
+      "id": "2026-11-13-riddles-2",
+      "page": "riddles",
+      "title": "The Building Mystery",
+      "premise": "Riddle Master: \"What has many keys but can't open a single lock?\" Contestant: \"A key ring?\" Riddle Master: \"A piano!\" Contestant slowly air-pianos in defeat.",
       "roles": [
-        "Broke Adult",
-        "Roommate"
+        "Riddle Master",
+        "Contestant"
       ],
       "status": "planned",
       "rev": 0
     },
     {
-      "id": "2026-11-13-pananampalataya-1",
-      "page": "pananampalataya",
-      "title": "The Accidental Umbrella Swap",
-      "premise": "An annoyed commuter grabs what they think is their plain black umbrella from the office rack, only to find it covered in bright yellow duckling stickers. Punchline: The owner of the duck umbrella catches them outside and smiles so warmly that the commuter throws away their old umbrella forever.",
+      "id": "2026-11-13-workmemes-1",
+      "page": "workmemes",
+      "title": "The Camera-On Panic",
+      "premise": "Boss: \"Let's all turn on our cameras for a quick photo!\" Employee (wearing pajamas with a formal shirt taped to front): \"My camera just broke, sir!\" Boss: \"We can see your shirt slipping.\" Employee freezes.",
       "roles": [
-        "Commuter",
-        "Stranger"
+        "Employee",
+        "Boss"
       ],
       "status": "planned",
       "rev": 0
     },
     {
-      "id": "2026-11-13-pananampalataya-2",
-      "page": "pananampalataya",
-      "title": "The Lost Wallet Trap",
-      "premise": "A stressed teen finds a dropped wallet stuffed with cash on a park bench and debates whether to become a secret agent millionaire or do the right thing. Punchline: They return it to the owner, who turns out to be their strict school principal—who rewards them by canceling tomorrow's pop quiz.",
+      "id": "2026-11-13-workmemes-2",
+      "page": "workmemes",
+      "title": "Friday at 4:58 PM",
+      "premise": "Worker packing bag at 4:58 PM. Co-worker: \"Did you check Slack?\" Worker: \"I cannot read after 4:55 PM, it's medical.\" Co-worker approves and nods silently.",
       "roles": [
-        "Teen",
-        "Principal"
+        "Worker",
+        "Co-worker"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-trending-1",
+      "page": "trending",
+      "title": "NPC In Real Life",
+      "premise": "Player walks up to friend. Friend repeats the same dialogue while walking into a wall: \"Good morning! Fine weather today!\" Player: \"Are you bugged?\" Friend: \"Good morning! Fine weather today!\" Player slowly walks backwards away.",
+      "roles": [
+        "Player",
+        "NPC Friend"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-trending-2",
+      "page": "trending",
+      "title": "Very Demure Water Break",
+      "premise": "Influencer takes a tiny sip from a massive 1-gallon water bottle with pinky out: \"Very mindful, very demure.\" Friend: \"You've been holding that bottle for 2 hours and took 1 milliliter.\" Influencer winks silently.",
+      "roles": [
+        "Influencer",
+        "Friend"
       ],
       "status": "planned",
       "rev": 0
