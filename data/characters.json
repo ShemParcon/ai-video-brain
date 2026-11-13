@@ -1024,5 +1024,53 @@
     "voice": "en-US-GuyNeural",
     "pitch": 0,
     "rate": 2
+  },
+  "dadjokes:dad": {
+    "v": 3,
+    "page": "dadjokes",
+    "role": "Dad",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#1f2a44",
+      "shirt": "#f97316",
+      "style": "cap",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#1e3a8a",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-US-GuyNeural",
+    "pitch": 0,
+    "rate": 6
+  },
+  "dadjokes:teen": {
+    "v": 3,
+    "page": "dadjokes",
+    "role": "Teen",
+    "gender": "F",
+    "age": "kid",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#4a2e1f",
+      "shirt": "#ec4899",
+      "style": "bun",
+      "glasses": true,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 0.85,
+      "pants": "#334155",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-AnaNeural",
+    "pitch": 0,
+    "rate": 4
   }
 }

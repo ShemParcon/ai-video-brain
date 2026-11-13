@@ -221,11 +221,12 @@
       "updated": "2026-11-13 12:17:37"
     },
     "2026-11-13-dadjokes-1": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:18:10"
+      "updated": "2026-11-13 12:18:14",
+      "built_rev": 0
     },
     "2026-11-13-dadjokes-2": {
       "state": "queued",
