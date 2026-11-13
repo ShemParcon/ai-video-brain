@@ -221,11 +221,11 @@
       "updated": "2026-11-13 12:17:37"
     },
     "2026-11-13-dadjokes-1": {
-      "state": "rendering",
-      "pct": 60,
+      "state": "uploading",
+      "pct": 90,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:17:56"
+      "updated": "2026-11-13 12:18:10"
     },
     "2026-11-13-dadjokes-2": {
       "state": "queued",
