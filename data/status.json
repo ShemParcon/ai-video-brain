@@ -112,11 +112,11 @@
       "built_rev": 0
     },
     "2026-11-13-opisina-2": {
-      "state": "voicing",
-      "pct": 35,
+      "state": "rendering",
+      "pct": 60,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 09:05:54"
+      "updated": "2026-11-13 09:06:06"
     },
     "2026-11-13-pamilya-1": {
       "state": "queued",
