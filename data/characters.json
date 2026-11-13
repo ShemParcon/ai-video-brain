@@ -544,5 +544,77 @@
     "voice": "en-GB-SoniaNeural",
     "pitch": -6,
     "rate": -4
+  },
+  "opisina:panicked employee": {
+    "v": 3,
+    "page": "opisina",
+    "role": "Panicked Employee",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#2e1f16",
+      "shirt": "#f97316",
+      "style": "bald",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#4b5563",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-GB-RyanNeural",
+    "pitch": 0,
+    "rate": 4
+  },
+  "opisina:lazy coworker": {
+    "v": 3,
+    "page": "opisina",
+    "role": "Lazy Coworker",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#1b1b22",
+      "shirt": "#3b82f6",
+      "style": "long",
+      "glasses": true,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#3f3f46",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-JennyNeural",
+    "pitch": 0,
+    "rate": 5
+  },
+  "opisina:clueless boss": {
+    "v": 3,
+    "page": "opisina",
+    "role": "Clueless Boss",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#d29b6b",
+      "hair": "#6b2d1a",
+      "shirt": "#3b82f6",
+      "style": "bald",
+      "glasses": true,
+      "tie": true,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#334155",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-GuyNeural",
+    "pitch": 0,
+    "rate": 2
   }
 }
