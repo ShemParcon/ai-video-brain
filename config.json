@@ -1,8 +1,16 @@
 {
-  "version": 3,
+  "version": 4,
   "max_videos_per_day": 15,
   "language": "English (casual, punchy, viral joke humor)",
   "pages": [
+    {
+      "id": "sketch",
+      "name": "Deadpan Sketch",
+      "style": "sketch",
+      "per_day": 3,
+      "niche": "minimal black and white deadpan sketch comedy: one everyday place (waiting room, meeting, courtroom, customer service, afterlife office, school, park), a calm setup and an unexpected twist in the last line; relatable one-liners like when your name is called in a meeting and you were not listening",
+      "guide": "Deadpan minimal dialogue: lines of 2 to 7 words, flat delivery, 2 characters, one location, escalating absurdity, a twist in the final line, then a silent reaction beat. Text reads like captions at the top of the screen. No weapons or violence."
+    },
     {
       "id": "dadjokes",
       "name": "Dad Joke Daily",
