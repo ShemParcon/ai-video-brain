@@ -688,5 +688,29 @@
     "voice": "en-GB-RyanNeural",
     "pitch": 0,
     "rate": 5
+  },
+  "pamilya:grandma": {
+    "v": 3,
+    "page": "pamilya",
+    "role": "Grandma",
+    "gender": "F",
+    "age": "old",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#b9b9c0",
+      "shirt": "#f97316",
+      "style": "bun",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#3f3f46",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-GB-SoniaNeural",
+    "pitch": -6,
+    "rate": -4
   }
 }
