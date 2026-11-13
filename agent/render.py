@@ -1,17 +1,23 @@
-import json, subprocess
-from collections import OrderedDict
+import math, subprocess, functools
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import art, audio
 
-W, H, FPS, R = art.W, art.H, 24, 2   # R = supersample of the composed scene (for crisp zooms)
+W, H, FPS, R = art.W, art.H, 24, 2
 FP = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
+@functools.lru_cache(maxsize=64)
 def font(sz):
-    try: return ImageFont.truetype(FP, sz)
-    except Exception: return ImageFont.load_default(sz)
+    try: return ImageFont.truetype(FP, int(sz))
+    except Exception: return ImageFont.load_default(int(sz))
+_tmp = ImageDraw.Draw(Image.new('L', (4, 4)))
+@functools.lru_cache(maxsize=512)
+def base_size(text, size, maxw):
+    while size > 36:
+        if _tmp.textlength(text, font=font(size)) <= maxw: return size
+        size -= 4
+    return 36
 
 def chunks(text):
-    """one big word at a time (tiny words join the next word)"""
     words = audio.clean(text).split(); out = []; i = 0
     while i < len(words):
         w = words[i]
@@ -19,41 +25,52 @@ def chunks(text):
         else: out.append(w); i += 1
     return out or ['']
 
-def fit(d, text, size, maxw):
-    while size > 36:
-        f = font(size)
-        if d.textlength(text, font=f) <= maxw: return f
-        size -= 4
-    return font(36)
-
-def mouth_levels(a):
+def mouth_curve(a):
     win = audio.SR // FPS; n = max(1, len(a) // win)
     env = np.array([np.sqrt(np.mean(a[i * win:(i + 1) * win] ** 2)) if len(a[i * win:(i + 1) * win]) else 0 for i in range(n)])
-    r = env / (np.percentile(env, 90) + 1e-6)
-    return ['closed' if v < .15 else 'small' if v < .5 else 'open' if v < .9 else 'wide' for v in r]
-
-def layout(roles, chars):
-    n = len(roles); Hs = {1: 820, 2: 660, 3: 540}[n]; xs = {1: [360], 2: [190, 530], 3: [120, 360, 600]}[n]; out = {}
-    for role, x in zip(roles, xs):
-        sh = int(Hs * chars[role]['look'].get('scale', 1.0)); sw = int(sh * 600 / 1180)
-        out[role] = dict(x=x, sh=sh, sw=sw, hy=1120 - sh + int(.284 * sh), hw=.254 * sh)
+    v = np.clip((env / (np.percentile(env, 90) + 1e-6)) ** .8 * 1.1, 0, 1); out = []; cur = 0.0
+    for x in v:
+        cur += (x - cur) * (.65 if x > cur else .3); out.append(cur)
     return out
 
-def cam_target(L):
-    z = min(2.3, 440 / L['hw']); ch = H / z; cw = W / z
-    cy = min(max(L['hy'] + .10 * ch, ch / 2), H - ch / 2); cx = min(max(L['x'], cw / 2), W - cw / 2)
-    return (cx, cy, z)
+HS = {1: 820, 2: 660, 3: 540}; XS = {1: [360], 2: [190, 530], 3: [120, 360, 600]}
+REACT = {'angry': 'surprised', 'surprised': 'surprised', 'happy': 'happy', 'sad': 'sad', 'neutral': 'neutral'}
+
+def ease_io(p):
+    p = min(1.0, max(0.0, p)); return 4 * p ** 3 if p < .5 else 1 - (-2 * p + 2) ** 3 / 2
 
 def render(scenes, lines, chars, total, voice_wav, out_mp4):
-    bgs = [art.make_bg(s['setting']).resize((W * R, H * R), Image.LANCZOS) for s in scenes]
-    lay = [layout(s['roles'], chars) for s in scenes]
-    for l in lines: l['lv'] = mouth_levels(l['audio']); l['chunks'] = chunks(l['text'])
-    scene_start = []
+    for l in lines: l['a'] = mouth_curve(l['audio']); l['chunks'] = chunks(l['text'])
+    roles = []
+    for sc in scenes:
+        for r in sc['roles']:
+            if r not in roles: roles.append(r)
+    ph = {r: (hash(r) % 628) / 100 for r in roles}
+    # per-scene layout
+    lay = []
+    for sc in scenes:
+        n = len(sc['roles']); out = {}
+        for r, x in zip(sc['roles'], XS[n]):
+            sc_ = chars[r]['look'].get('scale', 1.0); out[r] = dict(x=x, s=HS[n] * sc_ / 735)
+        lay.append(out)
+    scene_t0 = []
     for i in range(len(scenes)):
-        f = [l['start'] for l in lines if l['scene'] == i]; scene_start.append(0 if i == 0 else (f[0] - .15 if f else 1e9))
+        f = [l['start'] for l in lines if l['scene'] == i]; scene_t0.append(0 if i == 0 else (f[0] - .5 if f else 1e9))
+    # emotion events per role
+    ev = {r: [(0, 'neutral')] for r in roles}
+    for l in lines:
+        ev[l['who']].append((l['start'], l['emotion']))
+        for o in scenes[l['scene']]['roles']:
+            if o != l['who']: ev[o].append((l['start'] + .25, REACT.get(l['emotion'], 'neutral')))
+    for r in roles: ev[r].sort()
+    role_lines = {r: [l for l in lines if l['who'] == r] for r in roles}
     hook = scenes[0].get('hook', '')
-    wide = (W / 2, H / 2, 1.0)
-    targets = [cam_target(lay[l['scene']][l['who']]) for l in lines]
+
+    def target(l):
+        L = lay[l['scene']][l['who']]; s = L['s']; hy = 1120 - (262 + 220 + 112) * s; hw = 236 * s
+        z = min(1.9, 400 / hw); ch, cw = H / z, W / z
+        return (min(max(L['x'], cw / 2), W - cw / 2), min(max(hy + .10 * ch, ch / 2), H - ch / 2), z)
+    targets = [target(l) for l in lines]; wide = (W / 2, H / 2, 1.0)
 
     def camera(t):
         idx = -1
@@ -61,55 +78,56 @@ def render(scenes, lines, chars, total, voice_wav, out_mp4):
             if l['start'] <= t: idx = i
         if idx < 0: return wide
         l = lines[idx]; tg = targets[idx]; first = idx == 0 or lines[idx - 1]['scene'] != l['scene']
-        prev = wide if first else (targets[idx - 1][0], targets[idx - 1][1], targets[idx - 1][2] * 1.05)
-        delay = .3 if first else 0
-        p = min(1, max(0, (t - l['start'] - delay) / .16)); e = p * p * (3 - 2 * p)
-        drift = 1 + .05 * min(1, (t - l['start']) / max(.5, l['end'] - l['start']))
-        return (prev[0] + (tg[0] - prev[0]) * e, prev[1] + (tg[1] - prev[1]) * e, prev[2] + (tg[2] * drift - prev[2]) * e)
-
-    cache = OrderedDict()
-    def scene_img(si, speaker, mouth, bounce, blink, emo, pose):
-        k = (si, speaker, mouth, bounce, blink, emo, pose)
-        if k in cache: cache.move_to_end(k); return cache[k]
-        im = bgs[si].copy()
-        for role, L in lay[si].items():
-            me = role == speaker; ch = chars[role]
-            spr = art.sprite(json.dumps(ch['look']), mouth if me else 'closed', emo if me else 'neutral', blink, pose if me else 0, L['sw'] * R, L['sh'] * R)
-            im.paste(spr, ((L['x'] - L['sw'] // 2) * R, (1120 - L['sh'] + (bounce if me else 0)) * R), spr)
-        cache[k] = im
-        if len(cache) > 24: cache.popitem(last=False)
-        return im
+        pv = wide if first else (targets[idx - 1][0], targets[idx - 1][1], targets[idx - 1][2] * 1.04)
+        e = ease_io((t - l['start'] - (.2 if first else 0)) / .45)
+        dr = 1 + .04 * min(1, (t - l['start']) / max(.5, l['end'] - l['start']))
+        return (pv[0] + (tg[0] - pv[0]) * e + 2.5 * math.sin(t * .9), pv[1] + (tg[1] - pv[1]) * e + 2 * math.sin(t * 1.3 + 1), pv[2] + (tg[2] * dr - pv[2]) * e)
 
     cmd = ['ffmpeg', '-y', '-v', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{W}x{H}', '-r', str(FPS), '-i', '-',
-           '-i', voice_wav, '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '25', '-pix_fmt', 'yuv420p',
+           '-i', voice_wav, '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-pix_fmt', 'yuv420p',
            '-c:a', 'aac', '-b:a', '128k', '-shortest', '-movflags', '+faststart', out_mp4]
     pr = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     for f in range(int(total * FPS)):
         t = f / FPS
-        si = max([i for i in range(len(scenes)) if scene_start[i] <= t] or [0])
         cur = next((l for l in lines if l['start'] <= t < l['end']), None)
-        speaker = mouth = emo = cap = None; bounce = 0; pose = 0
+        si = cur['scene'] if cur else max([i for i in range(len(scenes)) if scene_t0[i] <= t] or [0])
+        cx, cy, z = camera(t)
+        im = Image.new('RGB', (W * R, H * R)); d = art.Tr(ImageDraw.Draw(im), R * z, cx, cy, W * R, H * R)
+        setting = scenes[si]['setting']; art.draw_bg(d, setting); shadow = art.shadow_color(setting)
+        order = [r for r in scenes[si]['roles'] if not (cur and r == cur['who'])] + ([cur['who']] if cur else [])
+        for r in order:
+            L = lay[si][r]; k = scenes[si]['roles'].index(r)
+            pe = art.ease_back((t - scene_t0[si] - .12 * k) / .5)
+            if pe <= .02: continue
+            a = 0.0; arm_side = 1
+            for i, l in enumerate(role_lines[r]):
+                if l['start'] <= t: arm_side = 1 if i % 2 == 0 else -1
+            if cur and cur['who'] == r:
+                idx = int((t - cur['start']) * FPS); a = cur['a'][min(idx, len(cur['a']) - 1)]
+            g = 0.0
+            for l in role_lines[r]: g = max(g, art.smooth(min((t - l['start'] + .1) / .2, (l['end'] + .1 - t) / .2)))
+            e = ev[r]; j = max(i for i, x in enumerate(e) if x[0] <= t)
+            vec = art.emo_vec(e[j - 1][1] if j > 0 else 'neutral', e[j][1], art.smooth((t - e[j][0]) / .22))
+            others = [o for o in scenes[si]['roles'] if o != r]
+            gaze = 0.0
+            if others: gaze = 1.0 if lay[si][others[0]]['x'] > L['x'] else -1.0
+            per = 3.1 + .7 * roles.index(r); bp = (t + ph[r] * .5) % per
+            blink = math.sin(math.pi * bp / .15) if bp < .15 else 0.0
+            A = dict(t=t, g=g, a=a, ph=ph[r], bob=3 * math.sin(2 * math.pi * 1.1 * t + ph[r]) + 8 * a, emo=vec, blink=blink, gaze=gaze, arm_side=arm_side, shadow=shadow)
+            art.draw_char(d, chars[r]['look'], L['x'], 1120, L['s'] * min(pe, 1.12), A)
+        fr = im.resize((W, H), Image.BILINEAR); dd = ImageDraw.Draw(fr)
         if cur:
-            si = cur['scene']; speaker, emo = cur['who'], cur['emotion']
-            mouth = cur['lv'][min(len(cur['lv']) - 1, int((t - cur['start']) * FPS))]
-            bounce = [0, -6, 0, -4][int(t * 10) % 4]; pose = [0, 1, 0, 2][int(t * 3) % 4]
-            frac = (t - cur['start']) / max(.01, cur['end'] - cur['start']); wl = [len(c) for c in cur['chunks']]
-            acc = 0; cap = cur['chunks'][-1]
-            for c, n in zip(cur['chunks'], wl):
+            frac = (t - cur['start']) / max(.01, cur['end'] - cur['start']); wl = [len(c) for c in cur['chunks']]; acc = 0; ci = len(wl) - 1; cs0 = 0
+            for i, n in enumerate(wl):
+                if frac <= acc + n / sum(wl): ci = i; cs0 = acc; break
                 acc += n / sum(wl)
-                if frac <= acc: cap = c; break
-        src = scene_img(si, speaker, mouth or 'closed', bounce, f % 96 in (0, 1), emo or 'neutral', pose)
-        cx, cy, z = camera(t); hw, hh = W / (2 * z), H / (2 * z)
-        cx = min(max(cx, hw), W - hw); cy = min(max(cy, hh), H - hh)
-        im = src.resize((W, H), Image.BILINEAR, box=((cx - hw) * R, (cy - hh) * R, (cx + hw) * R, (cy + hh) * R))
-        d = ImageDraw.Draw(im)
-        if cap:
-            c = cap.upper(); fnt = fit(d, c, 104, 640)
-            d.text((W // 2, 1060), c, font=fnt, fill='#fff7c2', stroke_width=11, stroke_fill=(15, 15, 22), anchor='mm')
-        if hook and t < 2.8:
-            fnt = fit(d, hook, 52, 580); tw = d.textlength(hook, font=fnt); x0 = W // 2 - tw // 2 - 28
-            d.rounded_rectangle((x0, 90, x0 + tw + 56, 190), radius=28, fill='#ffd43b', outline=art.OL, width=6)
-            d.text((W // 2, 140), hook, font=fnt, fill=art.OL, anchor='mm')
-        pr.stdin.write(im.tobytes())
+            c = cur['chunks'][ci].upper(); sz = base_size(c, 104, 640)
+            pop = .82 + .18 * art.smooth((frac - cs0) * (cur['end'] - cur['start']) / .09)
+            dd.text((W // 2, 1060), c, font=font(round(sz * pop / 2) * 2), fill='#fff7c2', stroke_width=11, stroke_fill=(15, 15, 22), anchor='mm')
+        if hook and t < 3.0:
+            sz = base_size(hook, 52, 580); fn = font(sz); tw = dd.textlength(hook, font=fn); x0 = W // 2 - tw // 2 - 28
+            dd.rounded_rectangle((x0, 90, x0 + tw + 56, 190), radius=28, fill='#ffd43b', outline=art.OL, width=6)
+            dd.text((W // 2, 140), hook, font=fn, fill=art.OL, anchor='mm')
+        pr.stdin.write(fr.tobytes())
     pr.stdin.close(); pr.wait()
     if pr.returncode: raise RuntimeError('ffmpeg render failed')
