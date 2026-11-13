@@ -928,5 +928,53 @@
     "voice": "en-US-SteffanNeural",
     "pitch": 0,
     "rate": 2
+  },
+  "sketch:clerk": {
+    "v": 3,
+    "page": "sketch",
+    "role": "Clerk",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#1f2a44",
+      "shirt": "#10b981",
+      "style": "short",
+      "glasses": true,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#1e3a8a",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-US-EricNeural",
+    "pitch": 0,
+    "rate": 7
+  },
+  "sketch:customer": {
+    "v": 3,
+    "page": "sketch",
+    "role": "Customer",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#1f2a44",
+      "shirt": "#14b8a6",
+      "style": "cap",
+      "glasses": true,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-ChristopherNeural",
+    "pitch": 0,
+    "rate": 8
   }
 }
