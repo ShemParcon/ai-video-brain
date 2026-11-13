@@ -285,11 +285,11 @@
       "built_rev": 0
     },
     "2026-11-13-workmemes-1": {
-      "state": "voicing",
-      "pct": 35,
+      "state": "rendering",
+      "pct": 60,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:21:57"
+      "updated": "2026-11-13 12:22:07"
     },
     "2026-11-13-workmemes-2": {
       "state": "queued",
