@@ -4,16 +4,17 @@ from common import *
 
 def make_plan(date, cfg):
     pages = cfg["pages"]
-    hist = load(p("data", "history.json"), [])[-80:]
-    spec = "\n".join(f"- id={g['id']} | {g['name']} | niche: {g['niche']} | videos: {g['per_day']}" for g in pages)
-    prompt = f"""You are the content planner for short vertical cartoon skit videos (under 1 minute) for a broad English-speaking audience on YouTube Shorts, TikTok and Facebook Reels.
-Plan the ideas for {date}. One list item per video, for these pages:
+    hist = load(p("data", "history.json"), [])[-100:]
+    spec = "\n".join(f"- id={g['id']} | {g['name']} | style: {g['niche']} | videos: {g['per_day']}" for g in pages)
+    prompt = f"""You are the content planner for a network of joke channels that post short vertical cartoon skits (15 to 30 seconds) on YouTube Shorts, TikTok and Facebook Reels.
+Today is {date}. Use what is going viral right now (trending jokes, meme formats, popular joke styles) together with proven evergreen viral joke styles: classic dad jokes, puns, relatable POV humor, riddles with silly answers, me versus reality jokes, wholesome twists.
+Plan the jokes for these pages:
 {spec}
-Language: {cfg.get('language','Filipino')}.
-Rules: relatable, genuinely funny, wholesome, strong hook in the first 3 seconds, a punchline or lesson at the end. Every idea must be new and different from these recent titles: {hist}.
-Reuse recurring roles (Boss, Employee, Mom, Dad, Teen, Grandma, Teacher, Student, etc.) so characters stay consistent.
-Return ONLY JSON: {{"items":[{{"page":"<page id>","title":"short catchy English title","premise":"2-3 sentence outline including the punchline","roles":["Role1","Role2"]}}]}}"""
-    items = llm_json(prompt).get("items", [])
+For every video write the FULL joke (setup and punchline) in the premise, so the scriptwriter can perform it. Keep each joke short enough to perform in about 20 seconds.
+Rules: clean, wholesome humor. No politics, religion, tragedy, real people, brands or copyrighted characters. Do not copy lines from copyrighted comedy. Every joke must be new and different from these recent titles: {hist}.
+Use the same recurring roles per page so characters stay consistent (for example Dad and Kid for the dad joke page).
+Return ONLY JSON: {{"items":[{{"page":"<page id>","title":"short catchy title","premise":"the full joke: setup, punchline and the reaction beat","roles":["Role1","Role2"]}}]}}"""
+    items = llm_json(prompt, search=True).get("items", [])
     ids = {g["id"] for g in pages}; counts = {}; out = []
     for it in items:
         pg = it.get("page")
