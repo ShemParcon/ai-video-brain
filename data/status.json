@@ -277,11 +277,12 @@
       "built_rev": 0
     },
     "2026-11-13-riddles-2": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:21:41"
+      "updated": "2026-11-13 12:21:44",
+      "built_rev": 0
     },
     "2026-11-13-workmemes-1": {
       "state": "queued",
