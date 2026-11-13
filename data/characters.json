@@ -1168,5 +1168,53 @@
     "voice": "en-US-ChristopherNeural",
     "pitch": 0,
     "rate": 2
+  },
+  "relatable:me": {
+    "v": 3,
+    "page": "relatable",
+    "role": "Me",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#1b1b22",
+      "shirt": "#ef4444",
+      "style": "bald",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#334155",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-SteffanNeural",
+    "pitch": 0,
+    "rate": 3
+  },
+  "relatable:brain": {
+    "v": 3,
+    "page": "relatable",
+    "role": "Brain",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#4a2e1f",
+      "shirt": "#ef4444",
+      "style": "bald",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#3f3f46",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-EricNeural",
+    "pitch": 0,
+    "rate": 3
   }
 }
