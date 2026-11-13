@@ -261,11 +261,11 @@
       "built_rev": 0
     },
     "2026-11-13-relatable-2": {
-      "state": "queued",
-      "pct": 0,
+      "state": "scripting",
+      "pct": 10,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:16:04"
+      "updated": "2026-11-13 12:20:12"
     },
     "2026-11-13-riddles-1": {
       "state": "queued",
