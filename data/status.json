@@ -301,11 +301,12 @@
       "built_rev": 0
     },
     "2026-11-13-trending-1": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:23:41"
+      "updated": "2026-11-13 12:23:44",
+      "built_rev": 0
     },
     "2026-11-13-trending-2": {
       "state": "queued",

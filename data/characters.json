@@ -1384,5 +1384,53 @@
     "voice": "en-US-MichelleNeural",
     "pitch": 0,
     "rate": 6
+  },
+  "trending:player": {
+    "v": 3,
+    "page": "trending",
+    "role": "Player",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#d29b6b",
+      "hair": "#4a2e1f",
+      "shirt": "#8b5cf6",
+      "style": "bald",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#1e3a8a",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-US-SteffanNeural",
+    "pitch": 0,
+    "rate": 8
+  },
+  "trending:npc friend": {
+    "v": 3,
+    "page": "trending",
+    "role": "NPC Friend",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#4a2e1f",
+      "shirt": "#f97316",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-RogerNeural",
+    "pitch": 0,
+    "rate": 7
   }
 }
