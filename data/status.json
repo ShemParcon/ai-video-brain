@@ -237,11 +237,12 @@
       "built_rev": 0
     },
     "2026-11-13-puns-1": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:19:09"
+      "updated": "2026-11-13 12:19:13",
+      "built_rev": 0
     },
     "2026-11-13-puns-2": {
       "state": "queued",
