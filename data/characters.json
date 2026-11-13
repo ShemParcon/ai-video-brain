@@ -856,5 +856,29 @@
     "voice": "en-US-MichelleNeural",
     "pitch": 0,
     "rate": 8
+  },
+  "pananampalataya:neighbor": {
+    "v": 3,
+    "page": "pananampalataya",
+    "role": "Neighbor",
+    "gender": "F",
+    "age": "old",
+    "look": {
+      "skin": "#e8b98a",
+      "hair": "#b9b9c0",
+      "shirt": "#64748b",
+      "style": "bun",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#1e3a8a",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-US-JennyNeural",
+    "pitch": -6,
+    "rate": -4
   }
 }
