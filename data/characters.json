@@ -1480,5 +1480,53 @@
     "voice": "en-US-EricNeural",
     "pitch": 0,
     "rate": 5
+  },
+  "dadjokes:judge": {
+    "v": 3,
+    "page": "dadjokes",
+    "role": "Judge",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#1f2a44",
+      "shirt": "#ec4899",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#3f3f46",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-US-ChristopherNeural",
+    "pitch": 0,
+    "rate": 7
+  },
+  "dadjokes:juror": {
+    "v": 3,
+    "page": "dadjokes",
+    "role": "Juror",
+    "gender": "M",
+    "age": "kid",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#1b1b22",
+      "shirt": "#3b82f6",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 0.85,
+      "pants": "#4b5563",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-US-SteffanNeural",
+    "pitch": 0,
+    "rate": 4
   }
 }
