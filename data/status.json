@@ -200,11 +200,11 @@
       "built_rev": 0
     },
     "2026-11-13-sketch-1": {
-      "state": "voicing",
-      "pct": 35,
+      "state": "rendering",
+      "pct": 60,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 17:07:27"
+      "updated": "2026-11-13 17:07:37"
     },
     "2026-11-13-sketch-2": {
       "state": "queued",
