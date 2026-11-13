@@ -168,11 +168,11 @@
       "built_rev": 0
     },
     "2026-11-13-pera-1": {
-      "state": "rendering",
-      "pct": 60,
+      "state": "uploading",
+      "pct": 90,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 09:12:02"
+      "updated": "2026-11-13 09:12:14"
     },
     "2026-11-13-pera-2": {
       "state": "queued",
