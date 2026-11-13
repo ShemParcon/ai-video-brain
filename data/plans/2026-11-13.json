@@ -4,12 +4,11 @@
     {
       "id": "2026-11-13-opisina-1",
       "page": "opisina",
-      "title": "The Reply-All Apocalypse",
-      "premise": "An employee accidentally hits 'Reply-All' to a company-wide email asking 'Who ate my donut?' and watches in horror as executives join the thread to debate corporate pastry ethics. The punchline: the CEO admits he ate it, but still writes 'Let's take this offline' to the entire company.",
+      "title": "The 5 PM Task Drop",
+      "premise": "Boss assigns a massive report right as the employee is putting on their jacket to leave. The employee dramatically clocks out in slow motion while staring deadpan into Boss's soul. Punchline: The boss finds out the next morning the file was just a blank document titled 'Happy Thursday'.",
       "roles": [
-        "Clueless Boss",
-        "Lazy Coworker",
-        "Panicked Employee"
+        "Boss",
+        "Employee"
       ],
       "status": "planned",
       "rev": 0
@@ -17,11 +16,11 @@
     {
       "id": "2026-11-13-opisina-2",
       "page": "opisina",
-      "title": "The Out-of-Office Escape Room",
-      "premise": "Just as an employee is about to log off for a long weekend, the boss drops a 'quick 5-minute task' that turns into a multi-hour corporate labyrinth. The punchline: the employee successfully escapes the building at 5:01 PM, only to receive a calendar invite for a Monday 6 AM alignment meeting.",
+      "title": "The Silent Printer Rebellion",
+      "premise": "An office printer jams on the single most important page right before a board meeting. Coworker tries to fix it by whispering gentle threats to the machine. Punchline: The printer spits out 50 blank pages only after the meeting has already ended.",
       "roles": [
-        "Clueless Boss",
-        "Panicked Employee"
+        "Employee",
+        "Coworker"
       ],
       "status": "planned",
       "rev": 0
@@ -29,8 +28,8 @@
     {
       "id": "2026-11-13-pamilya-1",
       "page": "pamilya",
-      "title": "The Tupperware Criminal Investigation",
-      "premise": "Mom interrogates the entire household because a high-value, stain-resistant Tupperware container has gone missing. The punchline: Dad is found using it as a makeshift tackle box in the garage, complete with fishing hooks resting inside a container meant for leftover pasta.",
+      "title": "The Tupperware Ransom Note",
+      "premise": "Mom discovers a missing high-end Tupperware container from last month's potluck and launches a full CSI-style investigation in the living house. Dad tries to frame the family dog. Punchline: The Tupperware is found in the freezer, completely full of ice cubes.",
       "roles": [
         "Mom",
         "Dad",
@@ -42,12 +41,11 @@
     {
       "id": "2026-11-13-pamilya-2",
       "page": "pamilya",
-      "title": "Grandma's Wi-Fi Password Mastery",
-      "premise": "Grandma tries to guess the ultra-secure Wi-Fi password by suggesting ancient proverbs and her wedding anniversary instead of looking at the router sticker. The punchline: she guesses it on the first try because the password is literally her own legendary cooking recipe.",
+      "title": "Grandma's Bluetooth Confusion",
+      "premise": "Grandma tries to connect her hearing aid to the living room smart TV to watch her soap opera in absolute peace. Instead, she accidentally hijacks Dad's heavy metal workout playlist at full blast. Punchline: Grandma starts headbanging while sipping her chamomile tea.",
       "roles": [
         "Grandma",
-        "Teen",
-        "Mom"
+        "Dad"
       ],
       "status": "planned",
       "rev": 0
@@ -55,11 +53,11 @@
     {
       "id": "2026-11-13-pagibig-1",
       "page": "pagibig",
-      "title": "The Icebreaker Backfire",
-      "premise": "On a first date, a guy tries an advanced psychological icebreaker question about 'core trauma' to sound deep and mysterious. The punchline: the date reveals her core trauma is people who ask advanced psychological icebreaker questions on first dates, and she instantly venmos him half the coffee bill.",
+      "title": "The Menu Speedrun",
+      "premise": "A nervous dater spends two hours memorizing the entire menu to sound cultured on a first date, only for the date to order plain chicken nuggets. Punchline: The date says, 'I actually can't read, I just wanted to see if you'd panic.'",
       "roles": [
-        "Daters",
-        "Bestfriend"
+        "Dater",
+        "Date"
       ],
       "status": "planned",
       "rev": 0
@@ -67,11 +65,12 @@
     {
       "id": "2026-11-13-pagibig-2",
       "page": "pagibig",
-      "title": "Third-Wheeling Extreme Edition",
-      "premise": "A best friend tags along on a romantic picnic just to 'protect the vibe' but ends up acting like a third-wheel film critic grading the couple's conversation. The punchline: the couple gets so annoyed they break up, leaving the best friend and the ex-date to bond over shared snacks.",
+      "title": "The Third Wheel's Tactical Retreat",
+      "premise": "Bestfriend agrees to chaperone a couple's anniversary dinner to catch up on gossip, but ends up acting as a human privacy screen during a minor disagreement. Punchline: Bestfriend charges the couple a $20 consulting fee for relationship therapy.",
       "roles": [
         "Bestfriend",
-        "Daters"
+        "Dater",
+        "Date"
       ],
       "status": "planned",
       "rev": 0
@@ -79,11 +78,11 @@
     {
       "id": "2026-11-13-estudyante-1",
       "page": "estudyante",
-      "title": "The Group Chat Ghost Town",
-      "premise": "A student frantically texts the group project chat at 3 AM asking who is doing the final presentation slides due in four hours. The punchline: everyone replies simultaneously with identical screenshots of blank templates, and they end up presenting a history of memes instead.",
+      "title": "The Group Chat Hall of Shame",
+      "premise": "Student checks the school project group chat at 2 AM to find zero work done except for 400 random cat memes sent by the slacker teammate. Punchline: The teacher assigns individual grades based on contribution, instantly ending the slacker's career.",
       "roles": [
         "Student",
-        "Groupmate"
+        "Teammate"
       ],
       "status": "planned",
       "rev": 0
@@ -91,11 +90,11 @@
     {
       "id": "2026-11-13-estudyante-2",
       "page": "estudyante",
-      "title": "The High-Stakes Pen Exchange",
-      "premise": "During a surprise pop quiz, a student desperately begs a classmate to lend them a working pen like it's an illegal black-market arms deal.The punchline: the pen runs out of ink on the very first letter of their name, forcing them to finish the exam using sheer finger sweat and pencil dust.",
+      "title": "The Exam Pencil Heist",
+      "premise": "Student realizes they forgot a pencil right before a major pop quiz and initiates a silent black-market trade across the classroom. Punchline: They successfully acquire a 0.5mm mechanical pencil like a spy escaping a bank vault, only to realize it has no lead inside.",
       "roles": [
         "Student",
-        "Teacher"
+        "Classmate"
       ],
       "status": "planned",
       "rev": 0
@@ -103,11 +102,11 @@
     {
       "id": "2026-11-13-pera-1",
       "page": "pera",
-      "title": "The Gym Membership Houdini",
-      "premise": "A broke guy tries every loophole imaginable to cancel an annual gym membership without paying the ridiculous cancellation fee. The punchline: he actually succeeds by legally changing his name and moving to a new apartment, only to realize the gym opened a new branch right next door.",
+      "title": "The Subscription Graveyard",
+      "premise": "Broke adult tries to cancel a tiny $3 monthly fitness app subscription, but the app forces them through a digital obstacle course of emotional guilt trips and fake crying avatars. Punchline: They accidentally upgrade to the VIP annual plan out of sheer panic.",
       "roles": [
-        "Broke Guy",
-        "Gym Receptionist"
+        "Broke Adult",
+        "App Customer Service Bot"
       ],
       "status": "planned",
       "rev": 0
@@ -115,10 +114,10 @@
     {
       "id": "2026-11-13-pera-2",
       "page": "pera",
-      "title": "The Microwave Masterclass Budget",
-      "premise": "A frugal roommate tries to teach the others how to meal prep gourmet meals using only a single microwave and a dream. The punchline: the meal explodes, costing triple the grocery budget in cleaning supplies, proving that sometimes eating instant noodles is cheaper.",
+      "title": "The Instant Ramen Gourmet Hour",
+      "premise": "To save money until payday, Broke Adult tries to cook instant ramen like a fancy 5-star Michelin chef using sheer delusion and random pantry condiments. Punchline: It still tastes exactly like instant chicken sodium packets, but now it costs twice as much in electricity.",
       "roles": [
-        "Broke Guy",
+        "Broke Adult",
         "Roommate"
       ],
       "status": "planned",
@@ -127,11 +126,11 @@
     {
       "id": "2026-11-13-pananampalataya-1",
       "page": "pananampalataya",
-      "title": "The Accidental Blessing Swap",
-      "premise": "A person tries to secretly pay for a stranger's expensive grocery basket to do a good deed of the day, but grabs the wrong cart. The punchline: the stranger turns out to be a coupon wizard who actually paid for 200 items for less than three dollars, leaving our hero deeply confused.",
+      "title": "The Accidental Umbrella Swap",
+      "premise": "An annoyed commuter grabs what they think is their plain black umbrella from the office rack, only to find it covered in bright yellow duckling stickers. Punchline: The owner of the duck umbrella catches them outside and smiles so warmly that the commuter throws away their old umbrella forever.",
       "roles": [
-        "Good Samaritan",
-        "Cashier"
+        "Commuter",
+        "Stranger"
       ],
       "status": "planned",
       "rev": 0
@@ -139,11 +138,11 @@
     {
       "id": "2026-11-13-pananampalataya-2",
       "page": "pananampalataya",
-      "title": "The Apology Marathon",
-      "premise": "After accidentally breaking a neighbor's tiny garden gnome, a guy overcomplicates a simple apology by building an entire mini-colosseum as compensation. The punchline: the neighbor reveals they hated that specific gnome because it looked like their ex-mother-in-law.",
+      "title": "The Lost Wallet Trap",
+      "premise": "A stressed teen finds a dropped wallet stuffed with cash on a park bench and debates whether to become a secret agent millionaire or do the right thing. Punchline: They return it to the owner, who turns out to be their strict school principal—who rewards them by canceling tomorrow's pop quiz.",
       "roles": [
-        "Good Samaritan",
-        "Neighbor"
+        "Teen",
+        "Principal"
       ],
       "status": "planned",
       "rev": 0
