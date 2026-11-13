@@ -203,3 +203,79 @@ def draw_bg(d, setting):
     elif setting == 'parke':
         d.ellipse((540, 80, 650, 190), fill='#ffe066', outline=OL, width=5)
         for x in (90, 560): d.rectangle((x - 25, 480, x + 25, 830), fill='#8a5a3c', outline=OL, width=6); d.ellipse((x - 130, 220, x + 130, 540), fill='#3fa34d', outline=OL, width=6)
+
+# ======================= "sketch" style (minimal black & white cartoon) =======================
+def _lum(hexc):
+    h = hexc.lstrip('#'); r, g, b = [int(h[i:i + 2], 16) for i in (0, 2, 4)]
+    return .3 * r + .59 * g + .11 * b
+
+def draw_char_sketch(d, look, x0, gy, s, A):
+    t, g, a, ph = A['t'], A['g'], A['a'], A['ph']
+    lw = 4.5 * s; GREY = '#cfcfcf'
+    hip = -262 + A['bob']; shy = hip - 220
+    xu = x0 + 5 * math.sin(t * 1.3 + ph) * s
+    U = lambda lx, ly: (xu + lx * s, gy + ly * s)
+    dark = _lum(look['shirt']) < 105
+    hairc = '#4a4a4a' if _lum(look['hair']) < 150 else '#a8a8a8'
+    style = look['style']
+    d.ellipse((x0 - 90 * s, gy - 6 * s, x0 + 90 * s, gy + 12 * s), fill='#e6e6e6')
+    for sd in (-1, 1):
+        hp = (xu + sd * 30 * s, gy + hip * s); an = (x0 + sd * 40 * s, gy - 4 * s)
+        d.line([hp, an], fill=OL, width=lw); d.line([an, (an[0] + sd * 26 * s, an[1])], fill=OL, width=lw)
+    box = (xu - 76 * s, gy + (shy - 8) * s, xu + 76 * s, gy + (hip + 20) * s)
+    if dark: d.rounded_rectangle(box, radius=60 * s, fill='#6b6b6b')
+    else:
+        d.rounded_rectangle(box, radius=60 * s, fill=GREY)
+        d.rounded_rectangle((box[0], box[1], box[2] - 30 * s, box[3]), radius=60 * s, fill='white')
+    d.rounded_rectangle(box, radius=60 * s, outline=OL, width=lw)
+    if look.get('tie'): d.polygon([U(-12, shy + 8), U(12, shy + 8), U(18, shy + 90), U(0, shy + 118), U(-18, shy + 90)], fill='#222222', outline=OL, width=lw * .6)
+    for sd in (-1, 1):
+        gest = sd == A['arm_side']
+        if gest: au = 12 + g * (46 + 22 * math.sin(2 * math.pi * .9 * t + ph) + 28 * a); bend = 10 + g * (34 + 18 * math.sin(2 * math.pi * 1.3 * t + ph))
+        else: au = 10 + 4 * math.sin(1.2 * t + ph + sd) + g * 10; bend = 8 + 4 * math.sin(1.7 * t + ph) + g * 8
+        sx, sy = U(sd * 66, shy + 18); a1, a2 = math.radians(au), math.radians(au + bend)
+        e = (sx + sd * math.sin(a1) * 118 * s, sy + math.cos(a1) * 118 * s); h = (e[0] + sd * math.sin(a2) * 108 * s, e[1] + math.cos(a2) * 108 * s)
+        d.line([(sx, sy), e, h], fill=OL, width=lw); d.ellipse((h[0] - 9 * s, h[1] - 9 * s, h[0] + 9 * s, h[1] + 9 * s), fill=OL)
+    hx, hy = U(0, shy - 112 + 5 * a)
+    rot = math.radians(3 * math.sin(1.1 * t + ph) + g * 4 * math.sin(2.3 * t + ph)); cs, sn = math.cos(rot), math.sin(rot)
+    HP = lambda dx, dy: (hx + (dx * cs - dy * sn) * s, hy + (dx * sn + dy * cs) * s)
+    if style == 'long': d.rounded_rectangle((hx - 126 * s, hy - 100 * s, hx + 126 * s, hy + 120 * s), radius=70 * s, fill=hairc, outline=OL, width=lw)
+    d.ellipse((hx - 118 * s, hy - 118 * s, hx + 118 * s, hy + 118 * s), fill=GREY)
+    d.ellipse((hx - 14 * s - 102 * s, hy - 8 * s - 102 * s, hx - 14 * s + 102 * s, hy - 8 * s + 102 * s), fill='white')
+    d.ellipse((hx - 118 * s, hy - 118 * s, hx + 118 * s, hy + 118 * s), outline=OL, width=lw)
+    if style != 'bald':
+        c = '#9a9a9a' if style == 'cap' else hairc
+        d.pieslice((hx - 122 * s, hy - 122 * s, hx + 122 * s, hy + 50 * s), 180, 360, fill=c)
+        d.arc((hx - 122 * s, hy - 122 * s, hx + 122 * s, hy + 50 * s), 180, 360, fill=OL, width=lw)
+        if style == 'bun': d.ellipse((hx - 36 * s, hy - 168 * s, hx + 36 * s, hy - 100 * s), fill=hairc, outline=OL, width=lw)
+        elif style == 'cap': d.rounded_rectangle((hx - 10 * s, hy - 40 * s, hx + 160 * s, hy - 14 * s), radius=12 * s, fill='#b5b5b5', outline=OL, width=lw)
+        else: d.line([(hx - 30 * s, hy - 118 * s), (hx + 12 * s, hy - 62 * s)], fill='white', width=3.5 * s)
+    tilt, lift, es, smile = A['emo']
+    for sd in (-1, 1):
+        ex, ey = HP(sd * 42, 8)
+        if smile > .6: d.arc((ex - 17 * s, ey - 10 * s, ex + 17 * s, ey + 10 * s), 20, 160, fill=OL, width=lw)
+        elif A['blink'] > .6: d.line([(ex - 14 * s, ey), (ex + 14 * s, ey)], fill=OL, width=lw)
+        else: hh = 15 * es * s * (1 - .7 * A['blink']); d.line([(ex, ey - hh), (ex, ey + hh)], fill=OL, width=lw)
+        if abs(tilt) > .25 or lift > 8:
+            inner = HP(sd * 20, -24 + tilt * 8 - lift * .5); outer = HP(sd * 58, -30 - tilt * 8 - lift * .5)
+            d.line([inner, outer], fill=OL, width=lw * .9)
+        if look.get('glasses'): d.rectangle((ex - 27 * s, ey - 21 * s, ex + 27 * s, ey + 21 * s), outline=OL, width=lw * .8)
+    if look.get('glasses'): d.line([HP(-15, 8), HP(15, 8)], fill=OL, width=lw * .8)
+    mx, my = HP(0, 68)
+    if a > .05:
+        w = 11 + 12 * a; h = 6 + 32 * a
+        d.ellipse((mx - w * s, my - 4 * s, mx + w * s, my - 4 * s + h * s), fill='#222222', outline=OL, width=lw * .7)
+    elif abs(smile) < .2: d.line([HP(-14, 68), HP(14, 68)], fill=OL, width=lw)
+    elif smile > 0: d.arc((mx - 22 * s, my - 14 * s, mx + 22 * s, my + 8 * s), 20, 160, fill=OL, width=lw)
+    else: d.arc((mx - 20 * s, my + 4 * s, mx + 20 * s, my + 28 * s), 200, 340, fill=OL, width=lw)
+
+def draw_bg_sketch(d, setting):
+    d.rectangle((-300, -300, W + 300, H + 300), fill='white')
+    d.line((-300, 830, W + 300, 830), fill='#c4c4c4', width=3)
+    if setting in ('opisina', 'bahay', 'kwarto', 'kusina', 'cafe'):
+        d.rectangle((70, 330, 250, 500), outline='#d2d2d2', width=3); d.line((160, 330, 160, 500), fill='#d2d2d2', width=2); d.line((70, 415, 250, 415), fill='#d2d2d2', width=2)
+    elif setting == 'paaralan': d.rectangle((70, 320, 650, 560), outline='#d2d2d2', width=4)
+    elif setting == 'kalye':
+        for x, h in ((40, 380), (260, 520), (480, 300)): d.rectangle((x, 830 - h, x + 190, 830), fill='#ececec', outline='#9a9a9a', width=3)
+    elif setting == 'parke':
+        d.rectangle((420, 700, 690, 730), fill='#cfcfcf', outline=OL, width=4); d.line((440, 730, 440, 830), fill=OL, width=4); d.line((670, 730, 670, 830), fill=OL, width=4)
