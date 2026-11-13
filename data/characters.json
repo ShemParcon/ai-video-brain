@@ -784,5 +784,29 @@
     "voice": "en-US-MichelleNeural",
     "pitch": 0,
     "rate": 8
+  },
+  "pera:roommate": {
+    "v": 3,
+    "page": "pera",
+    "role": "Roommate",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#4a2e1f",
+      "shirt": "#14b8a6",
+      "style": "short",
+      "glasses": true,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#1e3a8a",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-US-SteffanNeural",
+    "pitch": 0,
+    "rate": 4
   }
 }
