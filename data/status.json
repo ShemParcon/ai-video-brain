@@ -237,11 +237,11 @@
       "built_rev": 0
     },
     "2026-11-13-puns-1": {
-      "state": "scripting",
-      "pct": 10,
+      "state": "voicing",
+      "pct": 35,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:18:44"
+      "updated": "2026-11-13 12:18:54"
     },
     "2026-11-13-puns-2": {
       "state": "queued",
