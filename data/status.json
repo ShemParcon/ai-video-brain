@@ -285,11 +285,12 @@
       "built_rev": 0
     },
     "2026-11-13-workmemes-1": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:22:25"
+      "updated": "2026-11-13 12:22:29",
+      "built_rev": 0
     },
     "2026-11-13-workmemes-2": {
       "state": "queued",
