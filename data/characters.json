@@ -1216,5 +1216,29 @@
     "voice": "en-US-EricNeural",
     "pitch": 0,
     "rate": 3
+  },
+  "relatable:package": {
+    "v": 3,
+    "page": "relatable",
+    "role": "Package",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#4a2e1f",
+      "shirt": "#8b5cf6",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#3f3f46",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-GB-RyanNeural",
+    "pitch": 0,
+    "rate": 8
   }
 }
