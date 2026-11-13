@@ -4,20 +4,20 @@ import numpy as np
 from common import *
 import art, audio, render, plan as planner
 
-SFX = {"pop", "ding", "whoosh", "bonk", "sad", "laugh"}
+SFX = {"pop", "ding", "whoosh", "bonk", "sad", "laugh", "rimshot"}
 EMOS = {"neutral", "happy", "angry", "sad", "surprised"}
 
 def gen_script(item, page, cfg):
     if os.getenv("DRY_SCRIPT"): return load(os.getenv("DRY_SCRIPT"))
-    prompt = """Write a script for a funny vertical cartoon skit video that is under 45 seconds when spoken.
-Language: __LANG__. Fast back-and-forth: 10 to 14 short lines (max 10 words each), 2 to 3 characters.
-Page: __PAGE__ (__NICHE__). Title: __TITLE__. Story: __PREMISE__. Roles to use: __ROLES__.
-Open with a hook line that grabs attention in the first 2 seconds. Escalate the situation with each line and finish with a surprising twist or a punchline. Relatable and wholesome: no real people, brands, copyrighted characters, harmful or sexual content.
+    prompt = """Write a short viral joke skit for a vertical cartoon video. Total spoken time 14 to 24 seconds: 5 to 9 short lines (max 12 words each), 1 to 3 characters.
+Language: __LANG__.
+Page: __PAGE__ (__NICHE__). Joke title: __TITLE__. The joke or idea: __PREMISE__. Roles to use: __ROLES__.
+The first line is the hook and must grab attention immediately. Build the setup fast and deliver the punchline in the final lines. You may add one short reaction line after the punchline (a groan, a laugh, or Dad stop). Keep it clean and wholesome: no real people, brands, copyrighted characters or lines from copyrighted comedy, nothing harmful or sexual.
 Write every line exactly as a text-to-speech voice should read it: plain words, NO hyphenated words, NO acronyms, NO emojis or symbols, numbers written in words, normal spelling.
 Allowed settings: office, home, kitchen, bedroom, school, street, market, church, cafe, park.
-Allowed emotions: neutral, happy, angry, sad, surprised. Allowed sfx (or null): pop, ding, whoosh, bonk, sad, laugh.
+Allowed emotions: neutral, happy, angry, sad, surprised. Allowed sfx (or null): pop, ding, whoosh, bonk, sad, laugh, rimshot (use rimshot right after the punchline).
 Return ONLY JSON:
-{"characters":[{"role":"Boss","gender":"M","age":"adult"}],"scenes":[{"setting":"office","lines":[{"who":"Boss","text":"...","emotion":"angry","sfx":null}]}],"youtube_title":"max 70 chars","hook":"on-screen hook, max 6 words","caption":"1-2 funny sentences with emojis ending with a question for comments","hashtags":["#tag1","#tag2","#tag3","#tag4","#tag5","#tag6","#tag7","#tag8"]}
+{"characters":[{"role":"Dad","gender":"M","age":"adult"}],"scenes":[{"setting":"kitchen","lines":[{"who":"Dad","text":"...","emotion":"happy","sfx":null}]}],"youtube_title":"max 70 chars","hook":"on-screen hook, max 5 words","caption":"1-2 funny sentences with emojis ending with a question for comments","hashtags":["#dadjokes","#tag2","#tag3","#tag4","#tag5","#tag6","#tag7","#tag8"]}
 gender is M or F; age is kid, adult, or old.""".replace("__LANG__", cfg.get("language", "Filipino")).replace("__PAGE__", page["name"]) \
         .replace("__NICHE__", page["niche"]).replace("__TITLE__", item["title"]).replace("__PREMISE__", item["premise"]) \
         .replace("__ROLES__", ", ".join(item.get("roles", [])) or "your choice")
@@ -55,7 +55,7 @@ def build(item, page, cfg, reg, st, date, res):
     chars = {r: art.get_char(reg, page["id"], r, declared.get(r.lower(), {}).get("gender", "M"), declared.get(r.lower(), {}).get("age", "adult")) for r in order}
     stage("voicing", 35)
     os.makedirs(p("out", "tmp"), exist_ok=True)
-    lines, rscenes, t = [], [], 0.4
+    lines, rscenes, t = [], [], 1.0
     for si, s in enumerate(scenes):
         used = [r for r in order if any(l["who"].strip().lower() == r.lower() for l in s["lines"])]
         if not used: continue
@@ -64,14 +64,14 @@ def build(item, page, cfg, reg, st, date, res):
             who = next((r for r in order if r.lower() == l["who"].strip().lower()), None)
             if not who: continue
             a = audio.tts(l["text"], chars[who], p("out", "tmp", f"{id}_{len(lines)}"))
-            if t + len(a) / audio.SR > 57 and len(lines) >= 4: break
+            if t + len(a) / audio.SR > 27.5 and len(lines) >= 3: break
             emo = l.get("emotion") if l.get("emotion") in EMOS else "neutral"
             lines.append(dict(scene=len(rscenes) - 1, who=who, text=l["text"], emotion=emo, sfx=l.get("sfx") if l.get("sfx") in SFX else None,
                               start=t, end=t + len(a) / audio.SR, audio=a))
             t += len(a) / audio.SR + (.45 if li == len(s["lines"]) - 1 else .28)
     if not lines: raise RuntimeError("empty script")
     rscenes[0]["hook"] = audio.clean(sc.get("hook", ""))
-    total = lines[-1]["end"] + .9
+    total = lines[-1]["end"] + 1.4
     stage("rendering", 60)
     wav = p("out", "tmp", f"{id}.wav"); audio.mix(total, lines, wav)
     mp4 = p("out", f"{id}.mp4"); render.render(rscenes, lines, chars, total, wav, mp4)
