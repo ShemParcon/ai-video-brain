@@ -1336,5 +1336,53 @@
     "voice": "en-US-ChristopherNeural",
     "pitch": 0,
     "rate": 8
+  },
+  "workmemes:worker": {
+    "v": 3,
+    "page": "workmemes",
+    "role": "Worker",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#2e1f16",
+      "shirt": "#8b5cf6",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#334155",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-US-EricNeural",
+    "pitch": 0,
+    "rate": 2
+  },
+  "workmemes:co-worker": {
+    "v": 3,
+    "page": "workmemes",
+    "role": "Co-worker",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#4a2e1f",
+      "shirt": "#f97316",
+      "style": "long",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-US-MichelleNeural",
+    "pitch": 0,
+    "rate": 6
   }
 }
