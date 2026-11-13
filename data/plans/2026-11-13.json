@@ -1,0 +1,152 @@
+{
+  "date": "2026-11-13",
+  "items": [
+    {
+      "id": "2026-11-13-opisina-1",
+      "page": "opisina",
+      "title": "The Reply-All Apocalypse",
+      "premise": "An employee accidentally hits 'Reply-All' to a company-wide email asking 'Who ate my donut?' and watches in horror as executives join the thread to debate corporate pastry ethics. The punchline: the CEO admits he ate it, but still writes 'Let's take this offline' to the entire company.",
+      "roles": [
+        "Clueless Boss",
+        "Lazy Coworker",
+        "Panicked Employee"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-opisina-2",
+      "page": "opisina",
+      "title": "The Out-of-Office Escape Room",
+      "premise": "Just as an employee is about to log off for a long weekend, the boss drops a 'quick 5-minute task' that turns into a multi-hour corporate labyrinth. The punchline: the employee successfully escapes the building at 5:01 PM, only to receive a calendar invite for a Monday 6 AM alignment meeting.",
+      "roles": [
+        "Clueless Boss",
+        "Panicked Employee"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-pamilya-1",
+      "page": "pamilya",
+      "title": "The Tupperware Criminal Investigation",
+      "premise": "Mom interrogates the entire household because a high-value, stain-resistant Tupperware container has gone missing. The punchline: Dad is found using it as a makeshift tackle box in the garage, complete with fishing hooks resting inside a container meant for leftover pasta.",
+      "roles": [
+        "Mom",
+        "Dad",
+        "Teen"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-pamilya-2",
+      "page": "pamilya",
+      "title": "Grandma's Wi-Fi Password Mastery",
+      "premise": "Grandma tries to guess the ultra-secure Wi-Fi password by suggesting ancient proverbs and her wedding anniversary instead of looking at the router sticker. The punchline: she guesses it on the first try because the password is literally her own legendary cooking recipe.",
+      "roles": [
+        "Grandma",
+        "Teen",
+        "Mom"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-pagibig-1",
+      "page": "pagibig",
+      "title": "The Icebreaker Backfire",
+      "premise": "On a first date, a guy tries an advanced psychological icebreaker question about 'core trauma' to sound deep and mysterious. The punchline: the date reveals her core trauma is people who ask advanced psychological icebreaker questions on first dates, and she instantly venmos him half the coffee bill.",
+      "roles": [
+        "Daters",
+        "Bestfriend"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-pagibig-2",
+      "page": "pagibig",
+      "title": "Third-Wheeling Extreme Edition",
+      "premise": "A best friend tags along on a romantic picnic just to 'protect the vibe' but ends up acting like a third-wheel film critic grading the couple's conversation. The punchline: the couple gets so annoyed they break up, leaving the best friend and the ex-date to bond over shared snacks.",
+      "roles": [
+        "Bestfriend",
+        "Daters"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-estudyante-1",
+      "page": "estudyante",
+      "title": "The Group Chat Ghost Town",
+      "premise": "A student frantically texts the group project chat at 3 AM asking who is doing the final presentation slides due in four hours. The punchline: everyone replies simultaneously with identical screenshots of blank templates, and they end up presenting a history of memes instead.",
+      "roles": [
+        "Student",
+        "Groupmate"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-estudyante-2",
+      "page": "estudyante",
+      "title": "The High-Stakes Pen Exchange",
+      "premise": "During a surprise pop quiz, a student desperately begs a classmate to lend them a working pen like it's an illegal black-market arms deal.The punchline: the pen runs out of ink on the very first letter of their name, forcing them to finish the exam using sheer finger sweat and pencil dust.",
+      "roles": [
+        "Student",
+        "Teacher"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-pera-1",
+      "page": "pera",
+      "title": "The Gym Membership Houdini",
+      "premise": "A broke guy tries every loophole imaginable to cancel an annual gym membership without paying the ridiculous cancellation fee. The punchline: he actually succeeds by legally changing his name and moving to a new apartment, only to realize the gym opened a new branch right next door.",
+      "roles": [
+        "Broke Guy",
+        "Gym Receptionist"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-pera-2",
+      "page": "pera",
+      "title": "The Microwave Masterclass Budget",
+      "premise": "A frugal roommate tries to teach the others how to meal prep gourmet meals using only a single microwave and a dream. The punchline: the meal explodes, costing triple the grocery budget in cleaning supplies, proving that sometimes eating instant noodles is cheaper.",
+      "roles": [
+        "Broke Guy",
+        "Roommate"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-pananampalataya-1",
+      "page": "pananampalataya",
+      "title": "The Accidental Blessing Swap",
+      "premise": "A person tries to secretly pay for a stranger's expensive grocery basket to do a good deed of the day, but grabs the wrong cart. The punchline: the stranger turns out to be a coupon wizard who actually paid for 200 items for less than three dollars, leaving our hero deeply confused.",
+      "roles": [
+        "Good Samaritan",
+        "Cashier"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-13-pananampalataya-2",
+      "page": "pananampalataya",
+      "title": "The Apology Marathon",
+      "premise": "After accidentally breaking a neighbor's tiny garden gnome, a guy overcomplicates a simple apology by building an entire mini-colosseum as compensation. The punchline: the neighbor reveals they hated that specific gnome because it looked like their ex-mother-in-law.",
+      "roles": [
+        "Good Samaritan",
+        "Neighbor"
+      ],
+      "status": "planned",
+      "rev": 0
+    }
+  ]
+}
