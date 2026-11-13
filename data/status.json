@@ -144,11 +144,11 @@
       "built_rev": 0
     },
     "2026-11-13-pagibig-2": {
-      "state": "voicing",
-      "pct": 35,
+      "state": "rendering",
+      "pct": 60,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 09:08:59"
+      "updated": "2026-11-13 09:09:17"
     },
     "2026-11-13-estudyante-1": {
       "state": "queued",
