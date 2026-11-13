@@ -1240,5 +1240,53 @@
     "voice": "en-GB-RyanNeural",
     "pitch": 0,
     "rate": 8
+  },
+  "riddles:riddle master": {
+    "v": 3,
+    "page": "riddles",
+    "role": "Riddle Master",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#4a2e1f",
+      "shirt": "#10b981",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#3f3f46",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-GB-RyanNeural",
+    "pitch": 0,
+    "rate": 2
+  },
+  "riddles:contestant": {
+    "v": 3,
+    "page": "riddles",
+    "role": "Contestant",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#e8b98a",
+      "hair": "#2e1f16",
+      "shirt": "#f59e0b",
+      "style": "long",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#1e3a8a",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-US-JennyNeural",
+    "pitch": 0,
+    "rate": 3
   }
 }
