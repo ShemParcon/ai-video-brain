@@ -760,5 +760,29 @@
     "voice": "en-GB-SoniaNeural",
     "pitch": 0,
     "rate": 4
+  },
+  "pera:gym receptionist": {
+    "v": 3,
+    "page": "pera",
+    "role": "Gym Receptionist",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#e8b98a",
+      "hair": "#1b1b22",
+      "shirt": "#f59e0b",
+      "style": "long",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#334155",
+      "shoe": "#f8fafc",
+      "skirt": true,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-MichelleNeural",
+    "pitch": 0,
+    "rate": 8
   }
 }
