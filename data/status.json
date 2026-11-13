@@ -128,11 +128,11 @@
       "built_rev": 0
     },
     "2026-11-13-pamilya-2": {
-      "state": "queued",
-      "pct": 0,
+      "state": "scripting",
+      "pct": 10,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 09:00:45"
+      "updated": "2026-11-13 09:07:12"
     },
     "2026-11-13-pagibig-1": {
       "state": "queued",
