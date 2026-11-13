@@ -712,5 +712,29 @@
     "voice": "en-GB-SoniaNeural",
     "pitch": -6,
     "rate": -4
+  },
+  "pagibig:daters": {
+    "v": 3,
+    "page": "pagibig",
+    "role": "Daters",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#4a2e1f",
+      "shirt": "#8b5cf6",
+      "style": "bun",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#3f3f46",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-GB-SoniaNeural",
+    "pitch": 0,
+    "rate": 4
   }
 }
