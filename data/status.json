@@ -216,11 +216,11 @@
       "built_rev": 0
     },
     "2026-11-13-sketch-3": {
-      "state": "scripting",
-      "pct": 10,
+      "state": "voicing",
+      "pct": 35,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 17:13:04"
+      "updated": "2026-11-13 17:13:46"
     },
     "2026-11-13-dadjokes-1": {
       "state": "queued",
