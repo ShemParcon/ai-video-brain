@@ -70,6 +70,12 @@ def sfx(name):
         for i in range(3):
             x = T(.12); out.append(np.sin(2 * np.pi * (300 - i * 20) * x) * (1 + .5 * np.sin(2 * np.pi * 30 * x)) * np.hanning(len(x))); out.append(np.zeros(int(SR * .08)))
         return np.concatenate(out)
+    if name == 'rimshot':
+        out = np.zeros(int(SR * 1.0), np.float32); x = T(.25)
+        out[:len(x)] += np.sin(2 * np.pi * np.cumsum(180 - 300 * x) / SR) * np.exp(-x * 14)
+        n = np.random.randn(int(SR * .15)) * np.exp(-np.arange(int(SR * .15)) / SR * 30); s0 = int(.17 * SR); out[s0:s0 + len(n)] += n * .6
+        x = T(.5); n2 = np.random.randn(len(x)) * np.exp(-x * 7); n2 = n2 - np.convolve(n2, np.ones(8) / 8, 'same'); s1 = int(.36 * SR); out[s1:s1 + len(n2)] += n2 * .5
+        return out
     return None
 
 def music(dur):
