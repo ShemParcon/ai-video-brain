@@ -168,11 +168,11 @@
       "built_rev": 0
     },
     "2026-11-13-pera-1": {
-      "state": "scripting",
-      "pct": 10,
+      "state": "voicing",
+      "pct": 35,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 09:11:19"
+      "updated": "2026-11-13 09:11:52"
     },
     "2026-11-13-pera-2": {
       "state": "queued",
