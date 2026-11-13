@@ -71,7 +71,7 @@ plan(){return dateSel()+`<div class="card"><button class="b" data-act="save">�
  <button class="b g" data-act="skip" data-n="${n}">${i.status=='skip'?'Skipped – include':'Skip this'}</button><button class="b r" data-act="del" data-n="${n}">Delete</button></div>`).join('')},
 settings(){return `<div class="card"><b>Connection</b><input id="repo" placeholder="owner/repo" value="${esc(S.repo)}"><input id="tok" type="password" placeholder="GitHub token" value="${esc(S.token)}">
  <button class="b" data-act="conn">Save</button><div class="err">${esc(S.err)}</div></div>
- <div class="card"><b>Your pages</b>${S.cfg.pages.map((p,n)=>`<input data-pf="name" data-n="${n}" value="${esc(p.name)}"><textarea data-pf="niche" data-n="${n}">${esc(p.niche)}</textarea>Videos per day <input data-pf="per_day" data-n="${n}" type="number" min="0" max="5" value="${p.per_day}">`).join('<hr>')}
+ <div class="card"><b>Your pages</b>${S.cfg.pages.map((p,n)=>`<input data-pf="name" data-n="${n}" value="${esc(p.name)}"><textarea data-pf="niche" data-n="${n}">${esc(p.niche)}</textarea><textarea data-pf="guide" data-n="${n}" placeholder="Style guide (optional)">${esc(p.guide||'')}</textarea>Videos per day <input data-pf="per_day" data-n="${n}" type="number" min="0" max="5" value="${p.per_day}">`).join('<hr>')}
  <button class="b" data-act="savecfg">Save pages</button><div class="mut">Total per day is capped at ${S.cfg.max_videos_per_day||15}.</div></div>
  <div class="card mut"><b>Better scripts (free)</b><br>Get a free key at aistudio.google.com/apikey, then add it as a repo secret named GEMINI_API_KEY (repo → Settings → Secrets → Actions).</div>`}};
 function render(){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t==S.tab));
