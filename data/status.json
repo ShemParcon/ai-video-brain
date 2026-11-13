@@ -253,11 +253,11 @@
       "built_rev": 0
     },
     "2026-11-13-relatable-1": {
-      "state": "voicing",
-      "pct": 35,
+      "state": "rendering",
+      "pct": 60,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:19:53"
+      "updated": "2026-11-13 12:19:58"
     },
     "2026-11-13-relatable-2": {
       "state": "queued",
