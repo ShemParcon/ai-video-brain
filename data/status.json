@@ -224,12 +224,12 @@
       "built_rev": 0
     },
     "2026-11-13-dadjokes-1": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 17:15:14",
-      "built_rev": 0
+      "updated": "2026-11-13 17:15:18",
+      "built_rev": 1
     },
     "2026-11-13-dadjokes-2": {
       "state": "done",
