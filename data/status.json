@@ -200,11 +200,11 @@
       "built_rev": 0
     },
     "2026-11-13-sketch-1": {
-      "state": "voicing",
-      "pct": 35,
-      "msg": "",
+      "state": "error",
+      "pct": 100,
+      "msg": "voice failed: No audio was received. Please verify that your parameters are correct.",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:16:16"
+      "updated": "2026-11-13 12:16:36"
     },
     "2026-11-13-sketch-2": {
       "state": "queued",
