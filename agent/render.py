@@ -5,15 +5,18 @@ import art, audio
 
 W, H, FPS, R = art.W, art.H, 24, 2
 FP = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
+FPO = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Oblique.ttf'
 @functools.lru_cache(maxsize=64)
-def font(sz):
-    try: return ImageFont.truetype(FP, int(sz))
-    except Exception: return ImageFont.load_default(int(sz))
+def font(sz, obl=False):
+    try: return ImageFont.truetype(FPO if obl else FP, int(sz))
+    except Exception:
+        try: return ImageFont.truetype(FP, int(sz))
+        except Exception: return ImageFont.load_default(int(sz))
 _tmp = ImageDraw.Draw(Image.new('L', (4, 4)))
 @functools.lru_cache(maxsize=512)
-def base_size(text, size, maxw):
+def base_size(text, size, maxw, obl=False):
     while size > 36:
-        if _tmp.textlength(text, font=font(size)) <= maxw: return size
+        if _tmp.textlength(text, font=font(size, obl)) <= maxw: return size
         size -= 4
     return 36
 
@@ -23,6 +26,14 @@ def chunks(text):
         w = words[i]
         if len(w) <= 2 and i + 1 < len(words) and len(w) + len(words[i + 1]) <= 10: out.append(w + ' ' + words[i + 1]); i += 2
         else: out.append(w); i += 1
+    return out or ['']
+
+def chunks_phrase(text, n=3, maxc=19):
+    out, cur = [], []
+    for w in audio.clean(text).split():
+        if cur and (len(cur) >= n or len(' '.join(cur + [w])) > maxc): out.append(' '.join(cur)); cur = []
+        cur.append(w)
+    if cur: out.append(' '.join(cur))
     return out or ['']
 
 def mouth_curve(a):
@@ -39,8 +50,14 @@ REACT = {'angry': 'surprised', 'surprised': 'surprised', 'happy': 'happy', 'sad'
 def ease_io(p):
     p = min(1.0, max(0.0, p)); return 4 * p ** 3 if p < .5 else 1 - (-2 * p + 2) ** 3 / 2
 
-def render(scenes, lines, chars, total, voice_wav, out_mp4):
-    for l in lines: l['a'] = mouth_curve(l['audio']); l['chunks'] = chunks(l['text'])
+def render(scenes, lines, chars, total, voice_wav, out_mp4, style='color', watermark=''):
+    sk = style == 'sketch'
+    cfn = art.draw_char_sketch if sk else art.draw_char; bgfn = art.draw_bg_sketch if sk else art.draw_bg
+    for l in lines: l['a'] = mouth_curve(l['audio']); l['chunks'] = chunks_phrase(l['text']) if sk else chunks(l['text'])
+    wm = None
+    if watermark:
+        wi = Image.new('L', (W, H), 0); ImageDraw.Draw(wi).text((W // 2, 560), watermark.upper(), font=font(44, True), fill=255, anchor='mm')
+        wm = wi.point(lambda v: int(v * .30))
     roles = []
     for sc in scenes:
         for r in sc['roles']:
@@ -79,7 +96,7 @@ def render(scenes, lines, chars, total, voice_wav, out_mp4):
         if idx < 0: return wide
         l = lines[idx]; tg = targets[idx]; first = idx == 0 or lines[idx - 1]['scene'] != l['scene']
         pv = wide if first else (targets[idx - 1][0], targets[idx - 1][1], targets[idx - 1][2] * 1.04)
-        e = ease_io((t - l['start'] - (.2 if first else 0)) / .45)
+        e = ease_io((t - l['start'] - (0 if (sk or not first) else .2)) / (.05 if sk else .45))
         dr = 1 + .04 * min(1, (t - l['start']) / max(.5, l['end'] - l['start']))
         return (pv[0] + (tg[0] - pv[0]) * e + 2.5 * math.sin(t * .9), pv[1] + (tg[1] - pv[1]) * e + 2 * math.sin(t * 1.3 + 1), pv[2] + (tg[2] * dr - pv[2]) * e)
 
@@ -93,7 +110,7 @@ def render(scenes, lines, chars, total, voice_wav, out_mp4):
         si = cur['scene'] if cur else max([i for i in range(len(scenes)) if scene_t0[i] <= t] or [0])
         cx, cy, z = camera(t)
         im = Image.new('RGB', (W * R, H * R)); d = art.Tr(ImageDraw.Draw(im), R * z, cx, cy, W * R, H * R)
-        setting = scenes[si]['setting']; art.draw_bg(d, setting); shadow = art.shadow_color(setting)
+        setting = scenes[si]['setting']; bgfn(d, setting); shadow = art.shadow_color(setting)
         order = [r for r in scenes[si]['roles'] if not (cur and r == cur['who'])] + ([cur['who']] if cur else [])
         for r in order:
             L = lay[si][r]; k = scenes[si]['roles'].index(r)
@@ -114,20 +131,25 @@ def render(scenes, lines, chars, total, voice_wav, out_mp4):
             per = 3.1 + .7 * roles.index(r); bp = (t + ph[r] * .5) % per
             blink = math.sin(math.pi * bp / .15) if bp < .15 else 0.0
             A = dict(t=t, g=g, a=a, ph=ph[r], bob=3 * math.sin(2 * math.pi * 1.1 * t + ph[r]) + 8 * a, emo=vec, blink=blink, gaze=gaze, arm_side=arm_side, shadow=shadow)
-            art.draw_char(d, chars[r]['look'], L['x'], 1120, L['s'] * min(pe, 1.12), A)
+            cfn(d, chars[r]['look'], L['x'], 1120, L['s'] * min(pe, 1.12), A)
         fr = im.resize((W, H), Image.BILINEAR); dd = ImageDraw.Draw(fr)
         if cur:
             frac = (t - cur['start']) / max(.01, cur['end'] - cur['start']); wl = [len(c) for c in cur['chunks']]; acc = 0; ci = len(wl) - 1; cs0 = 0
             for i, n in enumerate(wl):
                 if frac <= acc + n / sum(wl): ci = i; cs0 = acc; break
                 acc += n / sum(wl)
-            c = cur['chunks'][ci].upper(); sz = base_size(c, 104, 640)
-            pop = .82 + .18 * art.smooth((frac - cs0) * (cur['end'] - cur['start']) / .09)
-            dd.text((W // 2, 1060), c, font=font(round(sz * pop / 2) * 2), fill='#fff7c2', stroke_width=11, stroke_fill=(15, 15, 22), anchor='mm')
-        if hook and t < 3.0:
+            c = cur['chunks'][ci].upper()
+            if sk:
+                sz = base_size(c, 64, 660, True); dd.text((W // 2, 140), c, font=font(sz, True), fill=(28, 28, 28), anchor='mm')
+            else:
+                sz = base_size(c, 104, 640)
+                pop = .82 + .18 * art.smooth((frac - cs0) * (cur['end'] - cur['start']) / .09)
+                dd.text((W // 2, 1060), c, font=font(round(sz * pop / 2) * 2), fill='#fff7c2', stroke_width=11, stroke_fill=(15, 15, 22), anchor='mm')
+        if hook and t < 3.0 and not sk:
             sz = base_size(hook, 52, 580); fn = font(sz); tw = dd.textlength(hook, font=fn); x0 = W // 2 - tw // 2 - 28
             dd.rounded_rectangle((x0, 90, x0 + tw + 56, 190), radius=28, fill='#ffd43b', outline=art.OL, width=6)
             dd.text((W // 2, 140), hook, font=fn, fill=art.OL, anchor='mm')
+        if wm is not None: fr.paste((140, 140, 140), mask=wm)
         pr.stdin.write(fr.tobytes())
     pr.stdin.close(); pr.wait()
     if pr.returncode: raise RuntimeError('ffmpeg render failed')
