@@ -1,10 +1,10 @@
 {
   "run": {
-    "state": "finished",
-    "date": "2026-11-12",
-    "total": 9,
-    "message": "9 done, 0 failed",
-    "updated": "2026-11-12 17:26:19"
+    "state": "running",
+    "date": "2026-11-13",
+    "total": 12,
+    "message": "started",
+    "updated": "2026-11-13 09:00:45"
   },
   "items": {
     "2026-11-12-opisina-1": {
@@ -102,6 +102,90 @@
       "date": "2026-11-12",
       "updated": "2026-11-12 17:26:18",
       "built_rev": 0
+    },
+    "2026-11-13-opisina-1": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-13",
+      "updated": "2026-11-13 09:00:45"
+    },
+    "2026-11-13-opisina-2": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-13",
+      "updated": "2026-11-13 09:00:45"
+    },
+    "2026-11-13-pamilya-1": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-13",
+      "updated": "2026-11-13 09:00:45"
+    },
+    "2026-11-13-pamilya-2": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-13",
+      "updated": "2026-11-13 09:00:45"
+    },
+    "2026-11-13-pagibig-1": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-13",
+      "updated": "2026-11-13 09:00:45"
+    },
+    "2026-11-13-pagibig-2": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-13",
+      "updated": "2026-11-13 09:00:45"
+    },
+    "2026-11-13-estudyante-1": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-13",
+      "updated": "2026-11-13 09:00:45"
+    },
+    "2026-11-13-estudyante-2": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-13",
+      "updated": "2026-11-13 09:00:45"
+    },
+    "2026-11-13-pera-1": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-13",
+      "updated": "2026-11-13 09:00:45"
+    },
+    "2026-11-13-pera-2": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-13",
+      "updated": "2026-11-13 09:00:45"
+    },
+    "2026-11-13-pananampalataya-1": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-13",
+      "updated": "2026-11-13 09:00:45"
+    },
+    "2026-11-13-pananampalataya-2": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-13",
+      "updated": "2026-11-13 09:00:45"
     }
   }
 }
