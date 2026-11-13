@@ -1,0 +1,185 @@
+{
+  "date": "2026-11-15",
+  "items": [
+    {
+      "id": "2026-11-15-sketch-1",
+      "page": "sketch",
+      "title": "The Forgotten Password",
+      "premise": "Setup: Customer sits across from Clerk at a bank desk. Clerk asks, 'What is your security question?' Customer says, 'Your childhood best friend's name.' Clerk asks, 'And what is the answer?' Punchline: Customer flatly replies, 'I had no friends.' Clerk: 'Access granted. Welcome back.' Reaction beat: Both stare blankly at the screen in silence.",
+      "roles": [
+        "Clerk",
+        "Customer"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-sketch-2",
+      "page": "sketch",
+      "title": "The Silent Stare",
+      "premise": "Setup: Doctor taps patient's knee in a quiet examination room. Doctor asks, 'Does it hurt when I press here?' Patient says, 'No.' Doctor asks, 'How about here?' Patient says, 'No.' Punchline: Doctor says, 'Good. My thumb was asleep.' Reaction beat: Doctor slowly wiggles thumb while Patient stares motionless.",
+      "roles": [
+        "Doctor",
+        "Patient"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-sketch-3",
+      "page": "sketch",
+      "title": "The Airport Scan",
+      "premise": "Setup: Passenger steps up to Airport Guard at security scanner. Guard says, 'Sir, step aside please.' Passenger asks, 'Is there a problem?' Guard says, 'The scanner shows zero brain activity.' Punchline: Passenger replies, 'I was thinking about soup.' Guard nods: 'My mistake. Move along.' Reaction beat: Guard signals him through silently.",
+      "roles": [
+        "Guard",
+        "Passenger"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-dadjokes-1",
+      "page": "dadjokes",
+      "title": "The Fake Noodles",
+      "premise": "Setup: Dad walks into the living room smiling brightly at Teen. Dad asks, 'Hey kid, what do you call a fake noodle?' Teen sighs in defeat, 'I don't know, Dad, what?' Punchline: Dad beams, 'An impasta!' Reaction beat: Dad bursts into loud belly laughter while Teen buries face in a couch pillow with a heavy groan.",
+      "roles": [
+        "Dad",
+        "Teen"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-dadjokes-2",
+      "page": "dadjokes",
+      "title": "The Roof Story",
+      "premise": "Setup: Dad comes up to Teen working on homework. Dad asks, 'Did you hear about the guy who invented the knock-knock joke?' Teen says, 'No, who?' Punchline: Dad slaps his knee, 'He won a no-bell prize!' Reaction beat: Dad laughs hysterically at his own joke while Teen glares in utter disappointment.",
+      "roles": [
+        "Dad",
+        "Teen"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-puns-1",
+      "page": "puns",
+      "title": "The Bicycle Problem",
+      "premise": "Setup: Pun Master approaches Sidekick in a park. Pun Master asks, 'Why couldn't the bicycle stand up by itself?' Sidekick rolls eyes and asks, 'Why?' Punchline: Pun Master exclaims, 'Because it was two-tired!' Reaction beat: A cartoon rimshot plays while Sidekick slowly shakes head in disbelief.",
+      "roles": [
+        "Pun Master",
+        "Sidekick"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-puns-2",
+      "page": "puns",
+      "title": "The Cheesy Love",
+      "premise": "Setup: Pun Master holds up a wedge of cheddar cheese to Sidekick. Pun Master asks, 'What did the cheese say when it looked in the mirror?' Sidekick asks, 'What?' Punchline: Pun Master grins, 'Halloumi-nating! You look gouda today!' Reaction beat: Sidekick slowly facepalms while Pun Master winks at the camera.",
+      "roles": [
+        "Pun Master",
+        "Sidekick"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-relatable-1",
+      "page": "relatable",
+      "title": "The Walking Path Decision",
+      "premise": "Setup: POV walking down an empty sidewalk when someone walks toward you from afar. Me thinks: 'Do I look left? Look at my phone? Smile?' Inner Voice commands: 'Initiate manual walking mode.' Punchline: Me suddenly forgets how arms work and walks stiffly like a wooden robot. Reaction beat: Me turns around, deeply embarrassed.",
+      "roles": [
+        "Me",
+        "Inner Voice"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-relatable-2",
+      "page": "relatable",
+      "title": "The Lower the Volume",
+      "premise": "Setup: POV driving into a tight parallel parking spot with upbeat music playing. Me turns the car radio volume all the way down to zero. Inner Voice asks: 'Why are you turning down the music?' Punchline: Me says seriously, 'Because I can't see the parking space!' Reaction beat: Me squints intensely out the window in dead silence.",
+      "roles": [
+        "Me",
+        "Inner Voice"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-riddles-1",
+      "page": "riddles",
+      "title": "What Has Hands But Can't Clap",
+      "premise": "Setup: Riddler asks Contestant, 'Riddle me this! What has hands, but can't clap, and faces you every morning?' Contestant thinks deeply, 'Is it a mirror?' Punchline: Riddler grins, 'A clock! But also your disappointed alarm clock!' Reaction beat: Contestant stares silently as a ticking clock sound plays.",
+      "roles": [
+        "Riddler",
+        "Contestant"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-riddles-2",
+      "page": "riddles",
+      "title": "The Wet Towel",
+      "premise": "Setup: Riddler asks Contestant, 'What gets wetter and wetter the more it dries?' Contestant guesses nervously, 'Is it... rain?' Punchline: Riddler shouts, 'A towel! But mentally... your brain during exam week!' Reaction beat: Contestant slowly nods in solemn agreement.",
+      "roles": [
+        "Riddler",
+        "Contestant"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-workmemes-1",
+      "page": "workmemes",
+      "title": "The Quick Status Update",
+      "premise": "Setup: Boss walks up to Employee's desk. Boss asks, 'How is that quarterly project report coming along?' Employee looks at a completely blank screen. Punchline: Employee says calmly, 'It's currently in the conceptual stage.' Boss asks, 'What does that mean?' Employee: 'I'm thinking about starting it.' Reaction beat: Boss stares blankly while Employee slowly sips coffee.",
+      "roles": [
+        "Boss",
+        "Employee"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-workmemes-2",
+      "page": "workmemes",
+      "title": "The Silent Camera Off",
+      "premise": "Setup: Teacher announces during online class, 'Alright everyone, please turn your cameras on!' Student is in pajamas eating crunchy cereal with messy bedhead. Student types in chat: 'My camera is broken today!' Punchline: Teacher sighs over the speaker, 'Alex, I can literally hear your cereal crunching.' Reaction beat: Student freezes mid-bite with spoon in mouth.",
+      "roles": [
+        "Teacher",
+        "Student"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-trending-1",
+      "page": "trending",
+      "title": "The Silent Walking Aura",
+      "premise": "Setup: Friend sees Trend Setter walking at a incredibly slow pace down the hallway. Friend asks, 'Why are you walking so slowly with high aura?' Punchline: Trend Setter stops, adjusts dark sunglasses in slow motion and says, 'I'm not slow. I'm maintaining my low-energy aesthetic.' Reaction beat: Friend squints in confusion while Trend Setter glides away silently.",
+      "roles": [
+        "Trend Setter",
+        "Friend"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-15-trending-2",
+      "page": "trending",
+      "title": "The Main Character Soundtrack",
+      "premise": "Setup: Friend watches Trend Setter carefully put on noise-canceling headphones just to walk ten feet across the kitchen. Friend asks, 'Why do you need headphones to walk to the microwave?' Punchline: Trend Setter replies dramatically, 'Every cinematic quest requires a background soundtrack.' Friend: 'It's leftover soup.' Reaction beat: Trend Setter gazes heroically into the spinning microwave as epic music swells.",
+      "roles": [
+        "Trend Setter",
+        "Friend"
+      ],
+      "status": "planned",
+      "rev": 0
+    }
+  ]
+}
