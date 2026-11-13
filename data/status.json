@@ -152,11 +152,11 @@
       "built_rev": 0
     },
     "2026-11-13-estudyante-1": {
-      "state": "scripting",
-      "pct": 10,
+      "state": "voicing",
+      "pct": 35,
       "msg": "",
       "date": "2026-11-13",
-      "updated": "2026-11-13 09:09:31"
+      "updated": "2026-11-13 09:09:45"
     },
     "2026-11-13-estudyante-2": {
       "state": "queued",
