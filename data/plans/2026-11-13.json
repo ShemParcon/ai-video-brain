@@ -3,9 +3,9 @@
   "items": [
     {
       "id": "2026-11-13-sketch-1",
-      "page": "sketch",
-      "title": "The Jury Selection",
-      "premise": "Location: Courtroom. Judge: \"Are you impartial?\" Juror: \"I don't know anyone here.\" Judge: \"Good. The defendant?\" Juror: \"My twin brother.\" Judge stares blankly. Silent reaction beat.",
+      "page": "dadjokes",
+      "title": "THE TWIN BROTHER",
+      "premise": "Location: Courtroom\n\nJudge: \"Do you swear to tell the truth, the whole truth, and nothing but the truth?\"\nWitness: \"Yes.\"\nJudge: \"Where were you on the night of the robbery?\"\nWitness: \"At home.\"\nJudge: \"Can anyone confirm that?\"\nWitness: \"Yes. My Wi-Fi history.\"\n\nEveryone turns toward him. Awkward silence.",
       "roles": [
         "Judge",
         "Juror"
@@ -15,9 +15,9 @@
     },
     {
       "id": "2026-11-13-sketch-2",
-      "page": "sketch",
-      "title": "The DMV Appointment",
-      "premise": "Location: Customer Service. Clerk: \"Next in line.\" Customer: \"I have an appointment.\" Clerk: \"For when?\" Customer: \"Three years ago.\" Clerk: \"You are five minutes early.\" Customer blinks silently.",
+      "page": "dadjokes",
+      "title": "THE HONEST WITNESS",
+      "premise": "Location: Courtroom\n\nJudge: \"Do you swear to tell the truth, the whole truth, and nothing but the truth?\"\nWitness: \"Yes.\"\nJudge: \"Where were you on the night of the robbery?\"\nWitness: \"At home.\"\nJudge: \"Can anyone confirm that?\"\nWitness: \"Yes. My Wi-Fi history.\"\n\nEveryone turns toward him. Awkward silence.",
       "roles": [
         "Clerk",
         "Customer"
@@ -27,9 +27,9 @@
     },
     {
       "id": "2026-11-13-sketch-3",
-      "page": "sketch",
-      "title": "The Park Bench",
-      "premise": "Location: Park. Stranger A: \"Nice day today.\" Stranger B: \"I am invisible.\" Stranger A: \"I can see you.\" Stranger B: \"Then the spell failed.\" Stranger A slowly looks away. Silent reaction beat.",
+      "page": "dadjokes",
+      "title": "The excuse",
+      "premise": "Location: Courtroom\n\nJudge: \"Why did you steal the calendar?\"\nDefendant: \"I needed to take a few days off.\"\nJudge: \"That's not funny.\"\nDefendant: \"Neither is your sentencing.\"\n\nJudge slowly removes his glasses.",
       "roles": [
         "Stranger A",
         "Stranger B"
@@ -40,8 +40,8 @@
     {
       "id": "2026-11-13-dadjokes-1",
       "page": "dadjokes",
-      "title": "Fake Spaghetti",
-      "premise": "Dad: \"Hey kid, what do you call a fake noodle?\" Teen: \"Please don't.\" Dad: \"An impasta!\" Teen groans and covers face. Dad winks at camera.",
+      "title": "The Broken Clock",
+      "premise": "Location: Living room\n\nSon: \"Dad, the clock is broken.\"\nDad: \"It's okay, son.\"\nSon: \"Why?\"\nDad: \"It will be right twice a day.\"\n\nSon looks at the clock. Dad walks away proudly.",
       "roles": [
         "Dad",
         "Teen"
@@ -52,8 +52,8 @@
     {
       "id": "2026-11-13-dadjokes-2",
       "page": "dadjokes",
-      "title": "Elevator Skill",
-      "premise": "Dad: \"My job at the elevator company is amazing.\" Teen: \"Why?\" Dad: \"It has its ups and downs!\" Teen walks out of frame in silence while Dad chuckles.",
+      "title": "The remote control",
+      "premise": "Location: Living room\n\nWife: \"Honey, have you seen the remote?\"\nHusband: \"No.\"\nWife: \"You were just holding it!\"\nHusband: \"Well, I don't control everything.\"\n\nWife stares at him. Husband slowly hides the remote behind his back.",
       "roles": [
         "Dad",
         "Teen"
@@ -63,9 +63,9 @@
     },
     {
       "id": "2026-11-13-puns-1",
-      "page": "puns",
-      "title": "The Musical Bike",
-      "premise": "Bicycle Host: \"Why couldn't the bicycle stand up by itself?\" Pedestrian: \"Why?\" Bicycle Host: \"Because it was two-tired!\" Pedestrian shakes head in disappointment.",
+      "page": "dadjokes",
+      "title": "The diet",
+      "premise": "Location: Kitchen\n\nWife: \"Are you on a diet?\"\nHusband: \"Yes.\"\nWife: \"Then why are you eating cake?\"\nHusband: \"It's my cheat day.\"\nWife: \"Every day?\"\nHusband: \"I'm very committed to cheating.\"\n\nWife slowly puts down her fork.",
       "roles": [
         "Bicycle Host",
         "Pedestrian"
@@ -75,9 +75,9 @@
     },
     {
       "id": "2026-11-13-puns-2",
-      "page": "puns",
-      "title": "The Calendar's Days",
-      "premise": "Planner: \"Why is the calendar always nervous?\" Calendar: \"Because my days are numbered!\" Planner stares at the calendar in disbelief.",
+      "page": "dadjokes",
+      "title": "The smart fridge",
+      "premise": "Location: Kitchen\n\nSon: \"Dad, our fridge is smart!\"\nDad: \"How?\"\nSon: \"It keeps telling me to close the door.\"\nDad: \"That's because it's trying to save your future.\"\nSon: \"What?\"\nDad: \"Electricity bills, son.\"\n\nSon stares blankly.",
       "roles": [
         "Calendar",
         "Planner"
@@ -87,9 +87,9 @@
     },
     {
       "id": "2026-11-13-relatable-1",
-      "page": "relatable",
-      "title": "POV: Finding the Mug",
-      "premise": "Me: \"Where is my coffee?\" Brain: \"Check the fridge.\" Me opens fridge, finds coffee next to the milk. Me: \"Why did we put it there?\" Brain: \"It felt safe.\" Me takes a cold sip in defeat.",
+      "page": "dadjokes",
+      "title": "The lazy dad",
+      "premise": "Location: Bedroom\n\nWife: \"Can you get up and turn off the light?\"\nHusband: \"I'm already comfortable.\"\nWife: \"It's just two steps away!\"\nHusband: \"Exactly. Two steps too many.\"\n\nWife turns off the light herself.\nHusband: \"See? Teamwork.\"\n\nWife stares at him.",
       "roles": [
         "Me",
         "Brain"
