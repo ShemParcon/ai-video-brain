@@ -55,18 +55,19 @@ def _gemini_models(key):
     except Exception:
         return base
 
-def _gemini(prompt):
+def _gemini(prompt, search=False):
     key = (os.getenv("GEMINI_API_KEY") or "").strip()
     if not key: raise RuntimeError("GEMINI_API_KEY is empty or missing in this run")
     errs = []
-    for m in _gemini_models(key)[:9]:
+    for m in _gemini_models(key)[:(3 if search else 9)]:
         base = {"responseMimeType": "application/json", "temperature": 1.0, "maxOutputTokens": 8192}
-        variants = ([{**base, "thinkingConfig": {"thinkingBudget": 0}}] if "2.5" in m else []) + [base, {k: v for k, v in base.items() if k != "responseMimeType"}]
+        nomime = {k: v for k, v in base.items() if k != "responseMimeType"}
+        variants = [nomime] if search else ([{**base, "thinkingConfig": {"thinkingBudget": 0}}] if "2.5" in m else []) + [base, nomime]
         for cfg in variants:
             try:
                 r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent",
                     headers={"x-goog-api-key": key, "Content-Type": "application/json"}, timeout=90,
-                    json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": cfg})
+                    json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": cfg, **({"tools": [{"google_search": {}}]} if search else {})})
             except Exception as e:
                 errs.append(f"{m} {str(e)[:40]}"); break
             if r.ok:
@@ -95,11 +96,12 @@ def parse_json(txt):
     b = max(txt.rfind("}"), txt.rfind("]")) + 1
     return json.loads(txt[a:b])
 
-def llm_json(prompt, retries=3):
+def llm_json(prompt, retries=3, search=False):
     errs = []
     for i in range(retries):
-        for fn in (_gemini, _pollinations):
-            try: return parse_json(fn(prompt))
-            except Exception as e: errs.append(f"{fn.__name__[1:]}: {str(e)[:170]}")
-        time.sleep(30 if any('429' in e for e in errs[-2:]) else 4 * (i + 1))
+        tries = ([("gemini+search", lambda: _gemini(prompt, True))] if search else []) + [("gemini", lambda: _gemini(prompt)), ("pollinations", lambda: _pollinations(prompt))]
+        for name, fn in tries:
+            try: return parse_json(fn())
+            except Exception as e: errs.append(f"{name}: {str(e)[:170]}")
+        time.sleep(30 if any('429' in e for e in errs[-3:]) else 4 * (i + 1))
     raise RuntimeError("AI writer failed. " + " | ".join(errs[-2:]))
