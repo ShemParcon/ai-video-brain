@@ -5,7 +5,7 @@ from common import *
 def make_plan(date, cfg):
     pages = cfg["pages"]
     hist = load(p("data", "history.json"), [])[-100:]
-    spec = "\n".join(f"- id={g['id']} | {g['name']} | style: {g['niche']} | videos: {g['per_day']}" for g in pages)
+    spec = "\n".join(f"- id={g['id']} | {g['name']} | style: {g['niche']} {('(' + g['guide'] + ')') if g.get('guide') else ''} | videos: {g['per_day']}" for g in pages)
     prompt = f"""You are the content planner for a network of joke channels that post short vertical cartoon skits (15 to 30 seconds) on YouTube Shorts, TikTok and Facebook Reels.
 Today is {date}. Use what is going viral right now (trending jokes, meme formats, popular joke styles) together with proven evergreen viral joke styles: classic dad jokes, puns, relatable POV humor, riddles with silly answers, me versus reality jokes, wholesome twists.
 Plan the jokes for these pages:
