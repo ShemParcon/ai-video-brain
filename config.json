@@ -1,42 +1,42 @@
 {
-  "version": 2,
+  "version": 3,
   "max_videos_per_day": 15,
-  "language": "English (casual, punchy, funny TikTok-style humor)",
+  "language": "English (casual, punchy, viral joke humor)",
   "pages": [
     {
-      "id": "opisina",
-      "name": "Office Chaos",
-      "niche": "office comedy: clueless boss, lazy coworkers, meetings that should have been emails, payday",
+      "id": "dadjokes",
+      "name": "Dad Joke Daily",
+      "niche": "classic and fresh dad jokes told by a proud Dad with a groaning Kid or Teen",
       "per_day": 2
     },
     {
-      "id": "pamilya",
-      "name": "Family Fiasco",
-      "niche": "family comedy: Mom, Dad, siblings, grandparents, chores, awkward dinners, road trips",
+      "id": "puns",
+      "name": "Pun Intended",
+      "niche": "wordplay, puns and one-liner jokes with a silly punchline",
       "per_day": 2
     },
     {
-      "id": "pagibig",
-      "name": "Dating Disasters",
-      "niche": "dating and friendship comedy: awkward dates, ghosting, bestfriend advice, funny twist endings",
+      "id": "relatable",
+      "name": "Relatable Chaos",
+      "niche": "viral relatable humor: POV skits, me vs reality, adulting fails, things everyone secretly does",
       "per_day": 2
     },
     {
-      "id": "estudyante",
-      "name": "School Survival",
-      "niche": "school life: teachers, exams, group projects, cafeteria, excuses",
+      "id": "riddles",
+      "name": "Riddle Me This",
+      "niche": "riddles, trick questions and silly would-you-rather jokes with a funny answer",
       "per_day": 2
     },
     {
-      "id": "pera",
-      "name": "Broke Life",
-      "niche": "money humor with a smart lesson: budgeting fails, scams, bills, saving tips hidden inside jokes",
+      "id": "workmemes",
+      "name": "Work and School Memes",
+      "niche": "viral workplace and school meme humor turned into short skits",
       "per_day": 2
     },
     {
-      "id": "pananampalataya",
-      "name": "Wholesome Wins",
-      "niche": "feel-good funny stories: kindness, gratitude, forgiveness, with a humorous twist",
+      "id": "trending",
+      "name": "Trending Jokes",
+      "niche": "jokes riffing on currently trending topics, memes and challenges (safe, neutral and clean)",
       "per_day": 2
     }
   ]
