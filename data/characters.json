@@ -616,5 +616,77 @@
     "voice": "en-US-GuyNeural",
     "pitch": 0,
     "rate": 2
+  },
+  "pamilya:mom": {
+    "v": 3,
+    "page": "pamilya",
+    "role": "Mom",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#1f2a44",
+      "shirt": "#f59e0b",
+      "style": "long",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-AriaNeural",
+    "pitch": 0,
+    "rate": 3
+  },
+  "pamilya:teen": {
+    "v": 3,
+    "page": "pamilya",
+    "role": "Teen",
+    "gender": "M",
+    "age": "kid",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#1f2a44",
+      "shirt": "#64748b",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 0.85,
+      "pants": "#713f12",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-AnaNeural",
+    "pitch": 0,
+    "rate": 4
+  },
+  "pamilya:dad": {
+    "v": 3,
+    "page": "pamilya",
+    "role": "Dad",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#2e1f16",
+      "shirt": "#ef4444",
+      "style": "short",
+      "glasses": true,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#4b5563",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-GB-RyanNeural",
+    "pitch": 0,
+    "rate": 5
   }
 }
