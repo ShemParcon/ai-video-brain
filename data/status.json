@@ -214,11 +214,11 @@
       "updated": "2026-11-13 12:17:07"
     },
     "2026-11-13-sketch-3": {
-      "state": "voicing",
-      "pct": 35,
-      "msg": "",
+      "state": "error",
+      "pct": 100,
+      "msg": "voice failed: No audio was received. Please verify that your parameters are correct.",
       "date": "2026-11-13",
-      "updated": "2026-11-13 12:17:20"
+      "updated": "2026-11-13 12:17:37"
     },
     "2026-11-13-dadjokes-1": {
       "state": "queued",
