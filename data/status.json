@@ -336,11 +336,11 @@
       "built_rev": 0
     },
     "2026-11-15-sketch-3": {
-      "state": "rendering",
-      "pct": 60,
+      "state": "uploading",
+      "pct": 90,
       "msg": "",
       "date": "2026-11-15",
-      "updated": "2026-11-15 07:59:19"
+      "updated": "2026-11-15 07:59:32"
     },
     "2026-11-15-dadjokes-1": {
       "state": "queued",
