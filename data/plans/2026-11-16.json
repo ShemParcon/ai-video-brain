@@ -1,0 +1,185 @@
+{
+  "date": "2026-11-16",
+  "items": [
+    {
+      "id": "2026-11-16-sketch-1",
+      "page": "sketch",
+      "title": "The Silence Test",
+      "premise": "Setup: Office. Applicant and Interviewer sit across from each other. Applicant: 'I am very focused.' Interviewer: 'Prove it.' They stare silently for five seconds. Interviewer: 'You passed. That was three hours.' Applicant: 'I knew it.' Punchline: Silent stare beat.",
+      "roles": [
+        "Applicant",
+        "Interviewer"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-sketch-2",
+      "page": "sketch",
+      "title": "The Vision Check",
+      "premise": "Setup: Doctor's office. Patient sits facing Doctor. Patient: 'I can't see the future.' Doctor: 'Read the chart.' Patient: 'It says clear vision ahead.' Doctor: 'That was yesterday.' Punchline: Silent blank stare beat.",
+      "roles": [
+        "Patient",
+        "Doctor"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-sketch-3",
+      "page": "sketch",
+      "title": "The Train Ticket",
+      "premise": "Setup: Train car. Passenger sits facing Conductor. Passenger: 'I lost my ticket.' Conductor: 'Where were you going?' Passenger: 'To the future.' Conductor: 'We passed it.' Punchline: Silent stare beat.",
+      "roles": [
+        "Passenger",
+        "Conductor"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-dadjokes-1",
+      "page": "dadjokes",
+      "title": "The Hungry Clock",
+      "premise": "Setup: Dad walks into kitchen holding a wall clock. Dad: 'Why did the clock get sent to detention?' Teen: 'I don't know, Dad.' Dad: 'It wouldn't stop ticking off the teacher!' Dad laughs hysterically while Teen groans. Reaction: Dad slapping his knee.",
+      "roles": [
+        "Dad",
+        "Teen"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-dadjokes-2",
+      "page": "dadjokes",
+      "title": "The Fake Noodle",
+      "premise": "Setup: Dad holds up a dry noodle box to Teen. Dad: 'What do you call a fake noodle?' Teen: 'Please don't.' Dad: 'An impasta!' Dad belly laughs while Teen facepalms and leaves the kitchen.",
+      "roles": [
+        "Dad",
+        "Teen"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-puns-1",
+      "page": "puns",
+      "title": "The Ocean Secret",
+      "premise": "Setup: Punster and Friend are looking at a ocean postcard. Punster: 'Why are ocean waves so polite?' Friend: 'Why?' Punster: 'Because they always wave before they arrive!' Punster winks, Friend stares in disbelief.",
+      "roles": [
+        "Punster",
+        "Friend"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-puns-2",
+      "page": "puns",
+      "title": "The Bicycle Fatigue",
+      "premise": "Setup: Punster and Friend leaning against a bike rack. Punster: 'Why couldn't the bicycle stand up by itself?' Friend: 'Tell me.' Punster: 'Because it was two-tired!' Punster grins, Friend sighs dramatically.",
+      "roles": [
+        "Punster",
+        "Friend"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-relatable-1",
+      "page": "relatable",
+      "title": "The Snooze Button Loop",
+      "premise": "Setup: Me sitting up in bed at 7:00 AM. Me: 'Just five more minutes.' Internal Voice: 'That was forty-five minutes ago.' Me looks at clock showing 7:45 AM. Me: 'Well, now 8:00 AM is a cleaner start.' Reaction: Me jumping out of bed in sudden panic.",
+      "roles": [
+        "Me",
+        "Internal Voice"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-relatable-2",
+      "page": "relatable",
+      "title": "The Car Song Selection",
+      "premise": "Setup: Me sitting in car ready to drive. Me: 'Can't start driving until the perfect song plays.' Me skips fifty songs. Internal Voice: 'We arrived at the store ten minutes ago.' Reaction: Me staring at the parked garage wall.",
+      "roles": [
+        "Me",
+        "Internal Voice"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-riddles-1",
+      "page": "riddles",
+      "title": "The Drying Towel",
+      "premise": "Setup: Riddler holds a microphone to Contestant on a game show stage. Riddler: 'What gets wetter the more it dries?' Contestant thinks hard: 'A sponge? The ocean?' Riddler: 'A towel!' Contestant slaps forehead in frustration.",
+      "roles": [
+        "Riddler",
+        "Contestant"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-riddles-2",
+      "page": "riddles",
+      "title": "The Running River",
+      "premise": "Setup: Riddler asks Contestant on a quiz stage. Riddler: 'What has a bed but never sleeps, and has a mouth but never talks?' Contestant: 'My roommate?' Riddler: 'A river!' Contestant shrugs defeated.",
+      "roles": [
+        "Riddler",
+        "Contestant"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-workmemes-1",
+      "page": "workmemes",
+      "title": "The Quick Sync Trap",
+      "premise": "Setup: Boss pops into Employee's cubicle. Boss: 'Got five seconds for a quick sync?' Employee: 'Sure!' Screen cuts to clock fast-forwarding two hours later. Boss: 'And that brings us to slide eighty-four.' Reaction: Employee staring blankly with twitching eye.",
+      "roles": [
+        "Employee",
+        "Boss"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-workmemes-2",
+      "page": "workmemes",
+      "title": "As Per My Email",
+      "premise": "Setup: Employee typing on laptop. Boss walks over. Boss: 'Did you see my request?' Employee: 'As per my email sent yesterday morning...' Boss: 'Oh, you mean the one I didn't read?' Reaction: Employee taking a very long sip of cold coffee.",
+      "roles": [
+        "Employee",
+        "Boss"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-trending-1",
+      "page": "trending",
+      "title": "The Brainrot Translator",
+      "premise": "Setup: Host interviews Trend Follower on a microphone. Host: 'How was your weekend?' Trend Follower: 'Pure maximum aura, zero tax, straight cozy vibes.' Host: 'So... you stayed home?' Trend Follower: 'Precisely.' Reaction: Host adjusting glasses confused.",
+      "roles": [
+        "Host",
+        "Trend Follower"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-16-trending-2",
+      "page": "trending",
+      "title": "The Silent Walk",
+      "premise": "Setup: Host encounters Trend Follower walking outside without headphones. Host: 'What podcast are you listening to?' Trend Follower: 'Nothing. Just thoughts.' Host: 'Isn't that scary?' Trend Follower: 'Terrifying.' Reaction: Both walking together in uncomfortable silence.",
+      "roles": [
+        "Host",
+        "Trend Follower"
+      ],
+      "status": "planned",
+      "rev": 0
+    }
+  ]
+}
