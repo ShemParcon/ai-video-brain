@@ -320,11 +320,12 @@
       "built_rev": 0
     },
     "2026-11-15-sketch-1": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-15",
-      "updated": "2026-11-15 07:52:10"
+      "updated": "2026-11-15 07:52:15",
+      "built_rev": 0
     },
     "2026-11-15-sketch-2": {
       "state": "queued",
