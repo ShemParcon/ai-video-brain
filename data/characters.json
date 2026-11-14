@@ -1624,5 +1624,53 @@
     "voice": "en-US-RogerNeural",
     "pitch": 0,
     "rate": 3
+  },
+  "sketch:doctor": {
+    "v": 3,
+    "page": "sketch",
+    "role": "Doctor",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#1b1b22",
+      "shirt": "#f59e0b",
+      "style": "bald",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#4b5563",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-SteffanNeural",
+    "pitch": 0,
+    "rate": 8
+  },
+  "sketch:patient": {
+    "v": 3,
+    "page": "sketch",
+    "role": "Patient",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#1f2a44",
+      "shirt": "#f59e0b",
+      "style": "bun",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-JennyNeural",
+    "pitch": 0,
+    "rate": 7
   }
 }
