@@ -1792,5 +1792,29 @@
     "voice": "en-US-GuyNeural",
     "pitch": 0,
     "rate": 7
+  },
+  "riddles:riddler": {
+    "v": 3,
+    "page": "riddles",
+    "role": "Riddler",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#d29b6b",
+      "hair": "#1b1b22",
+      "shirt": "#10b981",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#1e3a8a",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-US-SteffanNeural",
+    "pitch": 0,
+    "rate": 5
   }
 }
