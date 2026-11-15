@@ -5,23 +5,22 @@ from common import *
 def make_plan(date, cfg):
     pages = cfg["pages"]
     hist = load(p("data", "history.json"), [])[-100:]
-    spec = "\n".join(f"- id={g['id']} | {g['name']} | style: {g['niche']} {('(' + g['guide'] + ')') if g.get('guide') else ''} | videos: {g['per_day']}" for g in pages)
-    prompt = f"""You are the content planner for a network of joke channels that post short vertical cartoon skits (15 to 30 seconds) on YouTube Shorts, TikTok and Facebook Reels.
-Today is {date}. Use what is going viral right now (trending jokes, meme formats, popular joke styles) together with proven evergreen viral joke styles: classic dad jokes, puns, relatable POV humor, riddles with silly answers, me versus reality jokes, wholesome twists.
-Plan the jokes for these pages:
+    spec = "\n".join(f"- id={g['id']} | {g['name']} | topics: {g['niche']} {('(' + g['guide'] + ')') if g.get('guide') else ''} | videos: {g['per_day']}" for g in pages)
+    prompt = f"""You are the content planner for faceless channels that post narrated stick figure animation videos on YouTube Shorts, TikTok and Facebook Reels. Today is {date}.
+Pages:
 {spec}
-For every video write the FULL joke (setup and punchline) in the premise, so the scriptwriter can perform it. Keep each joke short enough to perform in about 20 seconds.
-Rules: clean, wholesome humor. No politics, religion, tragedy, real people, brands or copyrighted characters. Do not copy lines from copyrighted comedy. Every joke must be new and different from these recent titles: {hist}.
-Use the same recurring roles per page so characters stay consistent (for example Dad and Kid for the dad joke page).
-Return ONLY JSON: {{"items":[{{"page":"<page id>","title":"short catchy title","premise":"the full joke: setup, punchline and the reaction beat","roles":["Role1","Role2"]}}]}}"""
+For each video choose a topic people will want to watch right now: either (a) Did you know trivia with surprising TRUE facts, or (b) a TRUE survival or rescue story from a specific country (trapped miners, lost hikers, shipwreck survivors, earthquake, cave or sea rescues) or a famous historical story retold. Use web search to confirm the event is real and to collect its key verifiable facts (dates, numbers, places, outcomes).
+Rules: only real, well documented events; never invent details; respectful and non graphic; vary countries and eras; every topic must be new and different from these recent titles: {hist}.
+Return ONLY JSON: {{"items":[{{"page":"<page id>","title":"catchy title","kind":"did you know or rescue story or famous story","country":"country or region","premise":"2 to 3 sentence summary","facts":["8 to 12 short verified facts with numbers or dates"],"roles":["Miner","Rescuer"]}}]}}"""
     items = llm_json(prompt, search=True).get("items", [])
     ids = {g["id"] for g in pages}; counts = {}; out = []
     for it in items:
         pg = it.get("page")
         if pg not in ids: continue
         counts[pg] = counts.get(pg, 0) + 1
-        out.append({"id": f"{date}-{pg}-{counts[pg]}", "page": pg, "title": it.get("title", "Untitled"),
-                    "premise": it.get("premise", ""), "roles": it.get("roles", []), "status": "planned", "rev": 0})
+        if counts[pg] > next(g["per_day"] for g in pages if g["id"] == pg): continue
+        out.append({"id": f"{date}-{pg}-{counts[pg]}", "page": pg, "title": it.get("title", "Untitled"), "kind": it.get("kind", ""), "country": it.get("country", ""),
+                    "premise": it.get("premise", ""), "facts": [str(x) for x in it.get("facts", [])][:14], "roles": it.get("roles", []), "status": "planned", "rev": 0})
     return out[: cfg.get("max_videos_per_day", 15)]
 
 def main():
