@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-17",
+  "items": [
+    {
+      "id": "2026-11-17-didyouknow-1",
+      "page": "didyouknow",
+      "title": "5 Mind-Blowing Facts About Honeybees",
+      "kind": "did you know",
+      "country": "Global",
+      "premise": "Did you know that a single worker honeybee produces less than a drop of honey in its entire lifetime? Here are 5 astonishing, verified facts with real numbers that show how incredible these tiny insects truly are.",
+      "facts": [
+        "A honeybee beats its wings 200 times per second to create its distinct buzzing sound.",
+        "During its entire 30-to-60-day lifetime, an individual worker bee produces only 1/12th of a teaspoon of honey.",
+        "To make just 1 pound (0.45 kg) of honey, a bee colony must visit roughly 2 million flowers.",
+        "A colony travels a combined distance of 55,000 miles (88,500 km) to collect enough nectar for 1 pound of honey.",
+        "Queen bees can lay up to 2,000 eggs per day during peak spring season, equal to her own body weight in eggs daily.",
+        "Honeybees use a complex 'waggle dance' to communicate exact coordinates of flower patches up to 3 miles (5 km) away.",
+        "A healthy beehive population peaks between 20,000 and 80,000 individual bees during early summer.",
+        "Archeologists found 3,000-year-old honey inside ancient Egyptian tombs that remains completely edible due to its low moisture content and acidic pH level between 3.2 and 4.5."
+      ],
+      "roles": [
+        "Worker Bee",
+        "Queen Bee",
+        "Narrator"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-17-rescue-1",
+      "page": "rescue",
+      "title": "Trapped 700 Meters Underground: The 2010 Chilean Miner Rescue",
+      "kind": "rescue story",
+      "country": "Chile",
+      "premise": "On August 5, 2010, a massive cave-in trapped 33 miners deep under the Atacama Desert. For 69 grueling days, they survived brutal heat and starvation until an unprecedented global engineering feat pulled every single man out alive.",
+      "facts": [
+        "On August 5, 2010, a 700,000-ton rock collapse trapped 33 miners 700 meters (2,300 ft) underground in the San José Mine.",
+        "The underground shelter environment averaged 35°C (95°F) with 90% relative humidity.",
+        "The emergency shelter originally contained only 3 days worth of food rations for 33 men.",
+        "Miners rationed food down to 2 spoonfuls of canned tuna, a sip of milk, and half a cracker every 48 hours.",
+        "On Day 17 (August 22, 2010), a probe drill broke into the refuge and brought up a note attached to the bit: 'Estamos bien en el refugio los 33'.",
+        "Engineers drilled a rescue shaft 66 centimeters (26 inches) wide through solid granite.",
+        "The custom steel rescue capsule, named Fénix 2, made 39 total trips up and down the narrow shaft.",
+        "On October 13, 2010, after 69 days underground, all 33 miners were brought to the surface safely in an operation lasting 22 hours and 37 minutes.",
+        "An estimated 1 billion people watched the live rescue broadcast around the globe."
+      ],
+      "roles": [
+        "Trapped Miner",
+        "Rescue Engineer",
+        "Drill Operator"
+      ],
+      "status": "planned",
+      "rev": 0
+    }
+  ]
+}
