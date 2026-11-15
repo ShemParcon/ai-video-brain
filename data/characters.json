@@ -1720,5 +1720,53 @@
     "voice": "en-US-ChristopherNeural",
     "pitch": 0,
     "rate": 5
+  },
+  "puns:pun master": {
+    "v": 3,
+    "page": "puns",
+    "role": "Pun Master",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#1b1b22",
+      "shirt": "#10b981",
+      "style": "bald",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#4b5563",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-RogerNeural",
+    "pitch": 0,
+    "rate": 5
+  },
+  "puns:sidekick": {
+    "v": 3,
+    "page": "puns",
+    "role": "Sidekick",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#d29b6b",
+      "hair": "#6b2d1a",
+      "shirt": "#10b981",
+      "style": "long",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#4b5563",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-US-AriaNeural",
+    "pitch": 0,
+    "rate": 4
   }
 }
