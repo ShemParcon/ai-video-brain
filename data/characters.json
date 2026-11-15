@@ -1864,5 +1864,29 @@
     "voice": "en-US-AnaNeural",
     "pitch": 0,
     "rate": 4
+  },
+  "trending:trend setter": {
+    "v": 3,
+    "page": "trending",
+    "role": "Trend Setter",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#4a2e1f",
+      "shirt": "#f97316",
+      "style": "bald",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#713f12",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-GB-RyanNeural",
+    "pitch": 0,
+    "rate": 7
   }
 }
