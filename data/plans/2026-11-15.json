@@ -2,181 +2,54 @@
   "date": "2026-11-15",
   "items": [
     {
-      "id": "2026-11-15-sketch-1",
-      "page": "sketch",
-      "title": "The Library Fine",
-      "premise": "Setup: Librarian looks at card. 'You are forty minutes late.' Patron: 'I got stuck.' Librarian: 'In traffic?' Patron: 'In the plot.' Librarian stares flatly. 'The fine is four dollars.' Patron places four pinecones on the counter. 'I trade.' Librarian accepts pinecone and nods. Silent reaction beat.",
+      "id": "2026-11-15-didyouknow-1",
+      "page": "didyouknow",
+      "title": "5 Mind-Blowing Blue Whale Facts",
+      "kind": "did you know trivia",
+      "country": "Global Oceans",
+      "premise": "Did you know that the largest animal to ever live on Earth has a heart the size of a small car? Discover incredible, verifiable facts about the blue whale, from its extreme weight to how far its heartbeat can travel underwater.",
+      "facts": [
+        "Blue whales are the largest animals ever known to exist on Earth, reaching lengths of up to 100 feet (30 meters).",
+        "An adult blue whale can weigh up to 200 tons, equivalent to roughly 33 adult elephants.",
+        "A blue whale's heart weighs approximately 400 pounds (180 kg), which is roughly the size of a bumper car.",
+        "Under optimal ocean conditions, a blue whale's heartbeat can be detected underwater up to 2 miles (3.2 kilometers) away.",
+        "The tongue of a full-grown blue whale weighs around 2.7 metric tons, which is heavier than an entire adult female elephant.",
+        "Their vocalizations can reach 188 decibels, making them louder than a jet engine taking off at 140 decibels.",
+        "A blue whale's sound can travel through ocean waters across distances of up to 1,000 miles (1,600 kilometers).",
+        "Newborn blue whale calves drink about 100 gallons (380 liters) of rich mother's milk every single day.",
+        "During peak summer feeding season, an adult blue whale consumes up to 4 tons (8,000 pounds) of krill daily.",
+        "Despite their massive body size, a blue whale's throat is so narrow it cannot swallow anything larger than a beach ball."
+      ],
       "roles": [
-        "Librarian",
-        "Patron"
+        "Narrator Stick Figure",
+        "Ocean Diver Stick Figure"
       ],
       "status": "planned",
       "rev": 0
     },
     {
-      "id": "2026-11-15-sketch-2",
-      "page": "sketch",
-      "title": "The Lost and Found Desk",
-      "premise": "Setup: Visitor: 'I lost my motivation.' Clerk checks box under counter. 'Color?' Visitor: 'Grey, slightly dented.' Clerk pulls out a small brick. 'This it?' Visitor holds brick: 'Yes, heavy.' Clerk: 'Have a good day.' Visitor puts brick in tote bag and walks away. Silent reaction beat.",
-      "roles": [
-        "Clerk",
-        "Visitor"
+      "id": "2026-11-15-rescue-1",
+      "page": "rescue",
+      "title": "60 Hours Underwater: The Harrison Okene Rescue",
+      "kind": "rescue story",
+      "country": "Nigeria",
+      "premise": "In May 2013, a tugboat capsized off the coast of Nigeria and plunged 30 meters to the ocean floor. Cook Harrison Okene survived in pitch-black darkness inside a tiny air pocket for nearly three days before deep-sea divers found him.",
+      "facts": [
+        "On May 26, 2013, the tugboat Jascon-4 capsized in rough ocean swells 20 miles off the coast of Nigeria.",
+        "The vessel sank 30 meters (100 feet) beneath the ocean surface to the freezing seabed.",
+        "29-year-old ship cook Harrison Okene was trapped inside as water rapidly flooded the vessel.",
+        "Okene managed to swim through darkness into an overturned engineer's toilet area containing a 4-foot air pocket.",
+        "He spent 60 hours trapped in near-freezing water dressed only in shorts, holding onto a small wooden shelf.",
+        "With only one bottle of Coca-Cola, Okene listened to sea creatures scavenge the ship in pitch darkness.",
+        "On May 28, 2013, South African rescue divers descended to the wreck believing it was strictly a body recovery mission.",
+        "Diver Nico van Heerden reached into the flooded compartment and was shocked when Okene grabbed his hand.",
+        "Divers equipped Okene with a diving helmet and warm water suit before guiding him to a diving bell.",
+        "Because of extreme nitrogen saturation at 30 meters depth, Okene spent 51 hours in a decompression chamber on the surface.",
+        "Harrison Okene was the sole survivor among the 12 crew members onboard the Jascon-4."
       ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-sketch-3",
-      "page": "sketch",
-      "title": "The Elevator Floor",
-      "premise": "Setup: Rider A: 'Going up?' Rider B: 'Going sideways.' Rider A presses button. 'Sideways is not an option.' Rider B slowly tilts head 90 degrees. 'Now it is.' Elevator dings. Rider A looks forward in silence. Silent reaction beat.",
       "roles": [
-        "Rider A",
-        "Rider B"
-      ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-dadjokes-1",
-      "page": "dadjokes",
-      "title": "The Ocean Secret",
-      "premise": "Setup: Dad: 'Why did the ocean break up with the shore?' Teen: 'Dad, please no.' Dad: 'Because it was tired of being taken for granite!' Dad laughs hysterically while slapping his knee. Teen groans loud and slides out of frame off the chair.",
-      "roles": [
-        "Dad",
-        "Teen"
-      ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-dadjokes-2",
-      "page": "dadjokes",
-      "title": "The Fake Grass",
-      "premise": "Setup: Dad: 'Hey kiddo, do you know what kind of tea is hard to swallow?' Teen: 'I am trying to read.' Dad: 'Reali-tea!' Dad winks with double finger guns. Teen buries face directly into textbook with a deep groan.",
-      "roles": [
-        "Dad",
-        "Teen"
-      ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-puns-1",
-      "page": "puns",
-      "title": "The Tired Bike",
-      "premise": "Setup: Comic: 'Why couldn't the bicycle stand up by itself?' Audience Member: 'Why?' Comic: 'Because it was two-tired!' Comic drops microphone with confidence. Audience member blinks blankly as cricket sounds play.",
-      "roles": [
-        "Comic",
-        "Audience Member"
-      ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-puns-2",
-      "page": "puns",
-      "title": "The Wall Conversation",
-      "premise": "Setup: Speaker A: 'What did one wall say to the other wall?' Speaker B: 'I have no idea.' Speaker A: 'I'll meet you at the corner!' Speaker A gives thumbs up. Speaker B stares silently in absolute disbelief.",
-      "roles": [
-        "Speaker A",
-        "Speaker B"
-      ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-relatable-1",
-      "page": "relatable",
-      "title": "The Grocery Cart Drift",
-      "premise": "Setup: Shopper pushes grocery cart into empty aisle, checks left and right, then aggressively drifts the cart around the corner like a racecar driver. Friend: 'You are twenty-eight.' Shopper: 'Setting lap records.' Shopper drifts away.",
-      "roles": [
-        "Shopper",
-        "Friend"
-      ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-relatable-2",
-      "page": "relatable",
-      "title": "The Phone Torch Quest",
-      "premise": "Setup: Searcher frantically digs under couch cushions. 'Help me find my phone, I need it right now!' Roommate points: 'You are using your phone torch to search for it.' Searcher freezes, turns off light, and slowly walks out of room.",
-      "roles": [
-        "Searcher",
-        "Roommate"
-      ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-riddles-1",
-      "page": "riddles",
-      "title": "The Travelling Riddle",
-      "premise": "Setup: Riddle Master: 'What goes all around the house, but stays in a corner?' Contestant thinks deeply: 'A lazy cat?' Riddle Master: 'No, a stamp!' Contestant looks confused: 'Stamps don't walk!' Riddle Master smiles victoriously.",
-      "roles": [
-        "Riddle Master",
-        "Contestant"
-      ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-riddles-2",
-      "page": "riddles",
-      "title": "The Heavy Question",
-      "premise": "Setup: Riddle Master: 'What gets wetter the more it dries?' Contestant: 'A sponge? Rain?' Riddle Master: 'A towel!' Contestant stares down at damp towel in existential horror as dramatic music plays.",
-      "roles": [
-        "Riddle Master",
-        "Contestant"
-      ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-workmemes-1",
-      "page": "workmemes",
-      "title": "The Muted Masterpiece",
-      "premise": "Setup: Presenter gives a 30-second super passionate speech with wild hand gestures on video call. Presenter: '...and that is our strategy!' Coworker unmutes: 'You were on mute the entire time.' Presenter smiles politely and screams quietly into a pillow.",
-      "roles": [
-        "Presenter",
-        "Coworker"
-      ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-workmemes-2",
-      "page": "workmemes",
-      "title": "The Urgent Tag",
-      "premise": "Setup: Employee packs bag, reaches for door handle at 5:00 PM. Laptop dings with notification: 'URGENT TASK ASSIGNED.' Employee slowly reverses steps back to desk, sits down, and stares into the screen void.",
-      "roles": [
-        "Employee",
-        "Manager"
-      ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-trending-1",
-      "page": "trending",
-      "title": "Aura Points Lost",
-      "premise": "Setup: Trend Spotter walks into room with sunglasses on looking cool, but trips over a completely flat rug. Friend: 'Minus ten thousand aura points.' Trend Spotter stays flat on floor: 'Leave me, I am resetting.'",
-      "roles": [
-        "Trend Spotter",
-        "Friend"
-      ],
-      "status": "planned",
-      "rev": 0
-    },
-    {
-      "id": "2026-11-15-trending-2",
-      "page": "trending",
-      "title": "Side Quest Activated",
-      "premise": "Setup: Main Character is walking down sidewalk, spots a shiny metallic wrapper blowing in the breeze. Main Character stops instantly. Passenger: 'Why are we stopping?' Main Character: 'Side quest.' Main Character chases wrapper into field like an action hero.",
-      "roles": [
-        "Main Character",
-        "Passenger"
+        "Harrison Okene",
+        "Rescue Diver Nico"
       ],
       "status": "planned",
       "rev": 0
