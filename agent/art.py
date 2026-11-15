@@ -6,6 +6,7 @@ OL = (35, 35, 45)
 SKINS = ['#f6d1a7', '#e8b98a', '#d29b6b', '#b9784a', '#8d5a3b']
 HAIRS = ['#1b1b22', '#2e1f16', '#4a2e1f', '#1f2a44', '#6b2d1a']
 SHIRTS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#14b8a6', '#ec4899', '#64748b', '#f97316']
+HELMET = ('miner', 'rescuer', 'worker', 'engineer', 'firefighter', 'climber', 'driller', 'crew', 'diver', 'paramedic', 'caver')
 OFFICE = ('boss', 'manager', 'hr', 'sir', 'ceo', 'supervisor', 'direktor', 'employer', 'amo')
 M_VOICES = ['en-US-GuyNeural', 'en-US-ChristopherNeural', 'en-US-EricNeural', 'en-US-RogerNeural', 'en-US-SteffanNeural', 'en-GB-RyanNeural']
 F_VOICES = ['en-US-JennyNeural', 'en-US-AriaNeural', 'en-US-MichelleNeural', 'en-GB-SoniaNeural', 'en-AU-NatashaNeural']
@@ -20,6 +21,8 @@ def get_char(reg, page, role, gender='M', age='adult'):
     r = random.Random(key)
     style = r.choice(['long', 'bun', 'long']) if gender == 'F' else r.choice(['short', 'short', 'cap', 'bald'])
     if age in ('old', 'kid'): style = 'bun' if gender == 'F' else 'short'
+    helm = any(k in role.lower() for k in HELMET)
+    if helm: style = 'helmet'
     look = dict(skin=r.choice(SKINS), hair='#b9b9c0' if age == 'old' else r.choice(HAIRS), shirt=r.choice(SHIRTS),
                 style=style, glasses=r.random() < (0.5 if age == 'old' else 0.22),
                 tie=gender == 'M' and age == 'adult' and any(k in role.lower() for k in OFFICE),
@@ -34,6 +37,7 @@ def get_char(reg, page, role, gender='M', age='adult'):
         order = pool[k:] + pool[:k]
         if age == 'old' and gender == 'M': order = ['en-US-RogerNeural'] + order
         voice = next((v for v in order if v not in used), order[0])
+    if helm: look['shirt'] = '#f97316'
     reg[key] = dict(v=3, page=page, role=role, gender=gender, age=age, look=look, voice=voice,
                     pitch=-6 if age == 'old' else 0, rate={'kid': 4, 'old': -4}.get(age, r.randint(2, 8)))
     return reg[key]
@@ -205,6 +209,9 @@ def draw_bg(d, setting):
         for x in (90, 560): d.rectangle((x - 25, 480, x + 25, 830), fill='#8a5a3c', outline=OL, width=6); d.ellipse((x - 130, 220, x + 130, 540), fill='#3fa34d', outline=OL, width=6)
 
 # ======================= "sketch" style (minimal black & white cartoon) =======================
+def _shade(hexc, f):
+    h = hexc.lstrip('#'); return tuple(int(int(h[i:i + 2], 16) * f) for i in (0, 2, 4))
+
 def _lum(hexc):
     h = hexc.lstrip('#'); r, g, b = [int(h[i:i + 2], 16) for i in (0, 2, 4)]
     return .3 * r + .59 * g + .11 * b
@@ -223,7 +230,9 @@ def draw_char_sketch(d, look, x0, gy, s, A):
         hp = (xu + sd * 30 * s, gy + hip * s); an = (x0 + sd * 40 * s, gy - 4 * s)
         d.line([hp, an], fill=OL, width=lw); d.line([an, (an[0] + sd * 26 * s, an[1])], fill=OL, width=lw)
     box = (xu - 76 * s, gy + (shy - 8) * s, xu + 76 * s, gy + (hip + 20) * s)
-    if dark: d.rounded_rectangle(box, radius=60 * s, fill='#6b6b6b')
+    if A.get('colored'):
+        d.rounded_rectangle(box, radius=60 * s, fill=_shade(look['shirt'], .72)); d.rounded_rectangle((box[0], box[1], box[2] - 30 * s, box[3]), radius=60 * s, fill=look['shirt'])
+    elif dark: d.rounded_rectangle(box, radius=60 * s, fill='#6b6b6b')
     else:
         d.rounded_rectangle(box, radius=60 * s, fill=GREY)
         d.rounded_rectangle((box[0], box[1], box[2] - 30 * s, box[3]), radius=60 * s, fill='white')
@@ -243,7 +252,13 @@ def draw_char_sketch(d, look, x0, gy, s, A):
     d.ellipse((hx - 118 * s, hy - 118 * s, hx + 118 * s, hy + 118 * s), fill=GREY)
     d.ellipse((hx - 14 * s - 102 * s, hy - 8 * s - 102 * s, hx - 14 * s + 102 * s, hy - 8 * s + 102 * s), fill='white')
     d.ellipse((hx - 118 * s, hy - 118 * s, hx + 118 * s, hy + 118 * s), outline=OL, width=lw)
-    if style != 'bald':
+    if style == 'helmet':
+        d.pieslice((hx - 128 * s, hy - 128 * s, hx + 128 * s, hy + 40 * s), 180, 360, fill='#f2c200')
+        d.arc((hx - 128 * s, hy - 128 * s, hx + 128 * s, hy + 40 * s), 180, 360, fill=OL, width=lw)
+        d.rounded_rectangle((hx - 136 * s, hy - 50 * s, hx + 136 * s, hy - 30 * s), radius=8 * s, fill='#f2c200', outline=OL, width=lw)
+        d.line([(hx, hy - 128 * s), (hx, hy - 52 * s)], fill='#fff3a0', width=8 * s)
+        d.ellipse((hx - 18 * s, hy - 112 * s, hx + 18 * s, hy - 82 * s), fill='#fff6b0', outline=OL, width=lw * .8)
+    elif style != 'bald':
         c = '#9a9a9a' if style == 'cap' else hairc
         d.pieslice((hx - 122 * s, hy - 122 * s, hx + 122 * s, hy + 50 * s), 180, 360, fill=c)
         d.arc((hx - 122 * s, hy - 122 * s, hx + 122 * s, hy + 50 * s), 180, 360, fill=OL, width=lw)
@@ -279,3 +294,90 @@ def draw_bg_sketch(d, setting):
         for x, h in ((40, 380), (260, 520), (480, 300)): d.rectangle((x, 830 - h, x + 190, 830), fill='#ececec', outline='#9a9a9a', width=3)
     elif setting == 'parke':
         d.rectangle((420, 700, 690, 730), fill='#cfcfcf', outline=OL, width=4); d.line((440, 730, 440, 830), fill=OL, width=4); d.line((670, 730, 670, 830), fill=OL, width=4)
+
+
+# ======================= story style: rich scenery for narrated "did you know" / true stories =======================
+import re as _re
+def _hex(c):
+    c = c.lstrip('#'); return tuple(int(c[i:i + 2], 16) for i in (0, 2, 4))
+
+def _grad(d, y0, y1, c0, c1, steps=26):
+    a, b = _hex(c0), _hex(c1); h = (y1 - y0) / steps
+    for i in range(steps):
+        f = i / (steps - 1); d.rectangle((-300, y0 + i * h, W + 300, y0 + (i + 1) * h + 1), fill=tuple(int(a[k] + (b[k] - a[k]) * f) for k in range(3)))
+
+THEMES = {'mine': ('#1b130d', '#4a3220', '#3a2817'), 'cave': ('#0e1d28', '#244557', '#2a3b45'), 'desert': ('#7ec8f2', '#f6e2b3', '#d9a95b'),
+          'mountain': ('#7aa9d6', '#dbe8f5', '#e8eef2'), 'snow': ('#c4d3e3', '#f4f7fa', '#ffffff'), 'ocean': ('#6bb6ea', '#cfe9f8', '#2e78b7'),
+          'forest': ('#9fd6f0', '#e5f4d8', '#4f9a4a'), 'city': ('#7db7e8', '#ecdcc6', '#6b7280'), 'indoor': ('#efe5d6', '#efe5d6', '#a67c52'),
+          'night': ('#0b1230', '#27386b', '#1b2a2f'), 'sky': ('#4a90d9', '#d6ecfb', '#cfe8fb')}
+KEYS = [('mine', 'mine'), ('tunnel', 'mine'), ('underground', 'mine'), ('cave', 'cave'), ('desert', 'desert'), ('mountain', 'mountain'), ('everest', 'mountain'),
+        ('alps', 'mountain'), ('summit', 'mountain'), ('cliff', 'mountain'), ('snow', 'snow'), ('ice', 'snow'), ('arctic', 'snow'), ('glacier', 'snow'), ('winter', 'snow'),
+        ('sea', 'ocean'), ('ocean', 'ocean'), ('boat', 'ocean'), ('ship', 'ocean'), ('raft', 'ocean'), ('island', 'ocean'), ('beach', 'ocean'), ('river', 'ocean'), ('lake', 'ocean'),
+        ('forest', 'forest'), ('jungle', 'forest'), ('wood', 'forest'), ('farm', 'forest'), ('field', 'forest'), ('city', 'city'), ('street', 'city'), ('town', 'city'),
+        ('village', 'city'), ('ruin', 'city'), ('building', 'city'), ('hospital', 'indoor'), ('house', 'indoor'), ('home', 'indoor'), ('room', 'indoor'), ('office', 'indoor'),
+        ('lab', 'indoor'), ('control', 'indoor'), ('indoor', 'indoor'), ('night', 'night'), ('space', 'night'), ('moon', 'night'), ('plane', 'sky'), ('sky', 'sky'),
+        ('desert', 'desert'), ('rescue', 'desert'), ('surface', 'desert')]
+
+def story_theme(s):
+    s = (s or '').lower()
+    for k, v in KEYS:
+        if _re.search(r'\b' + k, s): return v
+    return 'city'
+
+def draw_bg_story(d, theme):
+    top, bot, floor = THEMES.get(theme, THEMES['city'])
+    _grad(d, -300, 830, top, bot)
+    d.rectangle((-300, 830, W + 300, H + 300), fill=floor)
+    rnd = random.Random(theme)
+    if theme == 'mine':
+        d.polygon([(-300, -300), (130, -300), (70, 250), (150, 560), (60, 830), (-300, 830)], fill='#241810')
+        d.polygon([(W + 300, -300), (590, -300), (650, 250), (570, 560), (660, 830), (W + 300, 830)], fill='#241810')
+        d.ellipse((230, 330, 490, 830), fill='#100a06'); d.ellipse((300, 470, 420, 700), fill='#6b4a2b')
+        for x in (150, 570):
+            for y in (200, 420, 640): d.ellipse((x - 16, y - 16, x + 16, y + 16), fill='#ffd66b'); d.ellipse((x - 7, y - 7, x + 7, y + 7), fill='#fff3c4')
+        for y in (120, 360): d.rectangle((-300, y, W + 300, y + 22), fill='#5a3d22', outline='#2b1b0e', width=4)
+    elif theme == 'cave':
+        for x in range(-40, W + 60, 80): hgt = 120 + rnd.randint(0, 170); d.polygon([(x, -300), (x + 70, -300), (x + 35, hgt)], fill='#16303f', outline='#0a1a24', width=3)
+        for x in range(0, W, 110): hgt = 60 + rnd.randint(0, 120); d.polygon([(x, 830), (x + 80, 830), (x + 40, 830 - hgt)], fill='#33505f', outline='#0a1a24', width=3)
+        d.ellipse((460, 260, 640, 440), fill='#2f6f8f')
+    elif theme == 'desert':
+        d.ellipse((520, 90, 640, 210), fill='#fff0a8'); d.polygon([(-300, 830), (80, 690), (460, 830)], fill='#e8c27c'); d.polygon([(250, 830), (560, 640), (1000, 830)], fill='#dfb468')
+    elif theme == 'mountain':
+        d.polygon([(-120, 830), (240, 330), (620, 830)], fill='#7d8fa3', outline='#51606f', width=4); d.polygon([(240, 330), (170, 470), (240, 430), (300, 490), (330, 420)], fill='white')
+        d.polygon([(330, 830), (560, 450), (900, 830)], fill='#92a3b5', outline='#51606f', width=4); d.polygon([(560, 450), (510, 540), (560, 510), (610, 550)], fill='white')
+    elif theme == 'snow':
+        d.polygon([(-100, 830), (250, 430), (600, 830)], fill='#dbe6f0', outline='#a9bccd', width=4)
+        for _ in range(60): x, y = rnd.randint(0, W), rnd.randint(0, 800); d.ellipse((x - 4, y - 4, x + 4, y + 4), fill='white')
+    elif theme == 'ocean':
+        d.rectangle((-300, 700, W + 300, H + 300), fill='#2e78b7')
+        for y in range(730, 1100, 55):
+            for x in range(-40, W + 60, 120): d.arc((x, y, x + 100, y + 36), 200, 340, fill='#7fc0ee', width=4)
+        d.rectangle((20, 1095, 700, 1200), fill='#8a5a3c', outline=OL, width=5); d.line((20, 1130, 700, 1130), fill='#5e3b25', width=4)
+        d.ellipse((540, 90, 660, 210), fill='#fff0a8')
+    elif theme == 'forest':
+        for i, x in enumerate(range(20, W + 80, 120)):
+            hgt = 260 + (i * 53) % 140; d.rectangle((x - 14, 830 - hgt, x + 14, 830), fill='#6b4a2b', outline='#3d2a16', width=4); d.ellipse((x - 80, 830 - hgt - 110, x + 80, 830 - hgt + 70), fill='#2f7d3a', outline='#1d4f25', width=4)
+    elif theme == 'city':
+        for x, h, c in ((10, 460, '#cfd8e3'), (190, 600, '#aebccd'), (380, 400, '#d9c7b0'), (560, 520, '#b9c4d1')):
+            d.rectangle((x, 830 - h, x + 170, 830), fill=c, outline='#6b7280', width=4)
+            for yy in range(830 - h + 30, 790, 70):
+                for xx in (x + 24, x + 96): d.rectangle((xx, yy, xx + 40, yy + 34), fill='#f6f0c4', outline='#6b7280', width=3)
+        d.line((-300, 960, W + 300, 960), fill='#9aa3ad', width=6)
+    elif theme == 'indoor':
+        d.rectangle((70, 210, 300, 470), fill='#cfeeff', outline='#7a6a58', width=8); d.line((185, 210, 185, 470), fill='#7a6a58', width=6); d.line((70, 340, 300, 340), fill='#7a6a58', width=6)
+        d.rectangle((470, 230, 640, 380), fill='white', outline='#7a6a58', width=6); d.ellipse((510, 255, 600, 355), fill='#9cc3e8')
+        d.line((-300, 830, W + 300, 830), fill='#7a6a58', width=8)
+    elif theme == 'night':
+        for _ in range(90): x, y = rnd.randint(0, W), rnd.randint(0, 800); d.ellipse((x - 3, y - 3, x + 3, y + 3), fill='#e8efff')
+        d.ellipse((500, 110, 620, 230), fill='#f5f0d0')
+    elif theme == 'sky':
+        for x, y in ((90, 220), (430, 140), (300, 520), (560, 640)): d.ellipse((x, y, x + 190, y + 70), fill='white'); d.ellipse((x + 40, y - 30, x + 150, y + 40), fill='white')
+
+def draw_crowd(d, n, cx, gy, s, t, seed='crowd'):
+    rnd = random.Random(seed); n = min(n, 14); cols = (n + 1) // 2 if n > 6 else n; rows = [(gy - 150, n - cols), (gy, cols)] if n > 6 else [(gy, n)]
+    k = 0
+    for y, cnt in rows:
+        for i in range(cnt):
+            x = cx + (i - (cnt - 1) / 2) * (92 if n <= 6 else 80) + (rnd.random() - .5) * 10
+            look = dict(skin='#ffffff', hair=rnd.choice(['#2e1f16', '#1b1b22', '#4a2e1f']), shirt='#f97316', style='helmet', glasses=False, tie=False, scale=1.0)
+            draw_char_sketch(d, look, x, y, s, dict(t=t, g=0, a=0, ph=rnd.random() * 6, bob=0, emo=EMO['neutral'], blink=0, gaze=0, arm_side=1, colored=True)); k += 1
