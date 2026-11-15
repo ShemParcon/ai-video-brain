@@ -67,11 +67,11 @@ videos(){const its=S.plan.items.filter(i=>S.res.items[i.id]);return dateSel()+(i
  <div><button class="b g" data-act="posted" data-id="${i.id}">${posted?'Undo posted':'Mark posted'}</button><button class="b r" data-act="remake" data-id="${i.id}">Remake</button></div></div>`}).join('')||'<div class="card mut">No finished videos for this date yet.</div>')},
 plan(){return dateSel()+`<div class="card"><button class="b" data-act="save">💾 Save changes</button><button class="b g" data-act="add">＋ Add video</button><button class="b g" data-act="gen">✨ Generate new plan</button><button class="b r" data-act="clear">🗑 Clear all</button><div class="mut">Edit anything before the daily run. Generate replaces this date's plan.</div></div>`+
  S.plan.items.map((i,n)=>`<div class="card"><select data-f="page" data-n="${n}">${S.cfg.pages.map(p=>`<option value="${p.id}" ${p.id==i.page?'selected':''}>${esc(p.name)}</option>`).join('')}</select>
- <input data-f="title" data-n="${n}" value="${esc(i.title)}" placeholder="Title"><textarea data-f="premise" data-n="${n}" placeholder="Story idea">${esc(i.premise)}</textarea>
+ <input data-f="title" data-n="${n}" value="${esc(i.title)}" placeholder="Title"><textarea data-f="premise" data-n="${n}" placeholder="Story idea">${esc(i.premise)}</textarea><textarea data-f="facts" data-n="${n}" placeholder="Verified facts, one per line (edit to fix any mistakes)">${esc((i.facts||[]).join('\n'))}</textarea>
  <button class="b g" data-act="skip" data-n="${n}">${i.status=='skip'?'Skipped – include':'Skip this'}</button><button class="b r" data-act="del" data-n="${n}">Delete</button></div>`).join('')},
 settings(){return `<div class="card"><b>Connection</b><input id="repo" placeholder="owner/repo" value="${esc(S.repo)}"><input id="tok" type="password" placeholder="GitHub token" value="${esc(S.token)}">
  <button class="b" data-act="conn">Save</button><div class="err">${esc(S.err)}</div></div>
- <div class="card"><b>Your pages</b>${S.cfg.pages.map((p,n)=>`<input data-pf="name" data-n="${n}" value="${esc(p.name)}"><textarea data-pf="niche" data-n="${n}">${esc(p.niche)}</textarea><textarea data-pf="guide" data-n="${n}" placeholder="Style guide (optional)">${esc(p.guide||'')}</textarea>Videos per day <input data-pf="per_day" data-n="${n}" type="number" min="0" max="5" value="${p.per_day}">`).join('<hr>')}
+ <div class="card"><b>Your pages</b>${S.cfg.pages.map((p,n)=>`<input data-pf="name" data-n="${n}" value="${esc(p.name)}"><textarea data-pf="niche" data-n="${n}">${esc(p.niche)}</textarea><textarea data-pf="guide" data-n="${n}" placeholder="Style guide (optional)">${esc(p.guide||'')}</textarea>Videos per day <input data-pf="per_day" data-n="${n}" type="number" min="0" max="5" value="${p.per_day}">Target length (seconds) <input data-pf="target_seconds" data-n="${n}" type="number" min="15" max="170" value="${p.target_seconds||''}">`).join('<hr>')}
  <button class="b" data-act="savecfg">Save pages</button><div class="mut">Total per day is capped at ${S.cfg.max_videos_per_day||15}.</div></div>
  <div class="card mut"><b>Better scripts (free)</b><br>Get a free key at aistudio.google.com/apikey, then add it as a repo secret named GEMINI_API_KEY (repo → Settings → Secrets → Actions).</div>`}};
 function render(){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t==S.tab));
@@ -97,7 +97,7 @@ document.addEventListener('click',async e=>{const nb=e.target.closest('nav butto
  if(a=='conn'){S.repo=$('#repo').value.trim();S.token=$('#tok').value.trim();LS.repo=S.repo;LS.token=S.token;S.tab='progress';return loadAll()}
  if(a=='savecfg')return busy(()=>gwrite('config.json',S.cfg,'update pages'))});
 document.addEventListener('change',e=>{const t=e.target;if(t.dataset.act=='date'){S.date=t.value;S.tab=S.tab;return loadAll()}});
-document.addEventListener('input',e=>{const t=e.target;if(t.dataset.f)S.plan.items[+t.dataset.n][t.dataset.f]=t.value;if(t.dataset.pf)S.cfg.pages[+t.dataset.n][t.dataset.pf]=t.dataset.pf=='per_day'?+t.value:t.value});
+document.addEventListener('input',e=>{const t=e.target;if(t.dataset.f)S.plan.items[+t.dataset.n][t.dataset.f]=t.dataset.f=='facts'?t.value.split('\n').map(x=>x.trim()).filter(Boolean):t.value;if(t.dataset.pf)S.cfg.pages[+t.dataset.n][t.dataset.pf]=['per_day','target_seconds'].includes(t.dataset.pf)?+t.value:t.value});
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
 loadAll();setInterval(()=>{if(S.tab=='progress'&&!document.hidden)loadAll()},20000);
 </script></body></html>
