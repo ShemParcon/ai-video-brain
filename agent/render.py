@@ -153,3 +153,81 @@ def render(scenes, lines, chars, total, voice_wav, out_mp4, style='color', water
         pr.stdin.write(fr.tobytes())
     pr.stdin.close(); pr.wait()
     if pr.returncode: raise RuntimeError('ffmpeg render failed')
+
+
+# ======================= story mode (narrated "did you know" / true stories) =======================
+def _pages(words):
+    pages, cur, chars = [], [], 0
+    for i, w in enumerate(words):
+        cur.append(i); chars += len(w[0]) + 1
+        if chars > 30 or len(cur) >= 7 or w[0][-1:] in '.?!' :
+            pages.append(cur); cur, chars = [], 0
+    if cur: pages.append(cur)
+    return pages
+
+def _wrap(texts, fn, maxw):
+    lines, cur = [], []
+    for i, w in texts:
+        if cur and _tmp.textlength(' '.join(x for _, x in cur + [(i, w)]), font=fn) > maxw: lines.append(cur); cur = []
+        cur.append((i, w))
+    if cur: lines.append(cur)
+    return lines
+
+def render_story(scenes, total, voice_wav, out_mp4, page_name='', end_text='FOLLOW FOR MORE'):
+    for sc in scenes: sc['pages'] = _pages(sc['words'])
+    black = Image.new('RGB', (W, H), (0, 0, 0)); fsub = font(52)
+    cmd = ['ffmpeg', '-y', '-v', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{W}x{H}', '-r', str(FPS), '-i', '-',
+           '-i', voice_wav, '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-pix_fmt', 'yuv420p',
+           '-c:a', 'aac', '-b:a', '128k', '-shortest', '-movflags', '+faststart', out_mp4]
+    pr = subprocess.Popen(cmd, stdin=subprocess.PIPE)
+    for f in range(int(total * FPS)):
+        t = f / FPS
+        si = max([i for i, sc in enumerate(scenes) if sc['t0'] <= t] or [0]); sc = scenes[si]
+        u = min(1, max(0, (t - sc['t0']) / max(.1, sc['t1'] - sc['t0']))); kind = (si + sc.get('cam', 0)) % 4
+        if kind == 0: z, cx, cy = 1.0 + .16 * u, 360, 720 - 60 * u
+        elif kind == 1: z, cx, cy = 1.14, 310 + 100 * u, 730
+        elif kind == 2: z, cx, cy = 1.18 - .15 * u, 360, 740
+        else: z, cx, cy = 1.05 + .30 * u, 360, 770 - 150 * u
+        hw, hh = W / (2 * z), H / (2 * z); cx = min(max(cx, hw), W - hw); cy = min(max(cy, hh), H - hh)
+        im = Image.new('RGB', (W * R, H * R)); d = art.Tr(ImageDraw.Draw(im), R * z, cx, cy, W * R, H * R)
+        art.draw_bg_story(d, sc['theme'])
+        if sc.get('crowd'): art.draw_crowd(d, sc['crowd'], 360, 1040 if sc['roles'] else 1110, .27 if sc['roles'] else .36, t, seed=sc['theme'])
+        n = len(sc['roles'])
+        for k, r in enumerate(sc['roles']):
+            pe = art.ease_back((t - sc['t0'] - .1 * k) / .5)
+            if pe <= .02: continue
+            s = HS[n] * r['look'].get('scale', 1.0) / 735 * (.8 if sc.get('crowd') else 1.0)
+            A = dict(t=t, g=.25 + .2 * math.sin(t * 1.7 + k), a=0.0, ph=k * 1.7, bob=3 * math.sin(2 * math.pi * 1.0 * t + k), emo=art.emo_vec(r['emotion'], r['emotion'], 1),
+                     blink=(math.sin(math.pi * ((t + k) % 3.4) / .15) if ((t + k) % 3.4) < .15 else 0.0), gaze=0.0 if n == 1 else (1.0 if k == 0 else -1.0),
+                     arm_side=1 if k % 2 == 0 else -1, shadow=(0, 0, 0), colored=True)
+            art.draw_char_sketch(d, r['look'], XS[n][k], 1120, s * min(pe, 1.1), A)
+        fr = im.resize((W, H), Image.BILINEAR); dd = ImageDraw.Draw(fr)
+        # word-by-word subtitles (top)
+        words = sc['words']; cur = -1
+        for i, w in enumerate(words):
+            if w[1] <= t: cur = i
+        if cur >= 0 and t < sc['t1']:
+            pg = next((p for p in sc['pages'] if cur in p), None)
+            if pg:
+                lines = _wrap([(i, words[i][0]) for i in pg], fsub, 640)[:3]; y = 130
+                for ln in lines:
+                    txt = ' '.join(x for _, x in ln); tw = dd.textlength(txt, font=fsub); x = W // 2 - tw / 2
+                    for i, w in ln:
+                        ww = dd.textlength(w, font=fsub)
+                        if i == cur: dd.rounded_rectangle((x - 8, y - 32, x + ww + 8, y + 34), radius=12, fill='#2f6bff')
+                        dd.text((x, y), w, font=fsub, fill=(255, 255, 255) if i <= cur else (170, 172, 185), anchor='lm', stroke_width=5, stroke_fill=(15, 15, 22))
+                        x += ww + dd.textlength(' ', font=fsub)
+                    y += 74
+        if sc.get('label') and t - sc['t0'] > .5:
+            lab = sc['label'].upper(); fl = font(base_size(lab, 44, 560)); tw = dd.textlength(lab, font=fl)
+            dd.rounded_rectangle((W // 2 - tw / 2 - 30, 962, W // 2 + tw / 2 + 30, 1040), radius=14, fill=(18, 18, 24), outline=(200, 200, 210), width=3)
+            dd.text((W // 2, 1001), lab, font=fl, fill='white', anchor='mm')
+        if t > total - 2.3:
+            fr = Image.blend(fr, black, .62); dd = ImageDraw.Draw(fr)
+            dd.text((W // 2, 560), end_text, font=font(base_size(end_text, 70, 620)), fill='white', anchor='mm', stroke_width=6, stroke_fill=(15, 15, 22))
+            if page_name: dd.text((W // 2, 660), page_name, font=font(base_size(page_name, 46, 620)), fill='#ffd43b', anchor='mm', stroke_width=5, stroke_fill=(15, 15, 22))
+        al = min(1.0, (t - sc['t0']) / .15 if si > 0 else 1.0, (sc['t1'] - t) / .15 if si < len(scenes) - 1 else 1.0)
+        if al < 1: fr = Image.blend(black, fr, max(0.0, al))
+        pr.stdin.write(fr.tobytes())
+    pr.stdin.close(); pr.wait()
+    if pr.returncode: raise RuntimeError('ffmpeg render failed')
