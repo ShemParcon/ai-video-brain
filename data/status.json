@@ -368,11 +368,11 @@
       "built_rev": 0
     },
     "2026-11-15-puns-2": {
-      "state": "queued",
-      "pct": 0,
+      "state": "scripting",
+      "pct": 10,
       "msg": "",
       "date": "2026-11-15",
-      "updated": "2026-11-15 07:48:21"
+      "updated": "2026-11-15 08:08:19"
     },
     "2026-11-15-relatable-1": {
       "state": "queued",
