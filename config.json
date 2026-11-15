@@ -1,51 +1,26 @@
 {
-  "version": 4,
-  "max_videos_per_day": 15,
-  "language": "English (casual, punchy, viral joke humor)",
+  "version": 5,
+  "max_videos_per_day": 2,
+  "language": "English",
+  "narrator_voice": "en-US-ChristopherNeural",
   "pages": [
     {
-      "id": "sketch",
-      "name": "Deadpan Sketch",
-      "style": "sketch",
-      "per_day": 3,
-      "niche": "minimal black and white deadpan sketch comedy: one everyday place (waiting room, meeting, courtroom, customer service, afterlife office, school, park), a calm setup and an unexpected twist in the last line; relatable one-liners like when your name is called in a meeting and you were not listening",
-      "guide": "Deadpan minimal dialogue: lines of 2 to 7 words, flat delivery, 2 characters, one location, escalating absurdity, a twist in the final line, then a silent reaction beat. Text reads like captions at the top of the screen. No weapons or violence."
+      "id": "didyouknow",
+      "name": "Did You Know",
+      "style": "story",
+      "per_day": 1,
+      "target_seconds": 55,
+      "niche": "surprising true trivia: science, history, nature, space, the human body, world records and amazing places around the world",
+      "guide": "Start with Did you know and a surprising fact. Give 4 to 6 facts with concrete numbers, saving the most surprising one for last. Fast, curious, friendly tone."
     },
     {
-      "id": "dadjokes",
-      "name": "Dad Joke Daily",
-      "niche": "classic and fresh dad jokes told by a proud Dad with a groaning Kid or Teen",
-      "per_day": 2
-    },
-    {
-      "id": "puns",
-      "name": "Pun Intended",
-      "niche": "wordplay, puns and one-liner jokes with a silly punchline",
-      "per_day": 2
-    },
-    {
-      "id": "relatable",
-      "name": "Relatable Chaos",
-      "niche": "viral relatable humor: POV skits, me vs reality, adulting fails, things everyone secretly does",
-      "per_day": 2
-    },
-    {
-      "id": "riddles",
-      "name": "Riddle Me This",
-      "niche": "riddles, trick questions and silly would-you-rather jokes with a funny answer",
-      "per_day": 2
-    },
-    {
-      "id": "workmemes",
-      "name": "Work and School Memes",
-      "niche": "viral workplace and school meme humor turned into short skits",
-      "per_day": 2
-    },
-    {
-      "id": "trending",
-      "name": "Trending Jokes",
-      "niche": "jokes riffing on currently trending topics, memes and challenges (safe, neutral and clean)",
-      "per_day": 2
+      "id": "rescue",
+      "name": "True Rescue Stories",
+      "style": "story",
+      "per_day": 1,
+      "target_seconds": 110,
+      "niche": "true survival and rescue stories from different countries (trapped miners, lost hikers, shipwreck survivors, earthquake, cave and sea rescues) and famous historical stories retold",
+      "guide": "Tell it in order: setup, the crisis with rising stakes and specific numbers, the turning point, the rescue, the outcome. Respectful, gripping, non graphic."
     }
   ]
 }
