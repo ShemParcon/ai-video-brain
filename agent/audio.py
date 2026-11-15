@@ -89,13 +89,19 @@ def music(dur):
         if s < e: out[s:e] += note[:e - s]
     return out
 
-def mix(total, lines, path):
+def pad(dur):
+    x = np.arange(int((dur + 1) * SR)) / SR; out = np.zeros(len(x), np.float32)
+    for f, v in ((98, 1.0), (147, .6), (196, .5), (247, .3)):
+        out += v * np.sin(2 * np.pi * f * x) * (.7 + .3 * np.sin(2 * np.pi * (.08 + f / 4000) * x))
+    return (out / 2.4).astype(np.float32)
+
+def mix(total, lines, path, mood='arp'):
     out = np.zeros(int(total * SR) + SR, np.float32)
     for l in lines:
         s = int(l['start'] * SR); out[s:s + len(l['audio'])] += l['audio']
         fx = sfx(l.get('sfx')) if l.get('sfx') else None
         if fx is not None: e = min(len(out), s + len(fx)); out[s:e] += .5 * fx[:e - s]
-    m = music(total)[:len(out)]; fade = np.ones(len(m)); k = int(1.2 * SR)
+    m = (pad(total) if mood == 'pad' else music(total))[:len(out)]; fade = np.ones(len(m)); k = int(1.2 * SR)
     fade[int(total * SR) - k:] = np.linspace(1, 0, k + len(m) - int(total * SR))[:len(m) - (int(total * SR) - k)]
     out[:len(m)] += .03 * m * fade
     pk = np.abs(out).max()
