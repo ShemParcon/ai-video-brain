@@ -440,11 +440,11 @@
       "built_rev": 0
     },
     "2026-11-15-didyouknow-1": {
-      "state": "rendering",
-      "pct": 60,
+      "state": "uploading",
+      "pct": 90,
       "msg": "",
       "date": "2026-11-15",
-      "updated": "2026-11-15 16:57:48"
+      "updated": "2026-11-15 16:58:29"
     },
     "2026-11-15-rescue-1": {
       "state": "queued",
