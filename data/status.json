@@ -440,11 +440,11 @@
       "built_rev": 0
     },
     "2026-11-15-didyouknow-1": {
-      "state": "scripting",
-      "pct": 10,
+      "state": "voicing",
+      "pct": 35,
       "msg": "",
       "date": "2026-11-15",
-      "updated": "2026-11-15 16:51:44"
+      "updated": "2026-11-15 16:56:29"
     },
     "2026-11-15-rescue-1": {
       "state": "queued",
