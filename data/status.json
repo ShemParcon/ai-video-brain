@@ -416,11 +416,12 @@
       "built_rev": 0
     },
     "2026-11-15-workmemes-2": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-15",
-      "updated": "2026-11-15 08:18:12"
+      "updated": "2026-11-15 08:18:16",
+      "built_rev": 0
     },
     "2026-11-15-trending-1": {
       "state": "queued",

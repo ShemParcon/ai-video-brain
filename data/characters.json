@@ -1816,5 +1816,53 @@
     "voice": "en-US-SteffanNeural",
     "pitch": 0,
     "rate": 5
+  },
+  "workmemes:teacher": {
+    "v": 3,
+    "page": "workmemes",
+    "role": "Teacher",
+    "gender": "F",
+    "age": "adult",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#4a2e1f",
+      "shirt": "#3b82f6",
+      "style": "bun",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#334155",
+      "shoe": "#1f2937",
+      "skirt": true,
+      "skirtc": "#b45309"
+    },
+    "voice": "en-AU-NatashaNeural",
+    "pitch": 0,
+    "rate": 5
+  },
+  "workmemes:student": {
+    "v": 3,
+    "page": "workmemes",
+    "role": "Student",
+    "gender": "M",
+    "age": "kid",
+    "look": {
+      "skin": "#f6d1a7",
+      "hair": "#4a2e1f",
+      "shirt": "#f59e0b",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 0.85,
+      "pants": "#334155",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-AnaNeural",
+    "pitch": 0,
+    "rate": 4
   }
 }
