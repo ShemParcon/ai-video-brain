@@ -31,6 +31,71 @@ def posts(sc, item):
     return {"yt_title": yt_title, "yt_desc": f"{cap}\n\n{' '.join(tags[:6])} #shorts",
             "tiktok": f"{cap}\n\n{' '.join(tags[:5])} #fyp #foryou", "facebook": f"{cap}\n\n{' '.join(tags[:4])}"}
 
+NARRATOR = "en-US-ChristopherNeural"
+
+def gen_story_script(item, page, cfg):
+    if os.getenv("DRY_SCRIPT"): return load(os.getenv("DRY_SCRIPT"))
+    target = int(page.get("target_seconds") or 60); words = int(target * 2.3); n = max(5, round(target / 7))
+    facts = "\n".join("- " + f for f in item.get("facts", [])) or "(use only very well documented facts)"
+    prompt = """You are the scriptwriter for a narrated explainer video told with simple stick figure animation.
+Topic: __TITLE__ (__KIND__, __COUNTRY__). Summary: __PREMISE__.
+Verified facts you may use:
+__FACTS__
+Write a voice-over of about __WORDS__ words (about __TARGET__ seconds) split into __N__ scenes of 1 to 3 short sentences each.
+Rules: use ONLY the verified facts above and other very well documented details. Do NOT invent names, numbers, dates, quotes or dialogue. If unsure, leave it out or say about. Tell it as a gripping story: open with a hook sentence (a surprising fact or a question), build tension step by step with concrete numbers, reach the turning point, end with the outcome and one memorable closing line. Respectful tone, nothing graphic. For trivia videos give 4 to 6 facts, each with a concrete number or detail, saving the most surprising for last. Write for text to speech: plain words, no hyphenated words, no acronyms, no symbols, numbers written the way a person would say them.
+For each scene choose: setting (one of: mine, cave, desert, mountain, snow, ocean, forest, city, indoor, night, sky), 0 to 3 characters (a role such as Miner, Rescuer, President, Doctor, Hiker) with an emotion (neutral, happy, angry, sad, surprised), an optional label (short on-screen text with a key number or date, max 4 words, like DAY 17 or 33 MEN or 700 METERS DEEP), and an optional crowd (number of extra people, 0 to 14).
+Language: __LANG__.
+Return ONLY JSON:
+{"scenes":[{"setting":"mine","narration":"...","characters":[{"role":"Miner","gender":"M","age":"adult","emotion":"sad"}],"label":"DAY 1","crowd":0}],"youtube_title":"max 70 chars","caption":"2 short sentences with emojis ending with a question for comments","hashtags":["#didyouknow","#truestory","#tag3","#tag4","#tag5","#tag6","#tag7","#tag8"]}"""
+    for k, v in (("__TITLE__", item["title"]), ("__KIND__", item.get("kind", "story")), ("__COUNTRY__", item.get("country", "")), ("__PREMISE__", item["premise"]),
+                 ("__FACTS__", facts), ("__WORDS__", str(words)), ("__TARGET__", str(target)), ("__N__", str(n)), ("__LANG__", cfg.get("language", "English"))):
+        prompt = prompt.replace(k, v)
+    return llm_json(prompt)
+
+def word_times(text, start, dur):
+    ws = audio.clean(text).split() or ["..."]
+    wt = [len(w) + (6 if w[-1:] in ",;:" else 0) + (10 if w[-1:] in ".?!" else 0) for w in ws]; tot = sum(wt); acc = 0; out = []
+    for w, x in zip(ws, wt): out.append((w, start + dur * acc / tot, start + dur * (acc + x) / tot)); acc += x
+    return out
+
+def build_story(item, page, cfg, reg, st, date, res):
+    id = item["id"]
+    def stage(state, pct, msg=""): set_item(st, id, state=state, pct=pct, msg=msg, date=date); git_push(f"{state} {id}")
+    stage("scripting", 10)
+    sc = gen_story_script(item, page, cfg)
+    stage("voicing", 35)
+    os.makedirs(p("out", "tmp"), exist_ok=True)
+    narr = dict(voice=cfg.get("narrator_voice", NARRATOR), pitch=0, rate=-2, gender="M")
+    scenes, t = [], 0.0; maxt = min(175, int(page.get("target_seconds") or 60) * 1.5 + 10)
+    for i, s in enumerate(sc.get("scenes", [])):
+        text = str(s.get("narration", "")).strip()
+        if not text: continue
+        a = audio.tts(text, narr, p("out", "tmp", f"{id}_{i}")); dur = len(a) / audio.SR
+        if t + dur > maxt and len(scenes) >= 4: break
+        vs = t + .3; t1 = vs + dur + .4; roles = []
+        for c in (s.get("characters") or [])[:3]:
+            role = str(c.get("role", "")).strip()
+            if not role: continue
+            ch = art.get_char(reg, page["id"], role, c.get("gender", "M"), c.get("age", "adult"))
+            roles.append({"role": role, "look": ch["look"], "emotion": c.get("emotion") if c.get("emotion") in EMOS else "neutral"})
+        try: crowd = max(0, min(14, int(s.get("crowd") or 0)))
+        except Exception: crowd = 0
+        scenes.append(dict(theme=art.story_theme(s.get("setting")), roles=roles, label=str(s.get("label") or "")[:28], crowd=crowd, t0=t, t1=t1,
+                           words=word_times(text, vs, dur), audio=a, vstart=vs, cam=i))
+        t = t1
+    if not scenes: raise RuntimeError("empty script")
+    total = t + 2.4
+    stage("rendering", 60)
+    wav = p("out", "tmp", f"{id}.wav")
+    audio.mix(total, [dict(start=x["vstart"], audio=x["audio"], sfx="ding" if x["label"] else None) for x in scenes], wav, mood="pad")
+    mp4 = p("out", f"{id}.mp4"); render.render_story(scenes, total, wav, mp4, page_name=page["name"])
+    stage("uploading", 90)
+    url = upload(date, mp4)
+    res["items"][id] = dict(page=page["id"], title=item["title"], url=url, duration=round(total, 1), **posts(sc, item))
+    save(p("data", "results", f"{date}.json"), res)
+    set_item(st, id, state="done", pct=100, msg="", built_rev=item.get("rev", 0), date=date)
+    hist = load(p("data", "history.json"), []); hist.append(item["title"]); save(p("data", "history.json"), hist[-200:])
+
 def upload(date, path):
     if not os.getenv("GITHUB_ACTIONS"): return path
     tag = f"videos-{date}"; run = lambda *a: subprocess.run(a, capture_output=True, text=True)
@@ -107,7 +172,7 @@ def main():
     reg = load(p("data", "characters.json"), {}); res = load(p("data", "results", f"{date}.json"), {"items": {}}); ok = bad = 0
     for it in todo:
         try:
-            build(it, pages[it["page"]], cfg, reg, st, date, res); ok += 1
+            (build_story if pages[it["page"]].get("style") == "story" else build)(it, pages[it["page"]], cfg, reg, st, date, res); ok += 1
         except Exception as e:
             traceback.print_exc(); bad += 1; set_item(st, it["id"], state="error", pct=100, msg=str(e)[:300], date=date)
         save(p("data", "characters.json"), reg); git_push(f"finished {it['id']}")
