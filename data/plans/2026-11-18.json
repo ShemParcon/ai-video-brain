@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-18",
+  "items": [
+    {
+      "id": "2026-11-18-didyouknow-1",
+      "page": "didyouknow",
+      "title": "5 Mind-Blowing Facts About the Sahara Desert",
+      "kind": "did you know",
+      "country": "North Africa",
+      "premise": "Did you know the Sahara Desert is much more than just endless sand dunes? From green historical eras to feeding the Amazon rainforest, here are 5 mind-blowing facts about the world's most famous desert.",
+      "facts": [
+        "Did you know the Sahara covers 9.2 million square kilometers, making it almost the exact same size as the entire United States.",
+        "Sand dunes actually cover only 15 to 20 percent of the desert, while the rest consists of barren rocky plains and mountain ranges.",
+        "Temperatures in the Sahara can swing by over 80°F (45°C) in a single day, dropping below freezing at night.",
+        "Around 6,000 years ago, the Sahara was a lush green rainforest filled with lakes, hippos, and giraffes.",
+        "Earth's orbital tilt alters monsoon patterns every 20,000 years, periodically transforming the desert back into a green oasis.",
+        "Strong desert winds lift over 182 million tons of Saharan dust high into the atmosphere every single year.",
+        "More than 27 million tons of this nutrient-rich Saharan dust travel 3,000 miles across the Atlantic Ocean to fertilize the Amazon Rainforest.",
+        "Emi Koussi, an extinct shield volcano in Chad, forms the highest point of the Sahara at 3,415 meters (11,204 feet).",
+        "Archaeologists have discovered over 10,000 prehistoric rock carvings depicting ancient Saharan hunters and wildlife.",
+        "The Sahara spans across 11 different North African countries and continues to expand southward."
+      ],
+      "roles": [
+        "Stick Explorer",
+        "Narrator"
+      ],
+      "status": "planned",
+      "rev": 0
+    },
+    {
+      "id": "2026-11-18-rescue-1",
+      "page": "rescue",
+      "title": "Trapped 2,300 Feet Underground: The 2010 Chilean Mine Rescue",
+      "kind": "rescue story",
+      "country": "Chile",
+      "premise": "On August 5, 2010, 33 miners were trapped deep inside the San José gold and copper mine after a catastrophic cave-in. Against all odds, they survived 69 days underground before a historic engineering feat brought them home.",
+      "facts": [
+        "On August 5, 2010, a massive 700,000-ton rock collapse trapped 33 miners inside the San José Mine near Copiapó, Chile.",
+        "The miners were trapped 700 meters (2,300 feet) underground, nearly 3 miles from the mine's entrance.",
+        "Underground shelter conditions reached 35°C (95°F) with 90 percent humidity and minimal ventilation.",
+        "With emergency food meant for only 2 days, each miner consumed just two spoonfuls of tuna every 48 hours to survive.",
+        "On August 22, 2010 (Day 17), a probe drill reached the shelter and returned to the surface with a note attached.",
+        "Written in bright red marker, the famous note read: 'Estamos bien en el refugio, los 33' ('We are well in the shelter, all 33 of us').",
+        "Engineers set up three separate drilling rigs—Plan A, Plan B, and Plan C—working around the clock to create an escape shaft.",
+        "Plan B's T130 drill successfully broke through into the underground chamber on October 9, 2010.",
+        "A custom steel rescue capsule named Fénix 2, measuring just 54 centimeters (21 inches) wide, was lowered to retrieve the men.",
+        "On October 13, 2010, after 69 days trapped underground, all 33 miners were safely brought to the surface in a 22.5-hour operation."
+      ],
+      "roles": [
+        "Miner",
+        "Rescuer",
+        "Drill Operator"
+      ],
+      "status": "planned",
+      "rev": 0
+    }
+  ]
+}
