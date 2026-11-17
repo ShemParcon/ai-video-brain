@@ -456,11 +456,11 @@
       "built_rev": 0
     },
     "2026-11-17-didyouknow-1": {
-      "state": "voicing",
-      "pct": 35,
+      "state": "rendering",
+      "pct": 60,
       "msg": "",
       "date": "2026-11-17",
-      "updated": "2026-11-17 10:56:58"
+      "updated": "2026-11-17 10:57:19"
     },
     "2026-11-17-rescue-1": {
       "state": "queued",
