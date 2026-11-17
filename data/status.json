@@ -1,10 +1,10 @@
 {
   "run": {
-    "state": "finished",
-    "date": "2026-11-16",
-    "total": 0,
-    "message": "0 done, 0 failed",
-    "updated": "2026-11-16 07:54:07"
+    "state": "running",
+    "date": "2026-11-17",
+    "total": 2,
+    "message": "started",
+    "updated": "2026-11-17 10:51:58"
   },
   "items": {
     "2026-11-12-opisina-1": {
@@ -454,6 +454,20 @@
       "date": "2026-11-15",
       "updated": "2026-11-15 17:05:14",
       "built_rev": 0
+    },
+    "2026-11-17-didyouknow-1": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-17",
+      "updated": "2026-11-17 10:51:58"
+    },
+    "2026-11-17-rescue-1": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-17",
+      "updated": "2026-11-17 10:51:58"
     }
   }
 }
