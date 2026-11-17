@@ -47,7 +47,7 @@ details{background:var(--card);border:1px solid var(--line);border-radius:16px;p
 .ring{height:12px;background:#243050;border-radius:9px;overflow:hidden}.ring i{display:block;height:100%;background:linear-gradient(90deg,#22c55e,#7ff0a8);transition:width .5s}
 .big{font-size:26px;font-weight:800}
 </style></head><body>
-<div id="top"><div class="brand"><span>😂 Dad Joke Studio</span><span id="pill" class="pill p-ready"><i></i>READY</span></div>
+<div id="top"><div class="brand"><span>😂 Dad Joke Studio <small style="font-weight:400;color:#8f9bb8;font-size:11px">v2</small></span><span id="pill" class="pill p-ready"><i></i>READY</span></div>
 <div id="act" class="act"><span class="t">Loading…</span></div><div id="mini" class="mini"><i></i></div>
 <div class="tabs" id="tabs"></div></div>
 <main id="app"></main><div id="toasts"></div><div id="modal"></div>
@@ -57,9 +57,10 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 if(location.hash.includes('t=')){const h=new URLSearchParams(location.hash.slice(1));LS.token=h.get('t')||LS.token;LS.repo=h.get('r')||LS.repo;history.replaceState(null,'',location.pathname)}
 const hm=location.hostname.match(/^(.+)\.github\.io$/),seg=location.pathname.split('/')[1];
 const S={repo:LS.repo||(hm&&seg?hm[1]+'/'+seg:''),token:LS.token||'',tab:'add',cfg:{},queue:{items:[]},res:{items:{}},status:{items:{}},runs:[],steps:[],stepsRun:null,
- busy:{},pending:null,text:LS.vb_draft||'',editId:null,err:'',lastOk:0,loading:false,prev:null,prevRun:{}};
+ boot:null,busy:{},pending:null,text:LS.vb_draft||'',editId:null,err:'',lastOk:0,loading:false,prev:null,prevRun:{}};
 let LOG=[];try{LOG=JSON.parse(LS.vb_log||'[]')}catch(e){}
 function log(msg,lvl='i'){LOG.unshift({t:Date.now(),m:msg,l:lvl});LOG=LOG.slice(0,200);try{LS.vb_log=JSON.stringify(LOG)}catch(e){}if(S.tab=='log')renderMain()}
+window.addEventListener('error',e=>{log('⚠ App error: '+(e.message||e),'er')});window.addEventListener('unhandledrejection',e=>{log('⚠ '+((e.reason&&e.reason.message)||e.reason),'er')});
 function toast(m,type=''){const d=document.createElement('div');d.className='toast '+type;d.textContent=m;$('#toasts').append(d);setTimeout(()=>d.remove(),3400)}
 function ask(msg,ok='Yes'){return new Promise(res=>{const m=$('#modal');m.innerHTML=`<div class="ov"><div class="dlg"><p>${esc(msg)}</p><div class="row"><button class="btn ghost sp" id="mn">Cancel</button><button class="btn primary sp" id="my">${esc(ok)}</button></div></div></div>`;m.querySelector('#mn').onclick=()=>{m.innerHTML='';res(false)};m.querySelector('#my').onclick=()=>{m.innerHTML='';res(true)}})}
 const phToday=()=>new Date(Date.now()+8*3600e3).toISOString().slice(0,10);
@@ -97,12 +98,17 @@ function preview(text){const blocks=text.split(/^\s*(?:-{3,}|={3,}|_{3,})\s*$/m)
    if(!roles.some(x=>x.toLowerCase()==r.toLowerCase()))roles.push(r);n++}
   out.push({title:title||'(untitled)',roles,n})}return out}
 function overall(){
+ if(S.boot)return{k:'wait',pill:'LOADING',txt:'⏳ '+S.boot.label+' ('+S.boot.n+' of '+S.boot.total+')',on:1,pct:Math.round((S.boot.n-1)/S.boot.total*100)};
  const pr=activeRuns()[0],pc=pendingCount(),its=items();
  const cur=its.map(i=>({i,...itemState(i)})).find(x=>['scripting','voicing','rendering','uploading'].includes(x.st));
  const done=its.filter(i=>itemState(i).st=='done').length;
  if(pr){const t0=pdate(pr.run_started_at||pr.created_at);
   if(pr.status=='queued')return{k:'wait',pill:'QUEUED',txt:'⏳ Waiting in line to start… ('+ago(t0)+')',on:1};
-  return{k:'run',pill:'RUNNING',txt:'⚙️ Making videos'+(cur?' · '+STEPS.find(s=>s[0]==cur.st)[1]+': “'+(cur.i.title||'joke')+'”':' · starting up')+' · '+dur(Date.now()-t0),on:1}}
+  const mine=its.filter(i=>{const s=S.status.items[i.id]||{};return s.state&&s.updated&&pdate(s.updated)>=t0-8000});
+  const tot=Math.max(+((S.status.run||{}).total)||0,mine.length)||1;
+  const sum=mine.reduce((a,i)=>{const s=S.status.items[i.id];return a+(s.state=='done'||s.state=='error'?100:(s.pct||0))},0);
+  const pct=Math.min(99,Math.round(sum/(tot*100)*100)),dn=mine.filter(i=>['done','error'].includes(S.status.items[i.id].state)).length;
+  return{k:'run',pill:'RUNNING',txt:'⚙️ '+dn+' of '+tot+' videos done · '+pct+'%'+(cur?' · '+STEPS.find(s=>s[0]==cur.st)[1]+': “'+((preview(cur.i.text||'')[0]||{}).title||'joke')+'”':' · starting up')+' · '+dur(Date.now()-t0),on:1,pct}}
  if(isPending())return{k:'wait',pill:'STARTING',txt:'🚀 Request sent — waiting for GitHub to start…',on:1};
  const l=S.runs.find(isRun);
  if(l&&l.conclusion=='failure')return{k:'fail',pill:'LAST RUN FAILED',txt:'❌ Last run failed '+ago(pdate(l.updated_at))+' · tap for details'};
@@ -112,7 +118,7 @@ function overall(){
 function renderChrome(){const o=overall(),p=$('#pill');
  p.className='pill '+({run:'p-run',wait:'p-wait',fail:'p-fail',idle:'p-idle',ready:'p-ready'}[o.k]);p.innerHTML='<i></i>'+o.pill;
  const a=$('#act');a.className='act '+({run:'run',fail:'fail',idle:'ok'}[o.k]||'');a.innerHTML='<span class="t">'+esc(o.txt)+'</span><span>›</span>';
- $('#mini').className='mini'+(o.on?' on':'');
+ $('#mini').className='mini'+(o.on?' on':'');$('#mini').innerHTML=o.pct!=null?'<i style="width:'+o.pct+'%;margin:0;animation:none"></i>':'<i></i>';
  $('#tabs').innerHTML=[['add','✍️','Add'],['queue','📋','Queue'],['videos','🎞️','Videos'],['log','📜','Log'],['settings','⚙️','Settings']].map(t=>`<button class="tab ${S.tab==t[0]?'on':''}" data-tab="${t[0]}"><b>${t[1]}</b>${t[2]}${t[0]=='queue'&&pendingCount()?' ('+pendingCount()+')':''}</button>`).join('')}
 function btn(key,cls,label,busyLabel,dis){const b=S.busy[key];return `<button class="btn ${cls}" data-act="${key}" ${b||dis?'disabled':''}>${b?'<span class="spin"></span> '+busyLabel:label}</button>`}
 function goalCard(){const n=madeToday(),g=goal(),run=overall().on,pc=pendingCount();
@@ -167,16 +173,20 @@ settings(){const c=S.cfg;return `<div class="card"><h3>Connection</h3><label>Git
  ${btn('savecfg','primary','💾 Save settings','Saving…')}<div class="mut" style="margin-top:8px">Waiting jokes are also made automatically every day at 4:00 AM (Philippine time).</div></div>`}};
 function renderMain(){const ae=document.activeElement;if(S.tab=='add'&&ae&&ae.id=='jt')return;
  $('#app').innerHTML=(S.err&&S.tab!='settings'?`<div class="card err">⚠️ ${esc(S.err)}</div>`:'')+views[S.tab]()}
+function bootCard(){const b=S.boot||{n:1,total:4,label:'Starting…'};return `<div class="card"><div class="row"><span class="spin"></span><b>Starting up…</b></div><div class="mut" style="margin:8px 0">${esc(b.label)}</div><div class="bar"><i style="width:${Math.round((b.n-1)/b.total*100)}%"></i></div></div>`}
+function bootStep(n,label){S.boot={n,total:4,label};renderChrome();$('#app').innerHTML=bootCard()}
 function render(){renderChrome();renderMain()}
 function refreshGoal(){const g=$('#goal');if(g&&!g.contains(document.activeElement))g.innerHTML=goalCard()}
 async function loadAll(manual){
  if(!S.repo){S.tab='settings';return render()}
  S.loading=true;
  try{S.err='';
-  S.cfg=await gread('config.json')||S.cfg;S.queue=await gread('data/queue.json')||{items:[]};S.res=await gread('data/results.json')||{items:{}};
-  await poll(true);S.lastOk=Date.now();if(manual)log('Refreshed from GitHub','ok')
+  bootStep(1,'Connecting to GitHub and loading your settings…');S.cfg=await gread('config.json')||S.cfg;
+  bootStep(2,'Loading your joke queue…');S.queue=await gread('data/queue.json')||{items:[]};
+  bootStep(3,'Loading your finished videos…');S.res=await gread('data/results.json')||{items:{}};
+  bootStep(4,'Checking what is running…');await poll(true);S.lastOk=Date.now();if(manual)log('Refreshed from GitHub','ok')
  }catch(e){S.err=e.message;log('⚠ '+e.message,'er')}
- S.loading=false;render()}
+ S.boot=null;S.loading=false;render()}
 async function poll(inner){
  if(!S.repo)return;
  try{
