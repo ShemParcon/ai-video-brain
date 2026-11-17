@@ -464,11 +464,11 @@
       "built_rev": 0
     },
     "2026-11-17-rescue-1": {
-      "state": "scripting",
-      "pct": 10,
+      "state": "voicing",
+      "pct": 35,
       "msg": "",
       "date": "2026-11-17",
-      "updated": "2026-11-17 10:58:15"
+      "updated": "2026-11-17 11:02:37"
     }
   }
 }
