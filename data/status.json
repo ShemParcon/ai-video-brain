@@ -80,11 +80,12 @@
       "built_rev": 0
     },
     "jmwk49sccjnq": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-17",
-      "updated": "2026-11-17 11:15:53"
+      "updated": "2026-11-17 11:15:55",
+      "built_rev": 0
     }
   }
 }
