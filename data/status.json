@@ -1,10 +1,10 @@
 {
   "run": {
-    "state": "finished",
-    "date": "2026-11-17",
+    "state": "running",
+    "date": "2026-11-18",
     "total": 10,
-    "message": "10 done, 0 failed",
-    "updated": "2026-11-17 11:15:56"
+    "message": "making 10 video(s)",
+    "updated": "2026-11-18 00:08:20"
   },
   "items": {
     "jmwk49sc10g1": {
@@ -86,6 +86,76 @@
       "date": "2026-11-17",
       "updated": "2026-11-17 11:15:55",
       "built_rev": 0
+    },
+    "jmwkvyz8rt3x": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-18",
+      "updated": "2026-11-18 00:08:20"
+    },
+    "jmwkvyz8r4mt": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-18",
+      "updated": "2026-11-18 00:08:20"
+    },
+    "jmwkvyz8rq31": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-18",
+      "updated": "2026-11-18 00:08:20"
+    },
+    "jmwkvyz8rak6": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-18",
+      "updated": "2026-11-18 00:08:20"
+    },
+    "jmwkvyz8rjis": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-18",
+      "updated": "2026-11-18 00:08:20"
+    },
+    "jmwkvyz8rqcc": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-18",
+      "updated": "2026-11-18 00:08:20"
+    },
+    "jmwkvyz8r9yl": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-18",
+      "updated": "2026-11-18 00:08:20"
+    },
+    "jmwkvyz8rcos": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-18",
+      "updated": "2026-11-18 00:08:20"
+    },
+    "jmwkvyz8rd7t": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-18",
+      "updated": "2026-11-18 00:08:20"
+    },
+    "jmwkvyz8rllt": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-18",
+      "updated": "2026-11-18 00:08:20"
     }
   }
 }
