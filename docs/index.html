@@ -1,103 +1,239 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><meta name="theme-color" content="#111827"><title>Video Brain</title>
+<link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><meta name="theme-color" content="#0b1020"><title>Dad Joke Studio</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#0b1020;color:#e5e7eb;font:15px system-ui,sans-serif;padding-bottom:24px}
-header{padding:14px 16px;font-weight:700;font-size:18px;background:#111827;position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center}
-main{padding:12px;max-width:640px;margin:auto}nav{position:sticky;top:52px;z-index:4;display:flex;background:#111827;border-bottom:1px solid #1f2937}
-nav button{flex:1;background:none;border:0;color:#9ca3af;padding:14px 4px;font-size:14px}nav button.on{color:#22c55e;font-weight:700}
-.card{background:#151c30;border:1px solid #1f2937;border-radius:14px;padding:12px;margin:10px 0}
-input,select,textarea{width:100%;background:#0b1020;color:#e5e7eb;border:1px solid #2b3550;border-radius:10px;padding:10px;font:inherit;margin:4px 0}
-textarea{min-height:80px}button.b{background:#22c55e;color:#06220f;border:0;border-radius:10px;padding:10px 14px;font-weight:700;margin:4px 4px 4px 0}
-button.g{background:#26304d;color:#e5e7eb}button.r{background:#7f1d1d;color:#fff}.chip{font-size:12px;padding:2px 8px;border-radius:99px;background:#26304d}
-.bar{height:8px;background:#26304d;border-radius:9px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:#22c55e}
-.err{color:#fca5a5;font-size:13px}.mut{color:#94a3b8;font-size:13px}video{width:100%;border-radius:10px;background:#000;max-height:60vh}
+:root{--bg:#0b1020;--card:#141b30;--card2:#1a2340;--line:#243050;--tx:#e8ecf6;--mut:#8f9bb8;--g:#22c55e;--b:#3b82f6;--r:#ef4444;--a:#f59e0b}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:40px}
+#top{position:sticky;top:0;z-index:20;background:linear-gradient(#0b1020,#0e1530);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.brand{display:flex;align-items:center;justify-content:space-between;padding:10px 14px 4px;font-weight:800;font-size:18px}
+.pill{font-size:12px;font-weight:800;letter-spacing:.5px;padding:5px 11px;border-radius:99px;display:flex;align-items:center;gap:6px}
+.pill i{width:8px;height:8px;border-radius:50%;background:currentColor;display:block}
+.p-idle{background:#12301f;color:#4ade80}.p-run{background:#10264f;color:#7db3ff}.p-run i{animation:pulse 1s infinite}.p-wait{background:#3a2a08;color:#fbbf24}.p-wait i{animation:pulse 1s infinite}.p-fail{background:#3b1212;color:#ff8a8a}.p-ready{background:#222b45;color:#a8b3d1}
+.act{margin:2px 12px 8px;padding:9px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:13.5px;display:flex;gap:8px;align-items:center;cursor:pointer}
+.act .t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.act.run{border-color:#2b4f99;background:#0f1d3d}.act.fail{border-color:#6b2020}.act.ok{border-color:#1e5a37}
+.mini{height:3px;background:#243050;margin:0 12px 6px;border-radius:9px;overflow:hidden;display:none}.mini.on{display:block}.mini i{display:block;height:100%;width:40%;background:var(--b);animation:slide 1.4s infinite}
+.tabs{display:flex;gap:6px;padding:0 10px 10px;overflow-x:auto}
+.tab{flex:1;min-width:64px;background:var(--card);border:1px solid var(--line);color:var(--mut);border-radius:12px;padding:8px 4px;font-size:12px;font-weight:700;text-align:center}
+.tab b{display:block;font-size:18px;font-weight:400}.tab.on{background:#16331f;border-color:#2b7a4b;color:#7ff0a8}
+main{padding:12px;max-width:680px;margin:auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0}
+.card h3{margin:0 0 8px;font-size:15px}.mut{color:var(--mut);font-size:13px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.sp{flex:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:12px 16px;font:700 15px system-ui;color:#fff;min-height:46px;background:#2a3558}
+.btn.primary{background:linear-gradient(#27c75f,#1ea34c);color:#04200e}.btn.danger{background:linear-gradient(#e24a4a,#b93232)}.btn.ghost{background:#222c4b;color:#cdd6ee}.btn.blue{background:linear-gradient(#4a8cf0,#2f6bd6)}
+.btn.sm{padding:8px 12px;min-height:38px;font-size:13.5px;border-radius:10px}.btn:active{transform:scale(.97)}.btn[disabled]{opacity:.45;pointer-events:none}.btn.full{width:100%}
+.spin{width:16px;height:16px;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:rot .8s linear infinite;display:inline-block}
+.chip{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:#26304f;color:#c3cde6}
+.c-done{background:#12301f;color:#4ade80}.c-work{background:#10264f;color:#7db3ff}.c-err{background:#3b1212;color:#ff8a8a}.c-wait{background:#3a2a08;color:#fbbf24}.c-stop{background:#3a2020;color:#e0a0a0}
+.tag{font-size:12px;color:#b8c3e0;background:#1d2747;padding:3px 9px;border-radius:8px}
+.title{font-weight:700;font-size:16px;margin:8px 0}
+.steps{display:flex;gap:4px;margin:8px 0}.stp{flex:1;text-align:center;font-size:11px;color:#667394}.stp i{display:block;height:6px;border-radius:9px;background:#243050;margin-bottom:4px}
+.stp.d{color:#4ade80}.stp.d i{background:#22c55e}.stp.n{color:#7db3ff;font-weight:800}.stp.n i{background:linear-gradient(90deg,#3b82f6,#7db3ff,#3b82f6);background-size:200% 100%;animation:slide2 1.2s linear infinite}.stp.e i{background:#ef4444}.stp.e{color:#ff8a8a}
+.bar{height:8px;background:#243050;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--g);transition:width .5s}
+.err{background:#2a1313;border:1px solid #5b2323;color:#ffb0b0;border-radius:10px;padding:9px;font-size:13px;margin-top:8px;word-break:break-word}
+input,select,textarea{width:100%;background:#0b1020;color:var(--tx);border:1px solid #2b3860;border-radius:12px;padding:11px;font:inherit;margin:5px 0}textarea{min-height:76px}
+label{font-size:12.5px;color:var(--mut)}
+video{width:100%;border-radius:12px;background:#000;max-height:56vh;margin:6px 0}
+.log{font:12.5px/1.45 ui-monospace,Menlo,Consolas,monospace}.log div{padding:5px 0;border-bottom:1px solid #1c2543;display:flex;gap:8px}.log time{color:#6c7aa0;flex:none}.log .i{color:#cdd6ee}.log .ok{color:#4ade80}.log .er{color:#ff8a8a}.log .wa{color:#fbbf24}
+.js{display:flex;gap:8px;padding:5px 0;font-size:13.5px;align-items:center}.js .ic{width:20px;text-align:center}
+#toasts{position:fixed;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;gap:8px;z-index:60;pointer-events:none}
+.toast{background:#1d2a4d;border:1px solid #3a4f8f;color:#fff;padding:11px 16px;border-radius:12px;font-weight:600;max-width:90%;animation:pop .25s}.toast.ok{background:#12361f;border-color:#2b7a4b}.toast.er{background:#3b1717;border-color:#8a3030}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:70;padding:20px}.dlg{background:var(--card2);border:1px solid #34457a;border-radius:18px;padding:18px;max-width:420px;width:100%}.dlg p{margin:0 0 14px;font-size:16px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#4ade80;margin-right:6px}.dot.live{animation:pulse 1.2s infinite}.dot.off{background:#666}
+@keyframes rot{to{transform:rotate(360deg)}}@keyframes pulse{50%{opacity:.25}}@keyframes slide{0%{margin-left:-40%}100%{margin-left:100%}}@keyframes slide2{to{background-position:-200% 0}}@keyframes pop{from{transform:translateY(12px);opacity:0}}
+.ta{min-height:250px;font-size:16px;line-height:1.5}
+.pv{margin-top:8px;font-size:13.5px}.pv .ok{color:#4ade80}.pv .wa{color:#fbbf24}.pv .er{color:#ff8a8a}
+details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin:10px 0}summary{font-weight:700;cursor:pointer}details pre{white-space:pre-wrap;background:#0b1020;border:1px solid #243050;border-radius:10px;padding:10px;font-size:13px}
+.ring{height:12px;background:#243050;border-radius:9px;overflow:hidden}.ring i{display:block;height:100%;background:linear-gradient(90deg,#22c55e,#7ff0a8);transition:width .5s}
+.big{font-size:26px;font-weight:800}
 </style></head><body>
-<header><span>🎬 Video Brain</span><span id="runs" class="mut"></span></header><nav><button data-t="progress">Progress</button><button data-t="videos">Videos</button><button data-t="plan">Plan</button><button data-t="settings">Settings</button></nav><main id="app">Loading…</main>
-
+<div id="top"><div class="brand"><span>😂 Dad Joke Studio</span><span id="pill" class="pill p-ready"><i></i>READY</span></div>
+<div id="act" class="act"><span class="t">Loading…</span></div><div id="mini" class="mini"><i></i></div>
+<div class="tabs" id="tabs"></div></div>
+<main id="app"></main><div id="toasts"></div><div id="modal"></div>
 <script>
 const LS=localStorage,$=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 if(location.hash.includes('t=')){const h=new URLSearchParams(location.hash.slice(1));LS.token=h.get('t')||LS.token;LS.repo=h.get('r')||LS.repo;history.replaceState(null,'',location.pathname)}
-const m=location.hostname.match(/^(.+)\.github\.io$/),seg=location.pathname.split('/')[1];
-const S={repo:LS.repo||(m&&seg?m[1]+'/'+seg:''),token:LS.token||'',tab:'progress',date:null,dates:[],cfg:{pages:[]},plan:{items:[]},status:{items:{}},res:{items:{}},runs:[],err:''};
+const hm=location.hostname.match(/^(.+)\.github\.io$/),seg=location.pathname.split('/')[1];
+const S={repo:LS.repo||(hm&&seg?hm[1]+'/'+seg:''),token:LS.token||'',tab:'add',cfg:{},queue:{items:[]},res:{items:{}},status:{items:{}},runs:[],steps:[],stepsRun:null,
+ busy:{},pending:null,text:LS.vb_draft||'',editId:null,err:'',lastOk:0,loading:false,prev:null,prevRun:{}};
+let LOG=[];try{LOG=JSON.parse(LS.vb_log||'[]')}catch(e){}
+function log(msg,lvl='i'){LOG.unshift({t:Date.now(),m:msg,l:lvl});LOG=LOG.slice(0,200);try{LS.vb_log=JSON.stringify(LOG)}catch(e){}if(S.tab=='log')renderMain()}
+function toast(m,type=''){const d=document.createElement('div');d.className='toast '+type;d.textContent=m;$('#toasts').append(d);setTimeout(()=>d.remove(),3400)}
+function ask(msg,ok='Yes'){return new Promise(res=>{const m=$('#modal');m.innerHTML=`<div class="ov"><div class="dlg"><p>${esc(msg)}</p><div class="row"><button class="btn ghost sp" id="mn">Cancel</button><button class="btn primary sp" id="my">${esc(ok)}</button></div></div></div>`;m.querySelector('#mn').onclick=()=>{m.innerHTML='';res(false)};m.querySelector('#my').onclick=()=>{m.innerHTML='';res(true)}})}
 const phToday=()=>new Date(Date.now()+8*3600e3).toISOString().slice(0,10);
+const pdate=s=>!s?0:(s.includes('T')?new Date(s).getTime():new Date(s.replace(' ','T')+'+08:00').getTime());
+function ago(ts){if(!ts)return'';const s=Math.max(0,(Date.now()-ts)/1000);if(s<8)return'just now';if(s<60)return Math.floor(s)+'s ago';if(s<3600)return Math.floor(s/60)+' min ago';if(s<86400)return Math.floor(s/3600)+' h ago';return Math.floor(s/86400)+' d ago'}
+function dur(ms){const s=Math.max(0,Math.floor(ms/1000));return s>=3600?Math.floor(s/3600)+'h '+String(Math.floor(s%3600/60)).padStart(2,'0')+'m':Math.floor(s/60)+'m '+String(s%60).padStart(2,'0')+'s'}
+const hms=t=>new Date(t).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});
 const H=raw=>({Accept:raw?'application/vnd.github.raw+json':'application/vnd.github+json',...(S.token?{Authorization:'Bearer '+S.token}:{})});
 const API=p=>'https://api.github.com/repos/'+S.repo+p;
-async function gread(path){const r=await fetch(API('/contents/'+path+'?ref=main'),{headers:H(true),cache:'no-store'});if(r.status==404)return null;if(!r.ok)throw new Error(path+' '+r.status);return JSON.parse(await r.text())}
-async function glist(path){const r=await fetch(API('/contents/'+path+'?ref=main'),{headers:H(false),cache:'no-store'});if(!r.ok)return[];return r.json()}
+async function gj(url,opt){const r=await fetch(url,{cache:'no-store',...opt});if(!r.ok){let m='';try{m=(await r.clone().json()).message||''}catch(e){}const e=new Error(r.status==403&&/rate limit/i.test(m)?'GitHub rate limit reached (add your token in Settings)':r.status==401?'Token not accepted (check Settings)':r.status==404?'Not found':'GitHub error '+r.status+(m?': '+m:''));e.status=r.status;throw e}return r}
+async function gread(path){try{const r=await gj(API('/contents/'+path+'?ref=main'),{headers:H(true)});return JSON.parse(await r.text())}catch(e){if(e.status==404)return null;throw e}}
 const b64=s=>btoa(unescape(encodeURIComponent(s)));
-async function gwrite(path,obj,msg){let sha;const g=await fetch(API('/contents/'+path+'?ref=main'),{headers:H(false),cache:'no-store'});if(g.ok)sha=(await g.json()).sha;
- const r=await fetch(API('/contents/'+path),{method:'PUT',headers:{...H(false),'Content-Type':'application/json'},body:JSON.stringify({message:msg,content:b64(JSON.stringify(obj,null,2)),sha,branch:'main'})});if(!r.ok)throw new Error('save failed '+r.status+' (token needs repo access)');}
-async function dispatch(wf,inputs){const r=await fetch(API('/actions/workflows/'+wf+'/dispatches'),{method:'POST',headers:{...H(false),'Content-Type':'application/json'},body:JSON.stringify({ref:'main',inputs})});if(!r.ok)throw new Error('could not start ('+r.status+')')}
-async function stopRuns(){let n=0;
- for(const st of ['in_progress','queued']){const r=await fetch(API('/actions/runs?status='+st+'&per_page=20'),{headers:H(false),cache:'no-store'});
-  if(!r.ok)throw new Error('cannot read runs ('+r.status+')');
-  for(const run of (await r.json()).workflow_runs){if(!(run.path||'').includes('produce.yml'))continue;const c=await fetch(API('/actions/runs/'+run.id+'/cancel'),{method:'POST',headers:H(false)});if(c.ok)n++}}
- await new Promise(r=>setTimeout(r,4000));return n}
-async function loadAll(){
- if(!S.repo){S.tab='settings';return render()}
- try{S.err='';
-  S.cfg=await gread('config.json')||S.cfg;
-  S.dates=(await glist('data/plans')).map(f=>f.name.replace('.json','')).sort().reverse();
-  if(!S.date||!S.dates.includes(S.date))S.date=S.dates.includes(phToday())?phToday():S.dates[0]||phToday();
-  S.plan=await gread('data/plans/'+S.date+'.json')||{date:S.date,items:[]};
-  S.status=await gread('data/status.json')||{items:{}};S.res=await gread('data/results/'+S.date+'.json')||{items:{}};
-  const rr=await fetch(API('/actions/runs?per_page=10'),{headers:H(false),cache:'no-store'});S.runs=rr.ok?(await rr.json()).workflow_runs:[];S.runsErr=rr.ok?'':'runs '+rr.status;
- }catch(e){S.err=e.message}
- render()}
-const isRun=(x,w)=>x&&((x.path||'').includes(w+'.yml')||x.name==w);
-const activeRun=()=>S.runs.some(x=>x.status!='completed')||(S.runsErr&&(S.status.run||{}).state=='running');
-const pageName=id=>(S.cfg.pages.find(p=>p.id==id)||{}).name||id;
-const PCT={queued:3,scripting:15,voicing:40,rendering:65,uploading:90,done:100,error:100};
-function dateSel(){return `<select data-act="date">${[...new Set([...S.dates,S.date])].map(d=>`<option ${d==S.date?'selected':''}>${d}</option>`).join('')}</select>`}
-function runBanner(){const r=S.runs.find(x=>isRun(x,'produce')),pl=S.runs.find(x=>isRun(x,'plan'));const f=x=>x?`<a style="color:#7dd3fc" href="${x.html_url}" target="_blank">${x.name}: ${x.status=='completed'?x.conclusion:x.status}</a>`:'';
- const run=S.status.run||{};return `<div class="card mut">${[f(pl),f(r)].filter(Boolean).join(' · ')||(S.runsErr?'Cannot read runs ('+S.runsErr+')':'No runs yet')}${run.message?`<br>Last run: ${esc(run.message)} (${esc(run.updated||'')})`:''}</div>`}
+async function gwrite(path,obj,msg){let sha;try{sha=(await (await gj(API('/contents/'+path+'?ref=main'),{headers:H(false)})).json()).sha}catch(e){if(e.status!=404)throw e}
+ await gj(API('/contents/'+path),{method:'PUT',headers:{...H(false),'Content-Type':'application/json'},body:JSON.stringify({message:msg,content:b64(JSON.stringify(obj,null,2)),sha,branch:'main'})})}
+async function dispatch(){await gj(API('/actions/workflows/produce.yml/dispatches'),{method:'POST',headers:{...H(false),'Content-Type':'application/json'},body:JSON.stringify({ref:'main'})})}
+const isRun=x=>x&&((x.path||'').includes('produce.yml')||x.name=='produce');
+const activeRuns=()=>S.runs.filter(x=>isRun(x)&&x.status!='completed');
+const isPending=()=>S.pending&&Date.now()<S.pending.until;
+const STEPS=[['scripting','Script'],['voicing','Voice'],['rendering','Render'],['uploading','Upload'],['done','Done']];
+const WORK=['queued','scripting','voicing','rendering','uploading'];
+const items=()=>S.queue.items||[];
+const goal=()=>+(S.cfg.goal_per_day||3);
+const madeToday=()=>Object.values(S.res.items||{}).filter(r=>r.date==phToday()).length;
+function itemState(i){const s=S.status.items[i.id]||{};let st=s.state||'waiting';const live=activeRuns().length>0||isPending();
+ if(WORK.includes(st)&&!live)st='stopped';if(st=='done'&&s.built_rev!=(i.rev||0))st='remake';return{st,s}}
+const pendingCount=()=>items().filter(i=>{const st=itemState(i).st;return st!='done'}).length;
+// ---- light parser for the live preview (the real one runs on the server)
+function preview(text){const blocks=text.split(/^\s*(?:-{3,}|={3,}|_{3,})\s*$/m).filter(b=>b.trim());const out=[];
+ for(const b of blocks){const ls=b.split('\n').map(x=>x.trim()).filter(Boolean);let title='',roles=[],n=0;
+  for(let k=0;k<ls.length;k++){const l=ls[k];let m=l.match(/^(title|setting|scene|location|style|caption|hashtags|tags)\s*[:：]\s*(.*)$/i);
+   if(m){if(m[1].toLowerCase()=='title')title=m[2];continue}
+   m=l.match(/^[-•*]?\s*([^:：\[\]()]{1,30}?)\s*(?:[\[(][^\])]*[\])])?\s*[:：]\s*(.+)$/);
+   if(!m){if(k==0&&!title)title=l;continue}
+   const r=m[1].trim();if(k==0&&!title&&ls.filter(x=>x.toLowerCase().startsWith(r.toLowerCase()+':')).length==1&&ls.length>=4){title=l;continue}
+   if(!roles.some(x=>x.toLowerCase()==r.toLowerCase()))roles.push(r);n++}
+  out.push({title:title||'(untitled)',roles,n})}return out}
+function overall(){
+ const pr=activeRuns()[0],pc=pendingCount(),its=items();
+ const cur=its.map(i=>({i,...itemState(i)})).find(x=>['scripting','voicing','rendering','uploading'].includes(x.st));
+ const done=its.filter(i=>itemState(i).st=='done').length;
+ if(pr){const t0=pdate(pr.run_started_at||pr.created_at);
+  if(pr.status=='queued')return{k:'wait',pill:'QUEUED',txt:'⏳ Waiting in line to start… ('+ago(t0)+')',on:1};
+  return{k:'run',pill:'RUNNING',txt:'⚙️ Making videos'+(cur?' · '+STEPS.find(s=>s[0]==cur.st)[1]+': “'+(cur.i.title||'joke')+'”':' · starting up')+' · '+dur(Date.now()-t0),on:1}}
+ if(isPending())return{k:'wait',pill:'STARTING',txt:'🚀 Request sent — waiting for GitHub to start…',on:1};
+ const l=S.runs.find(isRun);
+ if(l&&l.conclusion=='failure')return{k:'fail',pill:'LAST RUN FAILED',txt:'❌ Last run failed '+ago(pdate(l.updated_at))+' · tap for details'};
+ if(l&&l.conclusion=='cancelled')return{k:'idle',pill:'IDLE',txt:'■ Last run was stopped '+ago(pdate(l.updated_at))};
+ if(l)return{k:'idle',pill:'IDLE',txt:'✅ Nothing running · last run finished '+ago(pdate(l.updated_at))+(pc?' · '+pc+' waiting in queue':'')};
+ return{k:'ready',pill:'READY',txt:S.repo?'Ready. Paste a joke and add it to the queue.':'Open Settings to connect your GitHub repo.'}}
+function renderChrome(){const o=overall(),p=$('#pill');
+ p.className='pill '+({run:'p-run',wait:'p-wait',fail:'p-fail',idle:'p-idle',ready:'p-ready'}[o.k]);p.innerHTML='<i></i>'+o.pill;
+ const a=$('#act');a.className='act '+({run:'run',fail:'fail',idle:'ok'}[o.k]||'');a.innerHTML='<span class="t">'+esc(o.txt)+'</span><span>›</span>';
+ $('#mini').className='mini'+(o.on?' on':'');
+ $('#tabs').innerHTML=[['add','✍️','Add'],['queue','📋','Queue'],['videos','🎞️','Videos'],['log','📜','Log'],['settings','⚙️','Settings']].map(t=>`<button class="tab ${S.tab==t[0]?'on':''}" data-tab="${t[0]}"><b>${t[1]}</b>${t[2]}${t[0]=='queue'&&pendingCount()?' ('+pendingCount()+')':''}</button>`).join('')}
+function btn(key,cls,label,busyLabel,dis){const b=S.busy[key];return `<button class="btn ${cls}" data-act="${key}" ${b||dis?'disabled':''}>${b?'<span class="spin"></span> '+busyLabel:label}</button>`}
+function goalCard(){const n=madeToday(),g=goal(),run=overall().on,pc=pendingCount();
+ return `<div class="row"><div class="sp"><div class="big">${n} / ${g}</div><div class="mut">videos made today</div></div><div style="text-align:right"><div class="big">${pc}</div><div class="mut">waiting in queue</div></div></div>
+ <div class="ring" style="margin:10px 0"><i style="width:${Math.min(100,g?n/g*100:0)}%"></i></div>
+ <div class="mut">${n>=g?'🎉 Daily goal reached!':(g-n)+' more to reach today’s goal'+(pc<g-n?' — add '+(g-n-pc)+' more joke'+(g-n-pc==1?'':'s')+' to the queue':'')}</div>
+ <div class="row" style="margin-top:10px">${btn('run','primary','▶ Make videos now','Starting…',run||!pc)}${btn('stop','danger','■ Stop','Stopping…',!run)}</div>`}
+function pvHtml(){const j=preview(S.text);if(!S.text.trim())return'<span class="mut">Your joke will be checked here as you type.</span>';
+ if(!j.length)return'<span class="wa">Nothing to add yet.</span>';
+ return j.map(x=>x.n<2?`<div class="wa">⚠ “${esc(x.title)}” needs at least 2 lines like  Dad: …</div>`:`<div class="ok">✓ “${esc(x.title)}” · ${x.n} lines · ${esc(x.roles.join(', '))}</div>`).join('')+(j.length>1?`<div class="mut">${j.length} jokes will be added</div>`:'')}
 const views={
-progress(){const its=S.plan.items.filter(i=>i.status!='skip');const done=its.filter(i=>(S.status.items[i.id]||{}).state=='done').length;
- return dateSel()+runBanner()+`<div class="card"><b>${done}/${its.length} videos ready</b><div class="bar"><i style="width:${its.length?done/its.length*100:0}%"></i></div>
- <button class="b" data-act="run">▶ Make videos now</button><button class="b r" data-act="stop">■ Stop</button><button class="b g" data-act="remakeall">↻ Remake all</button><button class="b g" data-act="reload">↻ Refresh</button></div>`+
- its.map(i=>{const s=S.status.items[i.id]||{},st0=s.state||'waiting',st=(!activeRun()&&['queued','scripting','voicing','rendering','uploading'].includes(st0))?'stopped':st0,stale=st=='done'&&s.built_rev!=(i.rev||0);return `<div class="card"><span class="chip">${esc(pageName(i.page))}</span> <span class="chip">${stale?'will remake':st}</span><div><b>${esc(i.title)}</b></div>
- <div class="bar"><i style="width:${PCT[st]||0}%;${st=='error'?'background:#ef4444':''}"></i></div>${s.msg?`<div class="err">${esc(s.msg)}</div>`:''}</div>`}).join('')||'<div class="card mut">No plan for this date yet. Open Plan → Generate.</div>'},
-videos(){const its=S.plan.items.filter(i=>S.res.items[i.id]);return dateSel()+(its.map(i=>{const r=S.res.items[i.id],posted=LS['posted:'+i.id];
- return `<div class="card"><span class="chip">${esc(pageName(i.page))}</span> <span class="chip">${r.duration}s</span> ${posted?'<span class="chip">✅ posted</span>':''}<div><b>${esc(i.title)}</b></div>
+add(){const ed=S.editId;return `<div class="card" id="goal">${goalCard()}</div>
+ <div class="card"><div class="row"><b class="sp">${ed?'✏️ Edit joke':'Paste your joke'}</b>${ed?'<button class="btn ghost sm" data-act="canceledit">Cancel edit</button>':''}</div>
+ <textarea id="jt" class="ta" placeholder="Title: The Pizza Joke&#10;Dad: Want to hear a joke about pizza?&#10;Kid: No thanks.&#10;Dad: Never mind, it's too cheesy! [rimshot]&#10;Kid: Dad, stop. [sad]">${esc(S.text)}</textarea>
+ <div id="pv" class="pv">${pvHtml()}</div>
+ <div class="row" style="margin-top:10px">${btn('addq','primary',ed?'💾 Save changes':'➕ Add to queue','Saving…')}${ed?'':btn('addrun','blue','➕ Add & make now','Starting…',overall().on)}</div></div>
+ <details><summary>How to write it</summary><pre>Title: The Pizza Joke
+Dad: Hey kiddo, want to hear a joke about pizza?
+Kid: No thanks.
+Dad: Never mind, it is too cheesy!
+Kid: Dad, stop.</pre>
+ <div class="mut">• First line = title (you can skip “Title:”).<br>• One line per person: <b>Name: what they say</b>. Up to 3 people. The same name always gets the same look and voice.<br>• Several jokes at once? Put <b>---</b> on its own line between them.<br>• Optional tags at the end of a line: <b>[happy] [angry] [sad] [surprised]</b> for the face and <b>[rimshot] [laugh] [ding] [bonk] [pop] [whoosh] [trombone]</b> for a sound. If you add none, a rimshot is added after the punchline.<br>• Optional extra lines: <b>Setting: kitchen</b> (home, kitchen, office, school, street, park…), <b>Style: sketch</b>, <b>Hashtags: #a #b</b>, <b>Caption: …</b></div></details>`},
+queue(){const its=items();return `<div class="card">${goalCard()}</div>`+(its.map(i=>{const{st,s}=itemState(i);const idx=STEPS.findIndex(x=>x[0]==s.state);
+  const lab={waiting:'in queue',queued:'next up',scripting:'working',voicing:'working',rendering:'working',uploading:'working',done:'done',remake:'will remake',error:'failed',stopped:'stopped'}[st];
+  const cls={done:'c-done',error:'c-err',stopped:'c-stop',waiting:'',queued:'c-wait',remake:'c-wait'}[st]??'c-work';
+  const ttl=(preview(i.text)[0]||{}).title||i.title||'joke';
+  return `<div class="card"><div class="row"><span class="chip ${cls}">${WORK.includes(st)&&st!='queued'?'● ':''}${lab}</span><span class="sp"></span><span class="mut">${s.updated?ago(pdate(s.updated)):''}</span></div>
+  <div class="title">${esc(ttl)}</div>
+  ${st!='waiting'?`<div class="steps">${STEPS.map((x,n)=>`<div class="stp ${st=='done'?'d':st=='error'&&n==Math.max(idx,0)?'e':(WORK.includes(st)&&st!='queued'&&n<idx)?'d':(WORK.includes(st)&&n==idx)?'n':''}"><i></i>${x[1]}</div>`).join('')}</div>`:''}
+  ${st=='error'?`<div class="err">${esc(s.msg||'Failed')}</div>`:''}
+  <div class="row" style="margin-top:8px"><button class="btn ghost sm" data-act="edit" data-id="${i.id}">✏️ Edit</button>${['done','error','stopped','remake'].includes(st)?`<button class="btn blue sm" data-act="remake" data-id="${i.id}">↻ ${st=='done'?'Remake':'Retry'}</button>`:''}<button class="btn danger sm" data-act="del" data-id="${i.id}">🗑 Delete</button></div></div>`}).join('')||'<div class="card mut">The queue is empty. Go to Add and paste a joke.</div>')},
+videos(){const rs=Object.entries(S.res.items||{}).sort((a,b)=>(b[1].date||'').localeCompare(a[1].date||''));
+ return `<div class="card"><b>${rs.length} finished video${rs.length==1?'':'s'}</b><div class="mut">Download the video, copy the captions, and post it yourself. Videos are kept for about a week.</div></div>`+(rs.map(([id,r])=>{const posted=LS['posted:'+id];
+ return `<div class="card"><div class="row"><span class="chip">${r.duration}s</span><span class="chip">${esc(r.date||'')}</span>${posted?'<span class="chip c-done">✅ posted</span>':''}</div><div class="title">${esc(r.title)}</div>
  <video controls playsinline preload="metadata" src="${esc(r.url)}"></video>
- <a href="${esc(r.url)}" download><button class="b">⬇ Download</button></a>
- <button class="b g" data-act="copy" data-id="${i.id}" data-k="yt_title">Copy YT title</button><button class="b g" data-act="copy" data-id="${i.id}" data-k="yt_desc">Copy YT caption</button>
- <button class="b g" data-act="copy" data-id="${i.id}" data-k="tiktok">Copy TikTok</button><button class="b g" data-act="copy" data-id="${i.id}" data-k="facebook">Copy Facebook</button>
- <div><button class="b g" data-act="posted" data-id="${i.id}">${posted?'Undo posted':'Mark posted'}</button><button class="b r" data-act="remake" data-id="${i.id}">Remake</button></div></div>`}).join('')||'<div class="card mut">No finished videos for this date yet.</div>')},
-plan(){return dateSel()+`<div class="card"><button class="b" data-act="save">💾 Save changes</button><button class="b g" data-act="add">＋ Add video</button><button class="b g" data-act="gen">✨ Generate new plan</button><button class="b r" data-act="clear">🗑 Clear all</button><div class="mut">Edit anything before the daily run. Generate replaces this date's plan.</div></div>`+
- S.plan.items.map((i,n)=>`<div class="card"><select data-f="page" data-n="${n}">${S.cfg.pages.map(p=>`<option value="${p.id}" ${p.id==i.page?'selected':''}>${esc(p.name)}</option>`).join('')}</select>
- <input data-f="title" data-n="${n}" value="${esc(i.title)}" placeholder="Title"><textarea data-f="premise" data-n="${n}" placeholder="Story idea">${esc(i.premise)}</textarea><textarea data-f="facts" data-n="${n}" placeholder="Verified facts, one per line (edit to fix any mistakes)">${esc((i.facts||[]).join('\n'))}</textarea>
- <button class="b g" data-act="skip" data-n="${n}">${i.status=='skip'?'Skipped – include':'Skip this'}</button><button class="b r" data-act="del" data-n="${n}">Delete</button></div>`).join('')},
-settings(){return `<div class="card"><b>Connection</b><input id="repo" placeholder="owner/repo" value="${esc(S.repo)}"><input id="tok" type="password" placeholder="GitHub token" value="${esc(S.token)}">
- <button class="b" data-act="conn">Save</button><div class="err">${esc(S.err)}</div></div>
- <div class="card"><b>Your pages</b>${S.cfg.pages.map((p,n)=>`<input data-pf="name" data-n="${n}" value="${esc(p.name)}"><textarea data-pf="niche" data-n="${n}">${esc(p.niche)}</textarea><textarea data-pf="guide" data-n="${n}" placeholder="Style guide (optional)">${esc(p.guide||'')}</textarea>Videos per day <input data-pf="per_day" data-n="${n}" type="number" min="0" max="5" value="${p.per_day}">Target length (seconds) <input data-pf="target_seconds" data-n="${n}" type="number" min="15" max="170" value="${p.target_seconds||''}">`).join('<hr>')}
- <button class="b" data-act="savecfg">Save pages</button><div class="mut">Total per day is capped at ${S.cfg.max_videos_per_day||15}.</div></div>
- <div class="card mut"><b>Better scripts (free)</b><br>Get a free key at aistudio.google.com/apikey, then add it as a repo secret named GEMINI_API_KEY (repo → Settings → Secrets → Actions).</div>`}};
-function render(){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t==S.tab));
- $('#runs').textContent=(S.runs[0]?(S.runs[0].status=='completed'?'':'● running'):'');
- $('#app').innerHTML=(S.err&&S.tab!='settings'?`<div class="card err">${esc(S.err)}</div>`:'')+views[S.tab]()}
-async function busy(fn){try{await fn()}catch(e){alert(e.message)}await loadAll()}
-document.addEventListener('click',async e=>{const nb=e.target.closest('nav button');if(nb){S.tab=nb.dataset.t;return render()}
- const b=e.target.closest('[data-act]');if(!b||b.tagName=='SELECT')return;const a=b.dataset.act,n=+b.dataset.n,id=b.dataset.id;
- if(a=='reload')return loadAll();
- if(a=='stop'){if(!confirm('Stop all running video jobs?'))return;return busy(async()=>{const n=await stopRuns();alert(n?'Stopped. Now you can tap Make videos now to start fresh.':'No running job found.')})}
- if(a=='remakeall'){if(activeRun()){alert('Tap Stop first.');return}if(!confirm('Make ALL videos for '+S.date+' again?'))return;return busy(async()=>{S.plan.items.forEach(i=>i.rev=(i.rev||0)+1);await gwrite('data/plans/'+S.date+'.json',S.plan,'remake all');await dispatch('produce.yml',{date:S.date});alert('Remaking all videos…')})}
- if(a=='run'&&activeRun()){alert('Already running. Tap Stop first if you want to restart.');return}
- if(a=='run')return busy(async()=>{await dispatch('produce.yml',{date:S.date});alert('Started! Check Progress in a minute.')});
- if(a=='gen'){if(!confirm('Replace the plan for '+S.date+'?'))return;return busy(async()=>{await dispatch('plan.yml',{date:S.date,force:'true'});alert('Planning… refresh in about a minute.')})}
- if(a=='clear'){if(!confirm('Remove ALL ideas from this date? (then tap Save changes)'))return;S.plan.items=[];return render()}
- if(a=='add'){S.plan.items.push({id:S.date+'-'+S.cfg.pages[0].id+'-'+Date.now().toString(36),page:S.cfg.pages[0].id,title:'',premise:'',roles:[],status:'planned',rev:0});return render()}
- if(a=='del'){S.plan.items.splice(n,1);return render()}
- if(a=='skip'){const i=S.plan.items[n];i.status=i.status=='skip'?'planned':'skip';return render()}
- if(a=='save')return busy(()=>gwrite('data/plans/'+S.date+'.json',S.plan,'edit plan '+S.date));
- if(a=='copy'){const t=S.res.items[id][b.dataset.k];try{await navigator.clipboard.writeText(t)}catch(_){const x=document.createElement('textarea');x.value=t;document.body.append(x);x.select();document.execCommand('copy');x.remove()}b.textContent='Copied ✓';return}
- if(a=='posted'){if(LS['posted:'+id])delete LS['posted:'+id];else LS['posted:'+id]='1';return render()}
- if(a=='remake'){if(!confirm('Make this video again?'))return;return busy(async()=>{const i=S.plan.items.find(x=>x.id==id);i.rev=(i.rev||0)+1;await gwrite('data/plans/'+S.date+'.json',S.plan,'remake '+id);await dispatch('produce.yml',{date:S.date});alert('Remaking…')})}
- if(a=='conn'){S.repo=$('#repo').value.trim();S.token=$('#tok').value.trim();LS.repo=S.repo;LS.token=S.token;S.tab='progress';return loadAll()}
- if(a=='savecfg')return busy(()=>gwrite('config.json',S.cfg,'update pages'))});
-document.addEventListener('change',e=>{const t=e.target;if(t.dataset.act=='date'){S.date=t.value;S.tab=S.tab;return loadAll()}});
-document.addEventListener('input',e=>{const t=e.target;if(t.dataset.f)S.plan.items[+t.dataset.n][t.dataset.f]=t.dataset.f=='facts'?t.value.split('\n').map(x=>x.trim()).filter(Boolean):t.value;if(t.dataset.pf)S.cfg.pages[+t.dataset.n][t.dataset.pf]=['per_day','target_seconds'].includes(t.dataset.pf)?+t.value:t.value});
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
-loadAll();setInterval(()=>{if(S.tab=='progress'&&!document.hidden)loadAll()},20000);
+ <a href="${esc(r.url)}" download><button class="btn primary full">⬇ Download video</button></a>
+ <div class="row" style="margin-top:8px"><button class="btn ghost sm sp" data-act="copy" data-id="${id}" data-k="yt_title">Copy YT title</button><button class="btn ghost sm sp" data-act="copy" data-id="${id}" data-k="yt_desc">Copy YT caption</button></div>
+ <div class="row" style="margin-top:6px"><button class="btn ghost sm sp" data-act="copy" data-id="${id}" data-k="tiktok">Copy TikTok</button><button class="btn ghost sm sp" data-act="copy" data-id="${id}" data-k="facebook">Copy Facebook</button></div>
+ <div class="row" style="margin-top:8px"><button class="btn ghost sm sp" data-act="posted" data-id="${id}">${posted?'Undo posted':'✔ Mark posted'}</button></div></div>`}).join('')||'<div class="card mut">No finished videos yet.</div>')},
+log(){const ic={completed:'✅',in_progress:'⏳',queued:'🕒',pending:'⚪'};
+ const steps=S.steps.length?`<div class="card"><h3>Live steps</h3>${S.steps.map(s=>`<div class="js"><span class="ic">${s.status=='completed'?(s.conclusion=='success'||s.conclusion=='skipped'?'✅':'❌'):ic[s.status]||'⚪'}</span><span>${esc(s.name)}</span></div>`).join('')}</div>`:'';
+ const lr=S.runs.find(isRun);
+ return `<div class="card"><div class="row"><b class="sp">Activity log</b><button class="btn ghost sm" data-act="copylog">Copy</button><button class="btn ghost sm" data-act="clearlog">Clear</button></div>
+ <div class="mut" style="margin-top:6px">Everything the app does and everything GitHub reports shows up here.${lr?` <a style="color:#7db3ff" target="_blank" href="${esc(lr.html_url)}">Open full GitHub log ↗</a>`:''}</div></div>${steps}
+ <div class="card log">${LOG.map(e=>`<div><time>${hms(e.t)}</time><span class="${e.l}">${esc(e.m)}</span></div>`).join('')||'<span class="mut">Nothing yet.</span>'}</div>`},
+settings(){const c=S.cfg;return `<div class="card"><h3>Connection</h3><label>GitHub repo</label><input id="repo" placeholder="owner/repo" value="${esc(S.repo)}"><label>GitHub token</label><input id="tok" type="password" placeholder="ghp_…" value="${esc(S.token)}">
+ <div class="row">${btn('conn','primary','💾 Save & connect','Connecting…')}${btn('test','ghost','Test connection','Testing…')}</div><div id="testres" class="mut" style="margin-top:8px"></div></div>
+ <div class="card"><h3>Video settings</h3><label>Videos per day (your goal)</label><input data-cf="goal_per_day" type="number" min="1" max="30" value="${goal()}">
+ <label>Look</label><select data-cf="style"><option value="color" ${c.style!='sketch'?'selected':''}>Colorful cartoon</option><option value="sketch" ${c.style=='sketch'?'selected':''}>Black &amp; white sketch</option></select>
+ <label>Hashtags (separated by spaces)</label><textarea data-cf="hashtags" style="min-height:60px">${esc((c.hashtags||[]).join(' '))}</textarea>
+ <label>Question at the end of captions</label><input data-cf="cta" value="${esc(c.cta||'')}"><label>Watermark text (optional, e.g. @yourpage)</label><input data-cf="watermark" value="${esc(c.watermark||'')}">
+ ${btn('savecfg','primary','💾 Save settings','Saving…')}<div class="mut" style="margin-top:8px">Waiting jokes are also made automatically every day at 4:00 AM (Philippine time).</div></div>`}};
+function renderMain(){const ae=document.activeElement;if(S.tab=='add'&&ae&&ae.id=='jt')return;
+ $('#app').innerHTML=(S.err&&S.tab!='settings'?`<div class="card err">⚠️ ${esc(S.err)}</div>`:'')+views[S.tab]()}
+function render(){renderChrome();renderMain()}
+function refreshGoal(){const g=$('#goal');if(g&&!g.contains(document.activeElement))g.innerHTML=goalCard()}
+async function loadAll(manual){
+ if(!S.repo){S.tab='settings';return render()}
+ S.loading=true;
+ try{S.err='';
+  S.cfg=await gread('config.json')||S.cfg;S.queue=await gread('data/queue.json')||{items:[]};S.res=await gread('data/results.json')||{items:{}};
+  await poll(true);S.lastOk=Date.now();if(manual)log('Refreshed from GitHub','ok')
+ }catch(e){S.err=e.message;log('⚠ '+e.message,'er')}
+ S.loading=false;render()}
+async function poll(inner){
+ if(!S.repo)return;
+ try{
+  const st=await gread('data/status.json')||{items:{}};
+  const rr=await (await gj(API('/actions/runs?per_page=10'),{headers:H(false)})).json();
+  const old=S.runs;S.runs=rr.workflow_runs||[];S.status=st;
+  for(const r of S.runs.filter(isRun)){const prev=S.prevRun[r.id];const now=r.status=='completed'?'completed:'+r.conclusion:r.status;
+   if(prev!==undefined&&prev!==now){if(r.status=='completed')log('Video run '+(r.conclusion=='success'?'finished successfully ✓':r.conclusion=='cancelled'?'was stopped':'FAILED ('+r.conclusion+')'),r.conclusion=='success'?'ok':r.conclusion=='cancelled'?'wa':'er');else log('Video run is now '+r.status.replace('_',' '),'wa')}
+   else if(prev===undefined&&S.prev&&r.status!='completed')log('Video run started','ok');S.prevRun[r.id]=now}
+  if(S.pending&&S.runs.some(r=>isRun(r)&&pdate(r.created_at)>=S.pending.at-15000))S.pending=null;
+  if(S.prev)for(const[id,v]of Object.entries(st.items||{})){const p=S.prev[id];if(p&&p.state!==v.state){const q=items().find(i=>i.id==id)||{},title=(preview(q.text||'')[0]||{}).title||'joke';
+   log('“'+title+'”: '+({scripting:'writing the script',voicing:'recording the voices',rendering:'drawing the animation',uploading:'uploading',done:'finished ✓',error:'FAILED — '+(v.msg||''),queued:'queued'}[v.state]||v.state),v.state=='done'?'ok':v.state=='error'?'er':'i')}}
+  S.prev=JSON.parse(JSON.stringify(st.items||{}));
+  const act=S.runs.find(r=>isRun(r)&&r.status=='in_progress');
+  if(act){try{const jj=await (await gj(API('/actions/runs/'+act.id+'/jobs'),{headers:H(false)})).json();S.steps=(jj.jobs[0]||{}).steps||[];S.stepsRun=act}catch(e){}}
+  const finished=old.some(o=>o.status!='completed'&&(S.runs.find(r=>r.id==o.id)||{}).status=='completed');
+  if(finished&&!inner){S.res=await gread('data/results.json')||S.res;S.queue=await gread('data/queue.json')||S.queue;if(S.tab!='add')renderMain()}
+  S.lastOk=Date.now();if(S.err&&!inner)S.err=''
+ }catch(e){S.err=e.message;if(!inner)log('⚠ '+e.message,'er')}
+ if(!inner){renderChrome();refreshGoal();if(S.tab=='queue'||S.tab=='log')renderMain()}}
+async function act(key,fn,ok,fail){S.busy[key]=true;renderMain();let good=false;try{await fn();good=true;if(ok){toast(ok,'ok');log(ok,'ok')}}catch(e){toast((fail||'Failed')+': '+e.message,'er');log('⚠ '+(fail||'Failed')+': '+e.message,'er')}S.busy[key]=false;renderMain();return good}
+async function stopRuns(){let n=0;for(const st of['in_progress','queued']){const r=await gj(API('/actions/runs?status='+st+'&per_page=20'),{headers:H(false)});for(const run of (await r.json()).workflow_runs){if(!(run.path||'').includes('produce.yml'))continue;const c=await fetch(API('/actions/runs/'+run.id+'/cancel'),{method:'POST',headers:H(false)});if(c.ok)n++}}return n}
+const newId=()=>'j'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+async function addJokes(){const blocks=S.text.split(/^\s*(?:-{3,}|={3,}|_{3,})\s*$/m).map(x=>x.trim()).filter(Boolean);
+ if(!blocks.length)throw new Error('paste a joke first');
+ const pv=preview(S.text);if(pv.some(x=>x.n<2))throw new Error('each joke needs at least 2 lines like  Dad: …');
+ const q=await gread('data/queue.json')||{items:[]};
+ if(S.editId){const it=q.items.find(i=>i.id==S.editId);if(!it)throw new Error('that joke no longer exists');it.text=blocks[0];it.title=pv[0].title;it.rev=(it.rev||0)+1}
+ else for(let k=0;k<blocks.length;k++)q.items.push({id:newId(),title:pv[k].title,text:blocks[k],status:'queued',rev:0,added:new Date().toISOString()});
+ await gwrite('data/queue.json',q,S.editId?'edit joke':'add '+blocks.length+' joke(s)');S.queue=q;
+ const n=S.editId?1:blocks.length;S.text='';LS.vb_draft='';S.editId=null;return n}
+document.addEventListener('click',async e=>{
+ const tb=e.target.closest('[data-tab]');if(tb){S.tab=tb.dataset.tab;return render()}
+ if(e.target.closest('#act')){S.tab='log';return render()}
+ const b=e.target.closest('[data-act]');if(!b||b.tagName=='SELECT')return;const a=b.dataset.act,id=b.dataset.id;
+ if(a=='addq'){const ed=!!S.editId;return act('addq',async()=>{S.n=await addJokes();log('Added '+S.n+' joke(s) to the queue');renderChrome()},ed?'Joke updated ✓':'Added to the queue ✓','Could not add')}
+ if(a=='addrun'){return act('addrun',async()=>{const n=await addJokes();log('Added '+n+' joke(s) and started making videos');await dispatch();S.pending={until:Date.now()+45000,at:Date.now()};renderChrome();setTimeout(poll,2500)},'Added! Making your video…','Could not start')}
+ if(a=='canceledit'){S.editId=null;S.text='';LS.vb_draft='';return renderMain()}
+ if(a=='run'){if(!await ask('Make videos for the '+pendingCount()+' waiting joke(s)?','Start'))return;return act('run',async()=>{log('Tapped “Make videos now”');await dispatch();S.pending={until:Date.now()+45000,at:Date.now()};renderChrome();setTimeout(poll,2500)},'Started! GitHub is spinning it up…','Could not start')}
+ if(a=='stop'){if(!await ask('Stop the running video job?','Stop it'))return;return act('stop',async()=>{log('Tapped Stop');const n=await stopRuns();S.pending=null;await new Promise(r=>setTimeout(r,2500));await poll();if(!n)throw new Error('no running job found')},'Stopped. You can start again now.','Stop')}
+ if(a=='edit'){const it=items().find(i=>i.id==id);S.editId=id;S.text=it.text;LS.vb_draft=it.text;S.tab='add';return render()}
+ if(a=='del'){if(!await ask('Delete this joke from the queue?','Delete'))return;return act('del'+id,async()=>{const q=await gread('data/queue.json')||{items:[]};q.items=q.items.filter(i=>i.id!=id);await gwrite('data/queue.json',q,'delete joke');S.queue=q},'Deleted ✓','Delete failed')}
+ if(a=='remake'){if(!await ask('Make this video again?','Remake'))return;return act('x'+id,async()=>{const q=await gread('data/queue.json')||{items:[]};const it=q.items.find(i=>i.id==id);it.rev=(it.rev||0)+1;await gwrite('data/queue.json',q,'remake');S.queue=q;await dispatch();S.pending={until:Date.now()+45000,at:Date.now()};renderChrome()},'Remaking started…','Could not remake')}
+ if(a=='copy'){const t=S.res.items[id][b.dataset.k];try{await navigator.clipboard.writeText(t)}catch(_){const x=document.createElement('textarea');x.value=t;document.body.append(x);x.select();document.execCommand('copy');x.remove()}toast('Copied ✓','ok');log('Copied '+b.dataset.k,'ok');const o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=o,1500);return}
+ if(a=='posted'){if(LS['posted:'+id])delete LS['posted:'+id];else LS['posted:'+id]='1';return renderMain()}
+ if(a=='conn'){return act('conn',async()=>{S.repo=$('#repo').value.trim();S.token=$('#tok').value.trim();LS.repo=S.repo;LS.token=S.token;log('Connection saved','ok');S.tab='add';await loadAll(true)},'Connected ✓','Connection')}
+ if(a=='test'){const out=$('#testres');S.repo=$('#repo').value.trim();S.token=$('#tok').value.trim();out.textContent='Testing…';return act('test',async()=>{const r=await (await gj(API(''),{headers:H(false)})).json();const rl=await (await gj('https://api.github.com/rate_limit',{headers:H(false)})).json();S.tab='settings';out.innerHTML='✅ Repo found: '+esc(r.full_name)+'<br>'+(S.token?'Token OK':'⚠ No token — buttons will not work')+' · API calls left: '+rl.resources.core.remaining;log('Connection test OK','ok')},'','Test failed')}
+ if(a=='savecfg')return act('savecfg',async()=>{await gwrite('config.json',S.cfg,'update settings')},'Settings saved ✓','Save failed');
+ if(a=='copylog'){const t=LOG.slice().reverse().map(e=>hms(e.t)+' '+e.m).join('\n');try{await navigator.clipboard.writeText(t);toast('Log copied ✓','ok')}catch(_){toast('Could not copy','er')}return}
+ if(a=='clearlog'){LOG=[];LS.vb_log='[]';return renderMain()}});
+document.addEventListener('input',e=>{const t=e.target;
+ if(t.id=='jt'){S.text=t.value;LS.vb_draft=t.value;const pv=$('#pv');if(pv)pv.innerHTML=pvHtml()}
+ if(t.dataset.cf){const k=t.dataset.cf;S.cfg[k]=k=='hashtags'?t.value.split(/\s+/).filter(Boolean).map(x=>x.startsWith('#')?x:'#'+x):k=='goal_per_day'?+t.value:t.value}});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset.cf)S.cfg[t.dataset.cf]=t.value});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+log('App opened');loadAll();
+let timer;function loop(){clearTimeout(timer);const run=overall().on;timer=setTimeout(async()=>{if(!document.hidden)await poll();loop()},run?6000:(S.token?25000:60000))}
+loop();setInterval(()=>{if(overall().on)renderChrome()},1000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){poll();loop()}});
 </script></body></html>
