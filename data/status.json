@@ -464,11 +464,12 @@
       "built_rev": 0
     },
     "2026-11-17-rescue-1": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-17",
-      "updated": "2026-11-17 11:04:49"
+      "updated": "2026-11-17 11:04:53",
+      "built_rev": 0
     }
   }
 }
