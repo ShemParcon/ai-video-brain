@@ -136,11 +136,12 @@
       "built_rev": 0
     },
     "jmwkvyz8r9yl": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-18",
-      "updated": "2026-11-18 00:10:58"
+      "updated": "2026-11-18 00:11:01",
+      "built_rev": 0
     },
     "jmwkvyz8rcos": {
       "state": "queued",
