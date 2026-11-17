@@ -72,11 +72,12 @@
       "built_rev": 0
     },
     "jmwk49scc98g": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-17",
-      "updated": "2026-11-17 11:15:33"
+      "updated": "2026-11-17 11:15:36",
+      "built_rev": 0
     },
     "jmwk49sccjnq": {
       "state": "queued",
