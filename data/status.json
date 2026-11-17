@@ -8,11 +8,12 @@
   },
   "items": {
     "jmwk49sc10g1": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-17",
-      "updated": "2026-11-17 11:13:18"
+      "updated": "2026-11-17 11:13:21",
+      "built_rev": 0
     },
     "jmwk49scccvs": {
       "state": "queued",
