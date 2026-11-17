@@ -1,26 +1,16 @@
 {
-  "version": 5,
-  "max_videos_per_day": 2,
-  "language": "English",
-  "narrator_voice": "en-US-ChristopherNeural",
-  "pages": [
-    {
-      "id": "didyouknow",
-      "name": "Did You Know",
-      "style": "story",
-      "per_day": 1,
-      "target_seconds": 55,
-      "niche": "surprising true trivia: science, history, nature, space, the human body, world records and amazing places around the world",
-      "guide": "Start with Did you know and a surprising fact. Give 4 to 6 facts with concrete numbers, saving the most surprising one for last. Fast, curious, friendly tone."
-    },
-    {
-      "id": "rescue",
-      "name": "True Rescue Stories",
-      "style": "story",
-      "per_day": 1,
-      "target_seconds": 110,
-      "niche": "true survival and rescue stories from different countries (trapped miners, lost hikers, shipwreck survivors, earthquake, cave and sea rescues) and famous historical stories retold",
-      "guide": "Tell it in order: setup, the crisis with rising stakes and specific numbers, the turning point, the rescue, the outcome. Respectful, gripping, non graphic."
-    }
-  ]
+  "version": 6,
+  "style": "color",
+  "goal_per_day": 3,
+  "max_per_run": 20,
+  "hashtags": [
+    "#dadjokes",
+    "#funny",
+    "#jokes",
+    "#comedy",
+    "#humor",
+    "#lol"
+  ],
+  "cta": "Did this one make you groan? 😂",
+  "watermark": ""
 }
