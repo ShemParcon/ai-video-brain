@@ -1,10 +1,10 @@
 {
   "run": {
-    "state": "finished",
+    "state": "running",
     "date": "2026-11-18",
-    "total": 10,
-    "message": "10 done, 0 failed",
-    "updated": "2026-11-18 00:12:03"
+    "total": 0,
+    "message": "making 0 video(s)",
+    "updated": "2026-11-18 10:19:15"
   },
   "items": {
     "jmwk49sc10g1": {
@@ -133,38 +133,6 @@
       "msg": "",
       "date": "2026-11-18",
       "updated": "2026-11-18 00:10:41",
-      "built_rev": 0
-    },
-    "jmwkvyz8r9yl": {
-      "state": "done",
-      "pct": 100,
-      "msg": "",
-      "date": "2026-11-18",
-      "updated": "2026-11-18 00:11:01",
-      "built_rev": 0
-    },
-    "jmwkvyz8rcos": {
-      "state": "done",
-      "pct": 100,
-      "msg": "",
-      "date": "2026-11-18",
-      "updated": "2026-11-18 00:11:21",
-      "built_rev": 0
-    },
-    "jmwkvyz8rd7t": {
-      "state": "done",
-      "pct": 100,
-      "msg": "",
-      "date": "2026-11-18",
-      "updated": "2026-11-18 00:11:41",
-      "built_rev": 0
-    },
-    "jmwkvyz8rllt": {
-      "state": "done",
-      "pct": 100,
-      "msg": "",
-      "date": "2026-11-18",
-      "updated": "2026-11-18 00:12:02",
       "built_rev": 0
     }
   }
