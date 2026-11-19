@@ -1,10 +1,10 @@
 {
   "run": {
-    "state": "running",
+    "state": "finished",
     "date": "2026-11-19",
     "total": 10,
-    "message": "making 10 video(s)",
-    "updated": "2026-11-19 09:33:39"
+    "message": "10 done, 0 failed",
+    "updated": "2026-11-19 09:36:41"
   },
   "items": {
     "jmwk49sc10g1": {
