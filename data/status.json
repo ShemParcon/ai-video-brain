@@ -192,11 +192,12 @@
       "built_rev": 0
     },
     "jmwmvlx4548b": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-19",
-      "updated": "2026-11-19 09:36:01"
+      "updated": "2026-11-19 09:36:04",
+      "built_rev": 0
     },
     "jmwmvlx45w42": {
       "state": "queued",
