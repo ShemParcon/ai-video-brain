@@ -1,10 +1,10 @@
 {
   "run": {
-    "state": "finished",
-    "date": "2026-11-18",
-    "total": 0,
-    "message": "0 done, 0 failed",
-    "updated": "2026-11-18 10:19:17"
+    "state": "running",
+    "date": "2026-11-19",
+    "total": 10,
+    "message": "making 10 video(s)",
+    "updated": "2026-11-19 09:33:39"
   },
   "items": {
     "jmwk49sc10g1": {
@@ -134,6 +134,76 @@
       "date": "2026-11-18",
       "updated": "2026-11-18 00:10:41",
       "built_rev": 0
+    },
+    "jmwmvlx44nm3": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-19",
+      "updated": "2026-11-19 09:33:39"
+    },
+    "jmwmvlx44zk9": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-19",
+      "updated": "2026-11-19 09:33:39"
+    },
+    "jmwmvlx445nv": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-19",
+      "updated": "2026-11-19 09:33:39"
+    },
+    "jmwmvlx442yn": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-19",
+      "updated": "2026-11-19 09:33:39"
+    },
+    "jmwmvlx45oa4": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-19",
+      "updated": "2026-11-19 09:33:39"
+    },
+    "jmwmvlx45xld": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-19",
+      "updated": "2026-11-19 09:33:39"
+    },
+    "jmwmvlx45qfx": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-19",
+      "updated": "2026-11-19 09:33:39"
+    },
+    "jmwmvlx4548b": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-19",
+      "updated": "2026-11-19 09:33:39"
+    },
+    "jmwmvlx45w42": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-19",
+      "updated": "2026-11-19 09:33:39"
+    },
+    "jmwmvlx45sgc": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-19",
+      "updated": "2026-11-19 09:33:39"
     }
   }
 }
