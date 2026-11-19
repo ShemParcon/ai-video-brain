@@ -144,11 +144,12 @@
       "built_rev": 0
     },
     "jmwmvlx44zk9": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-19",
-      "updated": "2026-11-19 09:34:12"
+      "updated": "2026-11-19 09:34:15",
+      "built_rev": 0
     },
     "jmwmvlx445nv": {
       "state": "queued",
