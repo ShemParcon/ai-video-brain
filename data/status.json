@@ -224,11 +224,12 @@
       "built_rev": 0
     },
     "jmwofx9au92h": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-20",
-      "updated": "2026-11-20 11:58:58"
+      "updated": "2026-11-20 11:59:00",
+      "built_rev": 0
     },
     "jmwofx9au4yv": {
       "state": "queued",
