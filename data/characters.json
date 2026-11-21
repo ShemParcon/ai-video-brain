@@ -2320,5 +2320,29 @@
     "voice": "en-US-RogerNeural",
     "pitch": -6,
     "rate": -4
+  },
+  "dadjokes:chef": {
+    "v": 3,
+    "page": "dadjokes",
+    "role": "Chef",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#b9784a",
+      "hair": "#2e1f16",
+      "shirt": "#10b981",
+      "style": "short",
+      "glasses": true,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#4b5563",
+      "shoe": "#7f1d1d",
+      "skirt": false,
+      "skirtc": "#7c3aed"
+    },
+    "voice": "en-US-RogerNeural",
+    "pitch": 0,
+    "rate": 3
   }
 }
