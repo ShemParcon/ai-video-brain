@@ -360,11 +360,12 @@
       "built_rev": 0
     },
     "jmwppgmitjd5": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-21",
-      "updated": "2026-11-21 09:08:33"
+      "updated": "2026-11-21 09:08:36",
+      "built_rev": 0
     },
     "jmwppgmit44m": {
       "state": "queued",
