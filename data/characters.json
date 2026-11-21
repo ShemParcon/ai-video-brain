@@ -2296,5 +2296,29 @@
     "voice": "en-US-EricNeural",
     "pitch": 0,
     "rate": 8
+  },
+  "dadjokes:grandpa": {
+    "v": 3,
+    "page": "dadjokes",
+    "role": "Grandpa",
+    "gender": "M",
+    "age": "old",
+    "look": {
+      "skin": "#d29b6b",
+      "hair": "#b9b9c0",
+      "shirt": "#14b8a6",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#4b5563",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-US-RogerNeural",
+    "pitch": -6,
+    "rate": -4
   }
 }

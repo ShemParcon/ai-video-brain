@@ -368,11 +368,12 @@
       "built_rev": 0
     },
     "jmwppgmit44m": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-21",
-      "updated": "2026-11-21 09:09:01"
+      "updated": "2026-11-21 09:09:04",
+      "built_rev": 0
     }
   }
 }
