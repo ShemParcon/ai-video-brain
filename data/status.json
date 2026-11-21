@@ -416,11 +416,12 @@
       "built_rev": 0
     },
     "jmwqxlx3gttn": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-22",
-      "updated": "2026-11-22 05:43:17"
+      "updated": "2026-11-22 05:43:21",
+      "built_rev": 0
     }
   }
 }

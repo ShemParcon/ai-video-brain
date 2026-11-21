@@ -2344,5 +2344,29 @@
     "voice": "en-US-RogerNeural",
     "pitch": 0,
     "rate": 3
+  },
+  "dadjokes:parrot": {
+    "v": 3,
+    "page": "dadjokes",
+    "role": "Parrot",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#1f2a44",
+      "shirt": "#ef4444",
+      "style": "bald",
+      "glasses": false,
+      "tie": false,
+      "cap": "#c0392b",
+      "scale": 1.0,
+      "pants": "#1e3a8a",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-EricNeural",
+    "pitch": 0,
+    "rate": 6
   }
 }
