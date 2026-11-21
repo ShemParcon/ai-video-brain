@@ -2128,5 +2128,29 @@
     "voice": "en-US-ChristopherNeural",
     "pitch": 0,
     "rate": 4
+  },
+  "dadjokes:officer": {
+    "v": 3,
+    "page": "dadjokes",
+    "role": "Officer",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#e8b98a",
+      "hair": "#2e1f16",
+      "shirt": "#f97316",
+      "style": "cap",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#3f3f46",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-US-EricNeural",
+    "pitch": 0,
+    "rate": 3
   }
 }
