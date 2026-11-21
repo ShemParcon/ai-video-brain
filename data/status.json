@@ -320,11 +320,11 @@
       "built_rev": 0
     },
     "jmwppgmit9lo": {
-      "state": "queued",
-      "pct": 0,
+      "state": "scripting",
+      "pct": 10,
       "msg": "",
       "date": "2026-11-21",
-      "updated": "2026-11-21 09:04:53"
+      "updated": "2026-11-21 09:06:10"
     },
     "jmwppgmitl7z": {
       "state": "queued",
