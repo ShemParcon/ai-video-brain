@@ -344,11 +344,11 @@
       "built_rev": 0
     },
     "jmwppgmitidl": {
-      "state": "scripting",
-      "pct": 10,
+      "state": "voicing",
+      "pct": 35,
       "msg": "",
       "date": "2026-11-21",
-      "updated": "2026-11-21 09:07:25"
+      "updated": "2026-11-21 09:07:26"
     },
     "jmwppgmitgnh": {
       "state": "queued",
