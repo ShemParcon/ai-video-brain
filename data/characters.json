@@ -2272,5 +2272,29 @@
     "voice": "en-US-ChristopherNeural",
     "pitch": 0,
     "rate": 6
+  },
+  "dadjokes:doctor": {
+    "v": 3,
+    "page": "dadjokes",
+    "role": "Doctor",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#8d5a3b",
+      "hair": "#1f2a44",
+      "shirt": "#f97316",
+      "style": "bald",
+      "glasses": false,
+      "tie": false,
+      "cap": "#16a34a",
+      "scale": 1.0,
+      "pants": "#334155",
+      "shoe": "#f8fafc",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-EricNeural",
+    "pitch": 0,
+    "rate": 8
   }
 }
