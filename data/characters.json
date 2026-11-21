@@ -2152,5 +2152,29 @@
     "voice": "en-US-EricNeural",
     "pitch": 0,
     "rate": 3
+  },
+  "dadjokes:waiter": {
+    "v": 3,
+    "page": "dadjokes",
+    "role": "Waiter",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#d29b6b",
+      "hair": "#6b2d1a",
+      "shirt": "#ec4899",
+      "style": "short",
+      "glasses": false,
+      "tie": false,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#4b5563",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#0f766e"
+    },
+    "voice": "en-US-SteffanNeural",
+    "pitch": 0,
+    "rate": 7
   }
 }
