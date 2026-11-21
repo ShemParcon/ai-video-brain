@@ -328,11 +328,12 @@
       "built_rev": 0
     },
     "jmwppgmitl7z": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-21",
-      "updated": "2026-11-21 09:06:56"
+      "updated": "2026-11-21 09:06:59",
+      "built_rev": 0
     },
     "jmwppgmitzlm": {
       "state": "queued",
