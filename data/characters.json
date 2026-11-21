@@ -2248,5 +2248,29 @@
     "voice": "en-US-JennyNeural",
     "pitch": 0,
     "rate": 4
+  },
+  "dadjokes:boss": {
+    "v": 3,
+    "page": "dadjokes",
+    "role": "Boss",
+    "gender": "M",
+    "age": "adult",
+    "look": {
+      "skin": "#d29b6b",
+      "hair": "#2e1f16",
+      "shirt": "#ec4899",
+      "style": "short",
+      "glasses": false,
+      "tie": true,
+      "cap": "#2563eb",
+      "scale": 1.0,
+      "pants": "#1e3a8a",
+      "shoe": "#1f2937",
+      "skirt": false,
+      "skirtc": "#be185d"
+    },
+    "voice": "en-US-ChristopherNeural",
+    "pitch": 0,
+    "rate": 6
   }
 }
