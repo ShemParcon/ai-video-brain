@@ -464,11 +464,12 @@
       "built_rev": 0
     },
     "jmwsob68qp8c": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-23",
-      "updated": "2026-11-23 10:58:27"
+      "updated": "2026-11-23 10:58:30",
+      "built_rev": 0
     }
   }
 }
