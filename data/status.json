@@ -432,11 +432,12 @@
       "built_rev": 0
     },
     "jmwsob68q31g": {
-      "state": "uploading",
-      "pct": 90,
+      "state": "done",
+      "pct": 100,
       "msg": "",
       "date": "2026-11-23",
-      "updated": "2026-11-23 10:56:52"
+      "updated": "2026-11-23 10:56:55",
+      "built_rev": 0
     },
     "jmwsob68qcvk": {
       "state": "queued",
