@@ -1,10 +1,10 @@
 {
   "run": {
-    "state": "finished",
-    "date": "2026-11-24",
-    "total": 0,
-    "message": "0 done, 0 failed",
-    "updated": "2026-11-24 12:41:26"
+    "state": "running",
+    "date": "2026-11-25",
+    "total": 6,
+    "message": "making 6 video(s)",
+    "updated": "2026-11-25 09:42:29"
   },
   "items": {
     "jmwk49sc10g1": {
@@ -470,6 +470,48 @@
       "date": "2026-11-23",
       "updated": "2026-11-23 10:58:30",
       "built_rev": 0
+    },
+    "jmwvgjkpbqb9": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-25",
+      "updated": "2026-11-25 09:42:29"
+    },
+    "jmwvgjkpbrsa": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-25",
+      "updated": "2026-11-25 09:42:29"
+    },
+    "jmwvgjkpbd1f": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-25",
+      "updated": "2026-11-25 09:42:29"
+    },
+    "jmwvgjkpbtdl": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-25",
+      "updated": "2026-11-25 09:42:29"
+    },
+    "jmwvgjkpbck0": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-25",
+      "updated": "2026-11-25 09:42:29"
+    },
+    "jmwvgjkpbvff": {
+      "state": "queued",
+      "pct": 0,
+      "msg": "",
+      "date": "2026-11-25",
+      "updated": "2026-11-25 09:42:29"
     }
   }
 }
