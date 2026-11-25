@@ -480,11 +480,11 @@
       "built_rev": 0
     },
     "jmwvgjkpbrsa": {
-      "state": "queued",
-      "pct": 0,
+      "state": "scripting",
+      "pct": 10,
       "msg": "",
       "date": "2026-11-25",
-      "updated": "2026-11-25 09:42:29"
+      "updated": "2026-11-25 09:43:03"
     },
     "jmwvgjkpbd1f": {
       "state": "queued",
