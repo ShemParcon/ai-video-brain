@@ -479,6 +479,54 @@
       "status": "queued",
       "rev": 0,
       "added": "2026-11-25T01:41:23.471Z"
+    },
+    {
+      "id": "jmwylsssz9gq",
+      "title": "The Forgetful Baker",
+      "text": "The Forgetful Baker\nDad: I tried to make bread, but I forgot the recipe.\nKid: So what did you make?\nDad: A loaf of my memory.",
+      "status": "queued",
+      "rev": 0,
+      "added": "2026-11-27T06:31:50.483Z"
+    },
+    {
+      "id": "jmwylssszxdm",
+      "title": "The Sleepy Bicycle",
+      "text": "The Sleepy Bicycle\nDad: Why did the bicycle need a nap?\nKid: Why?\nDad: It was two-tired!",
+      "status": "queued",
+      "rev": 0,
+      "added": "2026-11-27T06:31:50.483Z"
+    },
+    {
+      "id": "jmwylsssza6w",
+      "title": "The Nervous Calendar",
+      "text": "The Nervous Calendar\nDad: The calendar is nervous about its big day.\nKid: What day?\nDad: Its date is coming up!",
+      "status": "queued",
+      "rev": 0,
+      "added": "2026-11-27T06:31:50.483Z"
+    },
+    {
+      "id": "jmwylsssz03o",
+      "title": "The Musical Ladder",
+      "text": "The Musical Ladder\nDad: Why did the ladder join the band?\nKid: Why?\nDad: It wanted to reach the high notes.",
+      "status": "queued",
+      "rev": 0,
+      "added": "2026-11-27T06:31:50.483Z"
+    },
+    {
+      "id": "jmwylssszkcp",
+      "title": "The Hungry Clock",
+      "text": "The Hungry Clock\nDad: Why did the clock go to the kitchen?\nKid: Why?\nDad: It was hungry for seconds!",
+      "status": "queued",
+      "rev": 0,
+      "added": "2026-11-27T06:31:50.483Z"
+    },
+    {
+      "id": "jmwylsssz8dk",
+      "title": "The Shy Tomato",
+      "text": "The Shy Tomato\nDad: Why did the tomato blush?\nKid: Why?\nDad: It saw the salad dressing.",
+      "status": "queued",
+      "rev": 0,
+      "added": "2026-11-27T06:31:50.483Z"
     }
   ]
 }
